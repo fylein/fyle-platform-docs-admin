@@ -1,0 +1,8 @@
+in: query
+name: amount
+description: |
+  Supported operators are `eq`,`gte`,`lte`,`gt`,`lt`,`in`.<br>
+  amount=in.(value1,value2)
+schema:
+  type: integer
+  example: 'eq.100'

@@ -1,0 +1,15 @@
+type: object
+properties:
+  customerMetadataId:
+    type: string
+    readOnly: true
+  customerId:
+    type: string
+    readOnly: true
+  bankAccountAdded:
+    type: boolean
+    readOnly: true
+    description: |
+      Flag which indicates whether bank account was added or not.
+    default: false
+    example: true

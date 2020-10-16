@@ -1,0 +1,8 @@
+type: object
+properties:
+  name:
+    type: string
+    example: Sales
+  subDepartment:
+    type: string
+    example: Outbound Sales

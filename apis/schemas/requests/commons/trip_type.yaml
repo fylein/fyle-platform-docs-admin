@@ -1,0 +1,8 @@
+in: query
+name: trip_type
+description: |
+  List of strings.<br>
+  Supported operators are `eq`,`cs`.<br>
+schema:
+  type: array
+  example: 'cs.{ONE_WAY,MULTI_CITY}'

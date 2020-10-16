@@ -1,0 +1,13 @@
+type: object
+properties:
+  offset:
+    $ref: '../commons/offset.yaml'
+  limit:
+    $ref: '../commons/limit.yaml'
+  url:
+    type: string
+    example: /v3/settlements
+  data:
+    type: array
+    items:
+      $ref: '../../objects/settlements.yaml'

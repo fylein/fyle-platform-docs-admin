@@ -1,0 +1,22 @@
+type: object
+properties:
+  city:
+    type: string
+    example: 'London'
+  state:
+    type: string
+    example: 'California'
+  country:
+    type: string
+    example: 'India'
+  display_name:
+    type: string
+  formatted_address:
+    type: string
+    example: '4, Privet Drive, London'
+  latitude:
+    type: number
+    example: 12.971599
+  longitude:
+    type: number
+    example: 77.594566

@@ -1,0 +1,75 @@
+type: object
+properties:
+  id:
+    type: string
+    maxLength: 255
+    description: |
+      This id prodvided by Fyle to uniquely identify a balance transfer.
+      This id is always prefixed with `bt`.
+    readOnly: true
+    example: btLL7YJKZHMz
+
+  employee_id:
+    $ref: './commons/employee_id.yaml'
+
+  employee:
+    $ref: './minimals/employees.yaml'
+
+  issuer_id:
+    type: string
+    maxLength: 255
+    description: |
+      Employee ID of issuer of the balance transfer.
+      This ID prodvided by Fyle to uniquely identify an employee within an organization.
+      This ID is always prefixed with `ou`.
+    example: oul8zTHMnTjp
+
+  # note : use this notation to override description for issuer/creator/returnee/etc. i.e secondary type of employee objects
+  issuer:
+    allOf:
+      - $ref: 'minimals/employees.yaml'
+    description: |
+      Details of employee who issued this balance transfer.
+
+  org_id:
+    $ref: './commons/org_id.yaml'
+
+  org_name:
+    $ref: './commons/org_name.yaml'
+
+  currency:
+    $ref: './commons/currency.yaml'
+
+  amount:
+    $ref: './commons/amount.yaml'
+
+  note:
+    type: string
+    description: |
+      Optional descriptive note which can be added to a refund.
+    example: august's pending amount refund
+
+  issued_at:
+    type: string
+    format: date-time
+    description: |
+      <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
+      Signifies when this balance transfer was issued by issuer.
+    example: '2020-06-01T13:14:54.804'
+
+  created_at:
+    $ref: './commons/created_at.yaml'
+
+  updated_at:
+    $ref: './commons/updated_at.yaml'
+
+  source_account:
+    type: string
+    description: |
+      Signifies name of account with which this balance transfer is associated.
+      Few sample values : Advance Account, Corporate Credit Card Account, Organization Category Account
+    example: Personal Account
+
+  export_info:
+    $ref: './minimals/export_info.yaml'
+

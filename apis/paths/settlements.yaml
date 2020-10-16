@@ -1,0 +1,37 @@
+get:
+  tags:
+    - Settlements
+  summary: Returns a list of settlement objects.
+  operationId: GetSettlements
+  parameters:
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
+    - $ref: '../schemas/requests/commons/created_at.yaml'
+    - $ref: '../schemas/requests/commons/updated_at.yaml'
+    - $ref: '../schemas/requests/commons/employee_id.yaml'
+    - $ref: '../schemas/requests/commons/employee_user_id.yaml'
+    - $ref: '../schemas/requests/commons/employee_code.yaml'
+    - $ref: '../schemas/requests/settlements/opening_dt.yaml'
+    - $ref: '../schemas/requests/settlements/closing_dt.yaml'
+    - $ref: '../schemas/requests/settlements/total_opening_balance.yaml'
+    - $ref: '../schemas/requests/settlements/total_closing_balance.yaml'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/settlements.yaml'
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/403.yaml'

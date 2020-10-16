@@ -1,0 +1,7 @@
+in: query
+name: purpose
+description: |
+  Supported operators are `eq`, `like`.<br>
+schema:
+  type: string
+  example: 'like.(trip*)'

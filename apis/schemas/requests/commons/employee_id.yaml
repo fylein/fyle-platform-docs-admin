@@ -1,0 +1,8 @@
+in: query
+name: employee_id
+description: |
+  This param is used to filer records based employee id.
+  Supported operators are `in`,`eq`.<br>
+schema:
+  type: string
+  example: 'eq.ouvneouegi'

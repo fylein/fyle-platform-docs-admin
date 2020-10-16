@@ -1,0 +1,7 @@
+in: query
+name: collector_id
+description: |
+  Supported operators are `in`,`eq`.<br>
+schema:
+  type: string
+  example: 'eq.ouvneouegi'

@@ -1,0 +1,4 @@
+type: array
+description: | 
+  This field specifies the org category ids associated with the custom property.
+example: [1, 3]

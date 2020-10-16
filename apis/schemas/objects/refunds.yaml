@@ -1,0 +1,115 @@
+type: object
+properties:
+  id:
+    type: string
+    maxLength: 255
+    description: |
+      This id prodvided by Fyle to uniquely identify a refund.
+      This id is always prefixed with `ref`.
+    readOnly: true
+    example: refDml2wrWqk1
+
+  collector_id:
+    type: string
+    maxLength: 255
+    description: |
+      Employee ID of collector of the refund.
+      This ID prodvided by Fyle to uniquely identify an employee within an organization.
+      This ID is always prefixed with `ou`.
+    example: outGt9ju6qP
+
+  # note : use this notation to override description for issuer/creator/returnee/etc. i.e secondary type of employee objects
+  collector:
+    allOf:
+      - $ref: 'minimals/employees.yaml'
+    description: |
+      Details of employee who is the collector of this refund.
+    
+  returnee_id:
+    type: string
+    maxLength: 255
+    description: |
+      Employee ID of returnee of the refund.
+      This ID prodvided by Fyle to uniquely identify an employee within an organization.
+      This ID is always prefixed with `ou`.
+    example: oul8zTHMnTjp
+
+  returnee:
+    allOf:
+      - $ref: 'minimals/employees.yaml'
+    description: |
+      Details of employee who is the returnee of this refund.
+    
+  org_id:
+      $ref: 'commons/org_id.yaml'
+
+  org_name:
+    $ref: 'commons/org_name.yaml'
+
+  payment_mode:
+    type: string
+    enum: [CASH, BANK_TRANSFER, FOREX, CHEQUE_DD]
+    maxLength: 255
+    description: |
+      Mode of payment for a refund object.
+    example: BANK_TRANSFER 
+
+  foreign_currency:
+    $ref: 'commons/foreign_currency.yaml'
+
+  foreign_amount:
+    $ref: 'commons/foreign_amount.yaml'
+
+  reference:
+    type: string
+    description: |
+      Reference code of a refund object.
+    example: 6t2uygfhjdhs
+
+  amount:
+    $ref: 'commons/amount.yaml'
+
+  currency:
+    $ref: 'commons/currency.yaml'
+
+  note:
+    type: string
+    description: |
+      Optional descriptive note which can be added to a refund.
+    example: august's pending amount refund
+    
+  settlement_id:
+    $ref: 'commons/settlement_id.yaml'
+
+  created_at:
+    $ref: 'commons/created_at.yaml'
+
+  updated_at:
+    $ref: 'commons/updated_at.yaml'
+
+  returned_at:
+    type: string
+    format: date-time
+    description: |
+      <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
+      Signifies when this refund was returned by returnee.
+    example: '2020-06-01T13:14:54.804'
+
+  card_number:
+    type: string
+    description: |
+      Last 4 or 6 digits of the card used for payment of this refund.
+    example: '2838'
+
+  payment_id:
+    $ref: 'commons/payment_id.yaml'
+
+  source:
+    type: string
+    enum: [WEBAPP, WEBAPP_BULK_EXCEL]
+    description: |
+      Enum value signifying the client method from which this refund was initiated.
+    example: WEBAPP_BULK_EXCEL
+
+  export_info:
+    $ref: './minimals/export_info.yaml'

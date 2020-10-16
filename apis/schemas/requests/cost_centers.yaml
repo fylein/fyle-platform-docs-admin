@@ -1,0 +1,11 @@
+type: object
+properties:
+  data:
+    type: array
+    items:
+      $ref: '../objects/cost_centers.yaml'
+  test:
+    type: boolean
+    example: false
+    default: false
+required: [data]
