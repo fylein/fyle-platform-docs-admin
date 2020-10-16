@@ -419,7 +419,7 @@ components:
             into a single band.
           example: Associate
         rank:
-          type: string
+          type: integer
           description: >
             Rank in which this level belongs to. We recommend to assign higher
             rank for senior people in the org trees and
