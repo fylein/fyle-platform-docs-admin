@@ -4,5 +4,5 @@ description: |
   Possible values : true, false.<br>
   Supported operators are `eq`, `in`.<br>
 schema:
-  type: boolean
+  type: string
   example: 'accounting_exported=eq.true'

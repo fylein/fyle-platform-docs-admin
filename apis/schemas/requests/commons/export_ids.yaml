@@ -1,8 +1,7 @@
 in: query
 name: export_info->export_ids
 description: |
-  List of strings.<br>
   Supported operators are `eq`,`cs`.<br>
 schema:
-  type: array
+  type: string
   example: 'cs.{expD3QWBgoZ2U,expf9H3sh1B}'

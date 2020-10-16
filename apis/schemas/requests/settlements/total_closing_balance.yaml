@@ -4,5 +4,5 @@ description: |
   Supported operators are `eq`,`gte`,`lte`,`gt`,`lt`,`in`.<br>
   total_closing_balance=in.(value1,value2)
 schema:
-  type: integer
+  type: string
   example: 'eq.100'

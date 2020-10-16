@@ -3,5 +3,5 @@ name: export_info->exported
 description: >-
   Supported operators are `eq`,`not.eq`.<br>
 schema:
-  type: boolean
+  type: string
   example: 'eq.false'

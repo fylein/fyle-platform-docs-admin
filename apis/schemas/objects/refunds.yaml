@@ -93,7 +93,7 @@ properties:
     description: |
       <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
       Signifies when this refund was returned by returnee.
-    example: '2020-06-01T13:14:54.804'
+    example: '2020-06-01T13:14:54.804Z'
 
   card_number:
     type: string
