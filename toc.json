@@ -1,0 +1,273 @@
+{
+  "items": [
+    {
+      "type": "item",
+      "title": "Fyle REST API",
+      "uri": "admin.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Models"
+    },
+    {
+      "type": "item",
+      "title": "401.yaml",
+      "uri": "apis/schemas/errors/401.yaml"
+    },
+    {
+      "type": "item",
+      "title": "403.yaml",
+      "uri": "apis/schemas/errors/403.yaml"
+    },
+    {
+      "type": "item",
+      "title": "500.yaml",
+      "uri": "apis/schemas/errors/500.yaml"
+    },
+    {
+      "type": "item",
+      "title": "502.yaml",
+      "uri": "apis/schemas/errors/502.yaml"
+    },
+    {
+      "type": "item",
+      "title": "504.yaml",
+      "uri": "apis/schemas/errors/504.yaml"
+    },
+    {
+      "type": "item",
+      "title": "bulk_error.yaml",
+      "uri": "apis/schemas/errors/bulk_error.yaml"
+    },
+    {
+      "type": "item",
+      "title": "json_parsing_error.yaml",
+      "uri": "apis/schemas/errors/json_parsing_error.yaml"
+    },
+    {
+      "type": "item",
+      "title": "annual_mileage.yaml",
+      "uri": "apis/schemas/objects/annual_mileage.yaml"
+    },
+    {
+      "type": "item",
+      "title": "balance_transfers.yaml",
+      "uri": "apis/schemas/objects/balance_transfers.yaml"
+    },
+    {
+      "type": "item",
+      "title": "amount.yaml",
+      "uri": "apis/schemas/objects/commons/amount.yaml"
+    },
+    {
+      "type": "item",
+      "title": "created_at.yaml",
+      "uri": "apis/schemas/objects/commons/created_at.yaml"
+    },
+    {
+      "type": "item",
+      "title": "currency.yaml",
+      "uri": "apis/schemas/objects/commons/currency.yaml"
+    },
+    {
+      "type": "item",
+      "title": "employee_id.yaml",
+      "uri": "apis/schemas/objects/commons/employee_id.yaml"
+    },
+    {
+      "type": "item",
+      "title": "enabled.yaml",
+      "uri": "apis/schemas/objects/commons/enabled.yaml"
+    },
+    {
+      "type": "item",
+      "title": "foreign_amount.yaml",
+      "uri": "apis/schemas/objects/commons/foreign_amount.yaml"
+    },
+    {
+      "type": "item",
+      "title": "foreign_currency.yaml",
+      "uri": "apis/schemas/objects/commons/foreign_currency.yaml"
+    },
+    {
+      "type": "item",
+      "title": "org_category_ids.yaml",
+      "uri": "apis/schemas/objects/commons/org_category_ids.yaml"
+    },
+    {
+      "type": "item",
+      "title": "org_id.yaml",
+      "uri": "apis/schemas/objects/commons/org_id.yaml"
+    },
+    {
+      "type": "item",
+      "title": "org_name.yaml",
+      "uri": "apis/schemas/objects/commons/org_name.yaml"
+    },
+    {
+      "type": "item",
+      "title": "payment_id.yaml",
+      "uri": "apis/schemas/objects/commons/payment_id.yaml"
+    },
+    {
+      "type": "item",
+      "title": "settlement_id.yaml",
+      "uri": "apis/schemas/objects/commons/settlement_id.yaml"
+    },
+    {
+      "type": "item",
+      "title": "trip_request_type.yaml",
+      "uri": "apis/schemas/objects/commons/trip_request_type.yaml"
+    },
+    {
+      "type": "item",
+      "title": "trip_type.yaml",
+      "uri": "apis/schemas/objects/commons/trip_type.yaml"
+    },
+    {
+      "type": "item",
+      "title": "updated_at.yaml",
+      "uri": "apis/schemas/objects/commons/updated_at.yaml"
+    },
+    {
+      "type": "item",
+      "title": "cost_centers.yaml",
+      "uri": "apis/schemas/objects/cost_centers.yaml"
+    },
+    {
+      "type": "item",
+      "title": "custom_properties.yaml",
+      "uri": "apis/schemas/objects/custom_properties.yaml"
+    },
+    {
+      "type": "item",
+      "title": "employees.yaml",
+      "uri": "apis/schemas/objects/employees.yaml"
+    },
+    {
+      "type": "item",
+      "title": "location.yaml",
+      "uri": "apis/schemas/objects/location.yaml"
+    },
+    {
+      "type": "item",
+      "title": "cost_center.yaml",
+      "uri": "apis/schemas/objects/minimals/cost_center.yaml"
+    },
+    {
+      "type": "item",
+      "title": "department.yaml",
+      "uri": "apis/schemas/objects/minimals/department.yaml"
+    },
+    {
+      "type": "item",
+      "title": "dwolla_cutomers_metadata.yaml",
+      "uri": "apis/schemas/objects/minimals/dwolla_cutomers_metadata.yaml"
+    },
+    {
+      "type": "item",
+      "title": "employees.yaml",
+      "uri": "apis/schemas/objects/minimals/employees.yaml"
+    },
+    {
+      "type": "item",
+      "title": "export_info.yaml",
+      "uri": "apis/schemas/objects/minimals/export_info.yaml"
+    },
+    {
+      "type": "item",
+      "title": "level.yaml",
+      "uri": "apis/schemas/objects/minimals/level.yaml"
+    },
+    {
+      "type": "item",
+      "title": "perdiem.yaml",
+      "uri": "apis/schemas/objects/minimals/perdiem.yaml"
+    },
+    {
+      "type": "item",
+      "title": "user.yaml",
+      "uri": "apis/schemas/objects/minimals/user.yaml"
+    },
+    {
+      "type": "item",
+      "title": "orgs.yaml",
+      "uri": "apis/schemas/objects/orgs.yaml"
+    },
+    {
+      "type": "item",
+      "title": "refunds.yaml",
+      "uri": "apis/schemas/objects/refunds.yaml"
+    },
+    {
+      "type": "item",
+      "title": "reimbursements.yaml",
+      "uri": "apis/schemas/objects/reimbursements.yaml"
+    },
+    {
+      "type": "item",
+      "title": "settlements.yaml",
+      "uri": "apis/schemas/objects/settlements.yaml"
+    },
+    {
+      "type": "item",
+      "title": "cost_centers.yaml",
+      "uri": "apis/schemas/requests/cost_centers.yaml"
+    },
+    {
+      "type": "item",
+      "title": "employees.yaml",
+      "uri": "apis/schemas/requests/employees.yaml"
+    },
+    {
+      "type": "item",
+      "title": "limit.yaml",
+      "uri": "apis/schemas/responses/commons/limit.yaml"
+    },
+    {
+      "type": "item",
+      "title": "offset.yaml",
+      "uri": "apis/schemas/responses/commons/offset.yaml"
+    },
+    {
+      "type": "item",
+      "title": "balance_transfers.yaml",
+      "uri": "apis/schemas/responses/get/balance_transfers.yaml"
+    },
+    {
+      "type": "item",
+      "title": "cost_centers.yaml",
+      "uri": "apis/schemas/responses/get/cost_centers.yaml"
+    },
+    {
+      "type": "item",
+      "title": "employees.yaml",
+      "uri": "apis/schemas/responses/get/employees.yaml"
+    },
+    {
+      "type": "item",
+      "title": "orgs.yaml",
+      "uri": "apis/schemas/responses/get/orgs.yaml"
+    },
+    {
+      "type": "item",
+      "title": "refunds.yaml",
+      "uri": "apis/schemas/responses/get/refunds.yaml"
+    },
+    {
+      "type": "item",
+      "title": "reimbursements.yaml",
+      "uri": "apis/schemas/responses/get/reimbursements.yaml"
+    },
+    {
+      "type": "item",
+      "title": "settlements.yaml",
+      "uri": "apis/schemas/responses/get/settlements.yaml"
+    },
+    {
+      "type": "item",
+      "title": "employees.yaml",
+      "uri": "apis/schemas/responses/post/employees.yaml"
+    }
+  ]
+}
