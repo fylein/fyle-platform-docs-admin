@@ -2,7 +2,7 @@ get:
   tags:
     - Employees
   summary: |
-    Returns a list of employees. (beta)
+    Returns a list of employees.
   operationId: GetEmployees
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
