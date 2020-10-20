@@ -7,55 +7,44 @@ properties:
       This id prodvided by Fyle to uniquely identify a reimbursement.
       This id is always prefixed with `reim`.
     readOnly: true
-    example: reimntGt9ju6qP
-
+    example: 'reimntGt9ju6qP'
   employee_id:
     $ref: 'commons/employee_id.yaml'
-
   employee:
     $ref: './minimals/employees.yaml'
-
   org_id:
     $ref: 'commons/org_id.yaml'
-
   org_name:
     $ref: 'commons/org_name.yaml'
-
   currency:
     $ref: 'commons/currency.yaml'
-
   amount:
     $ref: 'commons/amount.yaml'
-
   state:
     type: string
-    enum: [COMPLETE, PENDING]
+    enum:
+      - COMPLETE
+      - PENDING
     description: |
       State of the reimbursement.
-    example: COMPLETE
-
+    example: 'COMPLETE'
   unique_id:
     type: string
     description: |
       A unique, organization wide identifier for a particular reimbursement.<br>
       This id is always prefixed with `P/`.
-    example: P/2020/11/29
-
+    example: 'P/2020/11/29'
   accounting_exported:
     type: boolean
     description: |
       Boolean value which signifies whether the particular reimbursement has been exported using any accounting integration (like QBO).
     example: true
-
   settlement_id:
     $ref: 'commons/settlement_id.yaml'
-
   created_at:
     $ref: 'commons/created_at.yaml'
-
   updated_at:
     $ref: 'commons/updated_at.yaml'
-
   creator_id:
     type: string
     maxLength: 255
@@ -63,27 +52,29 @@ properties:
       Employee id of creator if this reimbursement which uniquely identify an the creator within an organization.
       This id is always prefixed with `ou`.
     readOnly: true
-    example: outGt9ju6qP
-
+    example: 'outGt9ju6qP'
   creator:
     allOf:
       - $ref: 'minimals/employees.yaml'
     description: |
       Details of employee who created this reimbursement.
-
   mode:
     type: string
-    enum: [ACH, OFFLINE]
+    enum:
+      - ACH
+      - OFFLINE
     description: |
       Mode of creation of this reimbursement.
-    example: OFFLINE
-
+    example: 'OFFLINE'
   ach_state:
     type: string
-    enum: [ACH_INITIATED, ACH_COMPLETE, ACH_FAILED, ACH_RETRY]
+    enum:
+      - ACH_INITIATED
+      - ACH_COMPLETE
+      - ACH_FAILED
+      - ACH_RETRY
     description: |
       Status of ACH if this reimbursment is processed via ACH.
-    example: ACH_COMPLETE
-
+    example: 'ACH_COMPLETE'
   export_info:
     $ref: './minimals/export_info.yaml'

@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Reports
+  summary: Returns a list of Reports
+  operationId: GetReports
+  parameters:
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
+    - $ref: '../schemas/requests/commons/created_at.yaml'
+    - $ref: '../schemas/requests/commons/updated_at.yaml'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/reports.yaml'
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

@@ -1,8 +1,9 @@
 type: object
+readOnly: true
 properties:
   name:
     type: string
-    example: Sales
+    example: 'Sales'
   subDepartment:
     type: string
-    example: Outbound Sales
+    example: 'Outbound Sales'

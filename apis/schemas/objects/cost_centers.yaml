@@ -12,19 +12,19 @@ properties:
     maxLength: 255
     description: |
       This represents the name of the cost center.
-    example: sales & marketing
+    example: 'sales & marketing'
   code:
     type: string
     maxLength: 255
     description: |
       This represents the code of cost center.
-    example: sm-cc
-  description: 
+    example: 'sm-cc'
+  description:
     type: string
     maxLength: 255
     description: |
       This field provides a decription about the cost center.
-    example: Initial Cost center
+    example: 'Initial Cost center'
   enabled:
     type: boolean
     description: |

@@ -6,7 +6,7 @@ properties:
     $ref: '../commons/limit.yaml'
   url:
     type: string
-    example: /v3/reimbursements
+    example: '/v4/admin/reimbursements'
   data:
     type: array
     items:

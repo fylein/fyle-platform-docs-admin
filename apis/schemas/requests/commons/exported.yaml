@@ -1,6 +1,6 @@
 in: query
 name: export_info->exported
-description: >-
+description: |
   Supported operators are `eq`,`not.eq`.<br>
 schema:
   type: string

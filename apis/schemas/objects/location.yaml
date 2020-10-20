@@ -5,15 +5,15 @@ properties:
     example: 'London'
   state:
     type: string
-    example: 'California'
-  country:
-    type: string
-    example: 'India'
+    example: 'London'
   display_name:
     type: string
+  country:
+    type: string
+    example: 'United Kingdom'
   formatted_address:
     type: string
-    example: '4, Privet Drive, London'
+    example: '221 Baker St, Marylebone, London, United Kingdom'
   latitude:
     type: number
     example: 12.971599
