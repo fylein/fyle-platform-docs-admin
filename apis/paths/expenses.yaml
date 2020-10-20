@@ -10,6 +10,7 @@ get:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
     - $ref: '../schemas/requests/commons/org_id.yaml'
+    - $ref: '../schemas/requests/commons/employee_email.yaml'
     - in: query
       name: id
       schema:
@@ -19,15 +20,6 @@ get:
         For mulitple values, use `id=in.(value1,value2,value3)`. <br>
         Supported operators: `in`, `eq`, `not.in`, `not.eq`
       example: eq.txg3053jg33
-    - in: query
-      name: employee_email
-      description: |
-        This param is used to filter records based on employee email.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        format: email
-      example: 'eq.employee1@example.com'
     - in: query
       name: order
       description: |

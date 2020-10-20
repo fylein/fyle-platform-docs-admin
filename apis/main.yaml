@@ -57,6 +57,8 @@ paths:
     $ref: 'paths/employees.yaml'
   /v4/admin/expenses:
     $ref: 'paths/expenses.yaml'
+  /v4/admin/expense_custom_properties:
+    $ref: 'paths/expense_custom_properties.yaml'
   /v4/admin/reports:
     $ref: 'paths/reports.yaml'
   /v4/admin/projects:

@@ -27,7 +27,7 @@ properties:
     maxLength: 255
     description: |
       This field specifies the bank branch with which the organisation is associated.
-    example: 2019238034424802
+    example: '2019238034424802'
   verified:
     type: boolean
     description: |
