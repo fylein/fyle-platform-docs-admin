@@ -2827,6 +2827,10 @@ tags:
   - name: Expenses
     description: |
       This API gives you access to your organisation's Expenses data.
+  - name: Expense Custom Properties
+    description: >
+      This API gives you access to your organisation's Expenses Custom
+      Properties data.
   - name: Reports
     description: |
       This API gives you access to your organisation's Expense Reports data.
