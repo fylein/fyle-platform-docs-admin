@@ -33,6 +33,9 @@ tags:
   - name: Reports
     description: |
       This API gives you access to your organisation's Expense Reports data.
+  - name: Advance Requests
+    description: |
+      This API gives you access to your organisation's Advance requests data.
   - name: Reimbursements
     description: |
       These APIs gives you access to manage your organisation's Reimbursements data.
@@ -78,3 +81,5 @@ paths:
     $ref: 'paths/orgs.yaml'
   /v4/admin/balance_transfers:
     $ref: 'paths/balance_transfers.yaml'
+  /v4/admin/advance_requests:
+    $ref: 'paths/advance_requests.yaml'

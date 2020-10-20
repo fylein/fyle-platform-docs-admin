@@ -1,5 +1,7 @@
 type: object
 properties:
+  count:
+    $ref: '../commons/count.yaml'
   offset:
     $ref: '../commons/offset.yaml'
   limit:

@@ -8,8 +8,8 @@ properties:
     $ref: '../commons/limit.yaml'
   url:
     type: string
-    example: '/v4/admin/refunds'
+    example: '/v4/admin/advance_requests'
   data:
     type: array
     items:
-      $ref: '../../objects/refunds.yaml'
+      $ref: '../../objects/advance_requests.yaml'

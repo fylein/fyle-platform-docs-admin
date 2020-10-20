@@ -122,7 +122,7 @@ components:
         List of strings.<br>
         Supported operators are `eq`,`cs`.<br>
       schema:
-        type: array
+        type: string
         example: 'cs.{food,travel}'
     mandatory:
       in: query
@@ -513,6 +513,11 @@ components:
           description: >
             This error means current user does not have enough permissions to
             perform this operation.
+    count:
+      description: |
+        The total number of objects that can be requested.
+      type: integer
+      example: 10000
     offset:
       description: >
         offset is used to skip that many number of objects before counting. <br>
@@ -1065,6 +1070,8 @@ components:
     get_employees:
       type: object
       properties:
+        count:
+          $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -1771,6 +1778,8 @@ components:
     get_expenses:
       type: object
       properties:
+        count:
+          $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -1794,6 +1803,8 @@ components:
       example: TEXT
     options:
       type: array
+      items:
+        type: string
       description: >
         This field specifies the option values of the custom property in case on
         SELECT or MULTI_SELECT custom property type.
@@ -1807,6 +1818,8 @@ components:
       example: Enter vendor
     org_category_ids:
       type: array
+      items:
+        type: integer
       description: >
         This field specifies the org category ids associated with the custom
         property.
@@ -1858,6 +1871,8 @@ components:
     get_expense_custom_properties:
       type: object
       properties:
+        count:
+          $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -1871,6 +1886,7 @@ components:
             $ref: '#/components/schemas/expense_custom_properties'
     currency:
       type: string
+      maxLength: 10
       description: >
         The three-letter currency code following ISO standard <a
         href='https://www.iso.org/iso-4217-currency-codes.html'>ISO 4217</a>
@@ -1902,6 +1918,8 @@ components:
           example: '2020-06-01T13:14:54.804Z'
         exported_ids:
           type: array
+          items:
+            type: string
           description: |
             Array of export IDs 
           example:
@@ -2050,6 +2068,8 @@ components:
     get_reports:
       type: object
       properties:
+        count:
+          $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -2209,6 +2229,8 @@ components:
     get_projects:
       type: object
       properties:
+        count:
+          $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -2309,6 +2331,8 @@ components:
     get_cost_centers:
       type: object
       properties:
+        count:
+          $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -2428,6 +2452,8 @@ components:
     get_reimbursements:
       type: object
       properties:
+        count:
+          $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -2572,6 +2598,8 @@ components:
     get_refunds:
       type: object
       properties:
+        count:
+          $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -2670,6 +2698,8 @@ components:
     get_settlements:
       type: object
       properties:
+        count:
+          $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -2727,6 +2757,10 @@ components:
     get_orgs:
       type: object
       properties:
+        count:
+          allOf:
+            - $ref: '#/components/schemas/count'
+          example: 1
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -2809,6 +2843,8 @@ components:
     get_balance_transfers:
       type: object
       properties:
+        count:
+          $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
         limit:
@@ -2820,6 +2856,225 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/balance_transfers'
+    advance_request_id:
+      type: string
+      maxLength: 255
+      description: >
+        This id is provided by Fyle to identify an advance request from this
+        organisation.
+
+        This id is always prefixed with `areq`.
+      example: areq0AluN2n1RE
+    email:
+      type: string
+      format: email
+      maxLength: 127
+      example: john.doe@example.com
+      description: >
+        An immutable field that represents the email address.
+
+        Must be compliant with <a href="https://www.ietf.org/rfc/rfc822.txt">RFC
+        822.</a>
+    advance_id:
+      type: string
+      maxLength: 255
+      description: >
+        This id is provided by Fyle to identify an advance from this
+        organisation.
+
+        This id is always prefixed with `adv`.
+      example: advZP7QXFbHH4
+    advance_request_number:
+      type: string
+      maxLength: 255
+      description: >
+        This value is provided by Fyle to facilitate easy identification of an
+        advance request
+      example: AR/2019/03/R/2
+    trip_request_id:
+      type: string
+      maxLength: 255
+      description: >
+        This id is provided by Fyle to identify a project from this
+        organisation.
+
+        This id is always prefixed with `tr`.
+
+        example: 'trObdH5YgKzL'
+    approved_at:
+      type: string
+      format: date-time
+      description: >
+        <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC 3339,
+        section 5.6 compliant timestamp.</a>
+
+        Signifies when this object was approved.
+      readOnly: true
+      example: '2020-07-03T18:19:31.193'
+    project_id:
+      type: string
+      maxLength: 255
+      description: >
+        This id is provided by Fyle to identify a project from this
+        organisation.
+
+        This id is a numeric string.
+
+        This id is unique within the organisation.
+
+        example: '2391'
+    project:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          description: Represents the name of the project.
+          example: Fast and Furious
+        sub_project:
+          type: string
+          maxLength: 255
+          description: Represents the name of the sub_project.
+          example: Formula One
+        display_name:
+          type: string
+          maxLength: 513
+          description: >
+            This is a combination of name and sub_project separated by a / and
+            spaces.
+
+            In case if no sub_project is present it is same as name of the
+            project.
+          example: Fast and Furious / Formula One
+        code:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the code of project.
+          example: FF-032
+    policy_state:
+      type: string
+      enum:
+        - SUCCESS
+        - FAILED
+      description: |
+        Enum value signifying the action of policy on this object.
+      example: SUCCESS
+    policy_flag:
+      type: boolean
+      readOnly: true
+      description: |
+        Flag to indicate if this object has been processed by policy.
+      example: true
+    is_sent_back:
+      type: boolean
+      description: |
+        Flag which indicates if this object was sent back for clarification.
+      example: false
+    is_pulled_back:
+      type: boolean
+      description: |
+        Flag which indicates if this object was pulled back by the requestor.
+      example: false
+    advance_requests:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/advance_request_id'
+        employee_id:
+          $ref: '#/components/schemas/employee_id'
+        employee_email:
+          $ref: '#/components/schemas/email'
+        employee:
+          $ref: '#/components/schemas/minimals_employees'
+        amount:
+          $ref: '#/components/schemas/amount'
+        currency:
+          maxLength: 10
+          $ref: '#/components/schemas/currency'
+        advance_id:
+          $ref: '#/components/schemas/advance_id'
+        advance_request_number:
+          $ref: '#/components/schemas/advance_request_number'
+        trip_request_id:
+          $ref: '#/components/schemas/trip_request_id'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        approved_at:
+          $ref: '#/components/schemas/approved_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        notes:
+          type: string
+          description: |
+            Optional descriptive notes which can be added to an advance request.
+          example: onsite client meeting
+        purpose:
+          type: string
+          description: |
+            Descriptive purpose which is added to an advance request.
+          example: onsite client meeting
+        state:
+          type: string
+          enum:
+            - DRAFT
+            - APPROVAL_PENDING
+            - APPROVED
+            - REJECTED
+            - PAID
+          description: |
+            State of the advance request.
+          example: PAID
+        project_id:
+          $ref: '#/components/schemas/project_id'
+        project:
+          $ref: '#/components/schemas/project'
+        custom_properties:
+          $ref: '#/components/schemas/custom_properties'
+        policy_amount:
+          allOf:
+            - $ref: '#/components/schemas/amount'
+          description: |
+            Amount set by policy
+        policy_state:
+          $ref: '#/components/schemas/policy_state'
+        policy_flag:
+          $ref: '#/components/schemas/policy_flag'
+        is_sent_back:
+          $ref: '#/components/schemas/is_sent_back'
+        is_pulled_back:
+          $ref: '#/components/schemas/is_pulled_back'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        source:
+          type: string
+          enum:
+            - WEBAPP
+            - MOBILE
+          description: >
+            Enum value signifying the client method from which this
+            advance_request was initiated.
+          example: WEBAPP
+        export_info:
+          $ref: '#/components/schemas/export_info'
+    get_advance_requests:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/admin/advance_requests
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/advance_requests'
 tags:
   - name: Employees
     description: |
@@ -2834,6 +3089,9 @@ tags:
   - name: Reports
     description: |
       This API gives you access to your organisation's Expense Reports data.
+  - name: Advance Requests
+    description: |
+      This API gives you access to your organisation's Advance requests data.
   - name: Reimbursements
     description: >
       These APIs gives you access to manage your organisation's Reimbursements
@@ -3423,6 +3681,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_balance_transfers'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /v4/admin/advance_requests:
+    get:
+      tags:
+        - Advance Requests
+      summary: Returns a list of Advance Request objects.
+      operationId: GetAdvanceRequests
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/currency'
+        - $ref: '#/components/parameters/amount'
+        - $ref: '#/components/parameters/exported'
+        - $ref: '#/components/parameters/exported_at'
+        - $ref: '#/components/parameters/export_ids'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_advance_requests'
         '401':
           description: Unauthorised request
           content:
