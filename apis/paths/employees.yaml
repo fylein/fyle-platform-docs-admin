@@ -74,6 +74,9 @@ post:
           schema:
             type: object
             properties:
+              url:
+                type: string
+                example: '/v4/admin/employees'
               data:
                 type: array
                 items:

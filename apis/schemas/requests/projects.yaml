@@ -1,0 +1,11 @@
+type: object
+properties:
+  data:
+    type: array
+    items:
+      $ref: '../objects/projects.yaml'
+  test:
+    type: boolean
+    example: false
+    default: false
+required: [data]

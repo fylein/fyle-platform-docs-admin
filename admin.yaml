@@ -80,6 +80,33 @@ components:
       schema:
         type: string
         example: eq.orvneouegi
+    id:
+      in: query
+      name: id
+      schema:
+        type: string
+      description: >-
+        Filters the objects by id. For single value use `id=eq.<value>`. For
+        multiple values, use `id=in.(value1,value2,value3)`.
+      example: eq.<id>
+    sub_project:
+      in: query
+      name: sub_project
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        sub_project=in.(value1,value2)
+      schema:
+        type: string
+        example: like.Formula*
+    display_name:
+      in: query
+      name: display_name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        display_name=in.(value1,value2)
+      schema:
+        type: string
+        example: like.Fast*
     enabled:
       in: query
       name: enabled
@@ -89,6 +116,44 @@ components:
       schema:
         type: string
         example: eq.true
+    code:
+      in: query
+      name: code
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        code=in.(value1,value2)
+      schema:
+        type: string
+        example: like.high*
+    category_ids:
+      in: query
+      name: category_ids
+      description: |
+        List of strings.<br>
+        Supported operators are `eq`,`cs`.<br>
+      schema:
+        type: string
+        example: 'cs.{89234,2341}'
+    primary_approver_id:
+      in: query
+      name: primary_approver_id
+      schema:
+        type: string
+      description: >-
+        Filters the objects by primary_approver_id. For single value use
+        `primary_approver_id=eq.<value>`. For multiple values, use
+        `primary_approver_id=in.(value1,value2,value3)`.
+      example: eq.ouX2Rv617cW0
+    secondary_approver_id:
+      in: query
+      name: secondary_approver_id
+      schema:
+        type: string
+      description: >-
+        Filters the objects by secondary_approver_id. For single value use
+        `secondary_approver_id=eq.<value>`. For multiple values, use
+        `secondary_approver_id=in.(value1,value2,value3)`.
+      example: eq.ouFOpg9CGLZ5
     name:
       in: query
       name: name
@@ -98,7 +163,7 @@ components:
       schema:
         type: string
         example: like.ABCD*
-    id:
+    cost_centers_id:
       in: query
       name: id
       description: |
@@ -107,7 +172,7 @@ components:
       schema:
         type: string
         example: eq.7
-    code:
+    cost_centers_code:
       in: query
       name: code
       description: |
@@ -1847,6 +1912,209 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/reports'
+    category:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 10
+          example: '16570'
+          description: >
+            This id provided by Fyle to identify a category from this
+            organisation.
+
+            This id is a numeric string.
+
+            This id is unique within the organisation.
+        name:
+          type: string
+          maxLength: 255
+          example: Engine
+          description: Represents the name of the category.
+        sub_category:
+          type: string
+          maxLength: 255
+          example: Turbo charged
+          description: Represents the name of the sub_category.
+        display_name:
+          type: string
+          maxLength: 255
+          example: Engine / Turbo charged
+          description: >
+            This is a combination of name and sub_category separated by a / and
+            spaces.
+
+            In case if no sub_category is present it is same as name of the
+            category.
+        system_category:
+          type: string
+          maxLength: 255
+          example: Others
+          description: Represents the name of the system_category.
+    projects:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 10
+          description: >
+            This id provided by Fyle to identify a project from this
+            organisation.
+
+            This id is a numeric string.
+
+            This id is unique within the organisation.
+          readOnly: true
+          example: '2391'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        name:
+          type: string
+          maxLength: 255
+          description: Represents the name of the project.
+          example: Fast and Furious
+        sub_project:
+          type: string
+          maxLength: 255
+          description: Represents the name of the sub_project.
+          example: Formula One
+        display_name:
+          type: string
+          maxLength: 513
+          description: >
+            This is a combination of name and sub_project separated by a / and
+            spaces.
+
+            In case if no sub_project is present it is same as name of the
+            project.
+          example: Fast and Furious / Formula One
+        code:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the code of project.
+          example: FF-032
+        description:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the description of project.
+          example: Win the trophy
+        enabled:
+          type: boolean
+          description: >
+            This indicates if the project is enabled for use within the
+            organisation.
+          default: true
+          example: true
+        category_ids:
+          type: array
+          description: >
+            Has the list of all category ids that are applicable for this
+            project.
+          items:
+            type: string
+          example:
+            - '16570'
+        categories:
+          type: array
+          description: |
+            This list of categories that are applicable for this project.
+          items:
+            $ref: '#/components/schemas/category'
+        primary_approver:
+          allOf:
+            - $ref: '#/components/schemas/user'
+          description: >
+            Primary approver who will be added as an approver by default for all
+            the submitted reports and expenses.
+          example:
+            full_name: primary approver
+            email: primary_approver@example.com
+        primary_approver_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the primary approver.
+          example: ou4b24ugv3vg
+        secondary_approver:
+          allOf:
+            - $ref: '#/components/schemas/user'
+          description: |
+            A secondary approver who can be added to reports via policies.
+          example:
+            full_name: secondary approver
+            email: secondary_approver@example.com
+        secondary_approver_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the secondary approver.
+          example: ourjgeugv3vg
+    get_projects:
+      type: object
+      properties:
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/admin/projects
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/projects'
+    requests_projects:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/projects'
+        test:
+          type: boolean
+          example: false
+          default: false
+      required:
+        - data
+    post_projects:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 255
+          description: >
+            This id provided by Fyle to identify a project from this
+            organisation.
+
+            This id is a numeric string.
+
+            This id is unique within the organisation.
+          readOnly: true
+          example: '2391'
+        name:
+          type: string
+          maxLength: 255
+          description: Represents the name of the project.
+          example: Fast and Furious
+        sub_project:
+          type: string
+          maxLength: 255
+          description: Represents the name of the sub_project.
+          example: Formula One
+        code:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the code of project.
+          example: FF-032
     cost_centers:
       type: object
       properties:
@@ -2417,6 +2685,9 @@ tags:
     description: >
       These APIs gives you access to manage your organisation's Reimbursements
       data.
+  - name: Projects
+    description: |
+      These APIs gives you access to manage your organisation's Projects data.
   - name: Cost Centers
     description: >
       These APIs gives you access to manage your organisation's Cost Centers
@@ -2511,6 +2782,9 @@ paths:
               schema:
                 type: object
                 properties:
+                  url:
+                    type: string
+                    example: /v4/admin/employees
                   data:
                     type: array
                     items:
@@ -2617,6 +2891,102 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
+  /v4/admin/projects:
+    get:
+      tags:
+        - Projects
+      summary: Returns a list of projects
+      operationId: GetProjects
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/id'
+        - in: query
+          name: name
+          description: |
+            Supported operators are `eq`, `like`, `in`.<br>
+            name=in.(value1,value2)
+          schema:
+            type: string
+            example: eq.Project1
+        - $ref: '#/components/parameters/sub_project'
+        - $ref: '#/components/parameters/display_name'
+        - $ref: '#/components/parameters/enabled'
+        - $ref: '#/components/parameters/code'
+        - $ref: '#/components/parameters/org_id'
+        - $ref: '#/components/parameters/category_ids'
+        - $ref: '#/components/parameters/primary_approver_id'
+        - $ref: '#/components/parameters/secondary_approver_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_projects'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+    post:
+      tags:
+        - Projects
+      summary: upsert projects
+      description: >
+        creates or updates projects in bulk. This API is written in such a way
+        to support bulk operations only.
+      operationId: PostProjects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requests_projects'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: /v4/admin/projects
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/post_projects'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/bulk_error'
+                    example:
+                      - row: 1
+                        key: Project abcd
+                        message: Invalid or duplicate project code
+                  - $ref: '#/components/schemas/json_parsing_error'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
   /v4/admin/cost_centers:
     get:
       tags:
@@ -2631,8 +3001,8 @@ paths:
         - $ref: '#/components/parameters/enabled'
         - $ref: '#/components/parameters/org_id'
         - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/id'
-        - $ref: '#/components/parameters/code'
+        - $ref: '#/components/parameters/cost_centers_id'
+        - $ref: '#/components/parameters/cost_centers_code'
       responses:
         '200':
           description: OK
@@ -2668,6 +3038,9 @@ paths:
               schema:
                 type: object
                 properties:
+                  url:
+                    type: string
+                    example: /v4/admin/cost_centers
                   data:
                     type: array
                     items:

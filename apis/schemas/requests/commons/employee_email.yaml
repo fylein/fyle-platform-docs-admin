@@ -5,5 +5,4 @@ description: |
   Supported operators are `in`,`eq`.<br>
 schema:
   type: string
-  format: email
   example: 'eq.employee1@example.com'

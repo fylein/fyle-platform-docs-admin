@@ -1,18 +1,30 @@
 get:
   tags:
-    - Cost Centers
-  summary: Returns a list of cost Centers
-  operationId: GetCostCenters
+    - Projects
+  summary: Returns a list of projects
+  operationId: GetProjects
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
+    - $ref: '../schemas/requests/commons/id.yaml'
+    - in: query
+      name: name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: 'eq.Project1'
+    - $ref: '../schemas/requests/commons/sub_project.yaml'
+    - $ref: '../schemas/requests/commons/display_name.yaml'
     - $ref: '../schemas/requests/commons/enabled.yaml'
+    - $ref: '../schemas/requests/commons/code.yaml'
     - $ref: '../schemas/requests/commons/org_id.yaml'
-    - $ref: '../schemas/requests/cost_centers/name.yaml'
-    - $ref: '../schemas/requests/cost_centers/id.yaml'
-    - $ref: '../schemas/requests/cost_centers/code.yaml'
+    - $ref: '../schemas/requests/commons/category_ids.yaml'
+    - $ref: '../schemas/requests/commons/primary_approver_id.yaml'
+    - $ref: '../schemas/requests/commons/secondary_approver_id.yaml'
 
   responses:
     '200':
@@ -20,9 +32,9 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../schemas/responses/get/cost_centers.yaml'
+            $ref: '../schemas/responses/get/projects.yaml'
     '401':
-      description: Unauthoried request
+      description: Unauthorized request
       content:
         application/json:
           schema:
@@ -30,18 +42,18 @@ get:
 
 post:
   tags:
-    - Cost Centers
+    - Projects
   summary:
-    upsert cost Centers
+    upsert projects
   description: |
-    creates or updates cost centers in bulk. This API is written in such a way to support bulk operations only.
-  operationId: PostCostCenters
+    creates or updates projects in bulk. This API is written in such a way to support bulk operations only.
+  operationId: PostProjects
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: '../schemas/requests/cost_centers.yaml'
+          $ref: '../schemas/requests/projects.yaml'
 
   responses:
     '200':
@@ -53,11 +65,11 @@ post:
             properties:
               url:
                 type: string
-                example: '/v4/admin/cost_centers'
+                example: '/v4/admin/projects'
               data:
                 type: array
                 items:
-                  $ref: '../schemas/objects/minimals/cost_center.yaml'
+                  $ref: '../schemas/responses/post/projects.yaml'
 
     '401':
       description: Unauthorised request
@@ -84,6 +96,6 @@ post:
                   $ref: '../schemas/errors/bulk_error.yaml'
                 example:
                   - row: 1
-                    key: Cost center abcd
-                    message: Invalid or duplicate cost center code
+                    key: Project abcd
+                    message: Invalid or duplicate project code
               - $ref: '../schemas/errors/json_parsing_error.yaml'
