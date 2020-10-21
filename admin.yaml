@@ -1984,7 +1984,7 @@ components:
           type: object
         transaction_approvals:
           allOf:
-            $ref: '#/components/schemas/approvals'
+            - $ref: '#/components/schemas/approvals'
           example:
             ougelgneget:
               state: APPROVED
