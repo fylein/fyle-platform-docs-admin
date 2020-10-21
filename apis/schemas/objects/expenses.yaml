@@ -367,7 +367,7 @@ properties:
     type: object
   transaction_approvals:
     allOf:
-      $ref: 'commons/approvals.yaml'
+      - $ref: 'commons/approvals.yaml'
     example:
       ougelgneget:
         state: APPROVED
