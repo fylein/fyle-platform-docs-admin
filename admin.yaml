@@ -2502,19 +2502,19 @@ components:
           $ref: '#/components/schemas/minimals_employees'
         issuer_id:
           allOf:
-            $ref: '#/components/schemas/employee_id'
+            - $ref: '#/components/schemas/employee_id'
           description: |
             Employee id of person who issued the advance.
           example: ouebvjwgjgl
         issuer_email:
           allOf:
-            $ref: '#/components/schemas/email'
+            - $ref: '#/components/schemas/email'
           description: |
             Email of the person who issued the advance.
           example: issuer@example.com
         issuer:
           allOf:
-            $ref: '#/components/schemas/minimals_employees'
+            - $ref: '#/components/schemas/minimals_employees'
           description: |
             Details for the person who issued the advance.
           example: null
