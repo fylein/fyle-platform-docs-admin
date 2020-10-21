@@ -10,19 +10,19 @@ properties:
     $ref: 'minimals/employees.yaml'
   issuer_id:
     allOf:
-      $ref: 'commons/employee_id.yaml'
+      - $ref: 'commons/employee_id.yaml'
     description: |
       Employee id of person who issued the advance.
     example: 'ouebvjwgjgl'
   issuer_email:
     allOf:
-      $ref: 'commons/email.yaml'
+      - $ref: 'commons/email.yaml'
     description: |
       Email of the person who issued the advance.
     example: 'issuer@example.com'
   issuer:
     allOf:
-      $ref: 'minimals/employees.yaml'
+      - $ref: 'minimals/employees.yaml'
     description: |
       Details for the person who issued the advance.
     example:
