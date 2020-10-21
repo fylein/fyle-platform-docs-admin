@@ -3,6 +3,6 @@ enum:
   - TRIP_REQUEST
   - TRANSPORTATION_REQUEST
   - HOTEL_REQUEST
-description: | 
+description: |
   This field specifies the request type of trip request.
 example: TRIP_REQUEST

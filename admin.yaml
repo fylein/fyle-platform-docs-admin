@@ -160,113 +160,6 @@ components:
         Filters the objects by id. For single value use `id=eq.<value>`. For
         multiple values, use `id=in.(value1,value2,value3)`.
       example: eq.<id>
-    sub_project:
-      in: query
-      name: sub_project
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        sub_project=in.(value1,value2)
-      schema:
-        type: string
-        example: like.Formula*
-    display_name:
-      in: query
-      name: display_name
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        display_name=in.(value1,value2)
-      schema:
-        type: string
-        example: like.Fast*
-    code:
-      in: query
-      name: code
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        code=in.(value1,value2)
-      schema:
-        type: string
-        example: like.high*
-    category_ids:
-      in: query
-      name: category_ids
-      description: |
-        List of strings.<br>
-        Supported operators are `eq`,`cs`.<br>
-      schema:
-        type: string
-        example: 'cs.{89234,2341}'
-    primary_approver_id:
-      in: query
-      name: primary_approver_id
-      schema:
-        type: string
-      description: >-
-        Filters the objects by primary_approver_id. For single value use
-        `primary_approver_id=eq.<value>`. For multiple values, use
-        `primary_approver_id=in.(value1,value2,value3)`.
-      example: eq.ouX2Rv617cW0
-    secondary_approver_id:
-      in: query
-      name: secondary_approver_id
-      schema:
-        type: string
-      description: >-
-        Filters the objects by secondary_approver_id. For single value use
-        `secondary_approver_id=eq.<value>`. For multiple values, use
-        `secondary_approver_id=in.(value1,value2,value3)`.
-      example: eq.ouFOpg9CGLZ5
-    cost_centers_name:
-      in: query
-      name: name
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: like.ABCD*
-    cost_centers_id:
-      in: query
-      name: id
-      description: |
-        This param is used to filter cost center record based on cost center id.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.7
-    cost_centers_code:
-      in: query
-      name: code
-      description: |
-        Supported operators are `in`,`eq`,`like`.<br>
-      schema:
-        type: string
-        example: eq.CC01
-    employee_id:
-      in: query
-      name: employee_id
-      description: |
-        This param is used to filer records based employee id.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.ouvneouegi
-    employee_user_id:
-      in: query
-      name: employee->user_id
-      description: |
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.usIfhs65KvvF
-    employee_code:
-      in: query
-      name: employee->employee_code
-      description: |
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.DFS552KK
     currency:
       in: query
       name: currency
@@ -285,14 +178,145 @@ components:
       schema:
         type: string
         example: eq.100
-    settlement_id:
+    approved_at:
       in: query
-      name: settlement_id
+      name: approved_at
+      description: >
+        Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
+        RHS dot pattern.<br>
+
+        Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
+
+        approved_at=gte.2020-06-01T00:00:00.000Z filters all objects created on
+        or after 1st Jun 2020.<br>
+
+        approved_at=gte.2020-06-01T00:00:00.000Z&approved_at=lt.2020-07-01T00:00:00.000Z
+        filters all objects `created` in the month of Jun 2020.<br>
+      schema:
+        type: string
+        example: 'gte.2020-06-05T00:00:00.000Z'
+    state:
+      in: query
+      name: state
+      description: |
+        Possible values : DRAFT, APPROVAL_PENDING, APPROVED, REJECTED, PAID.<br>
+        Supported operators are `eq`, `like`, `in`.<br>
+      schema:
+        type: string
+        example: in.(APPROVED)
+    advance_id:
+      in: query
+      name: advance_id
+      schema:
+        type: string
+      description: >
+        Filters the objects by advance_id. For single value use
+        `advance_id=eq.<value>`.
+
+        For mulitple values, use `advance_id=in.(value1,value2,value3)`. <br>
+
+        Supported operators: `in`, `eq`, `not.in`, `not.eq`
+      example: eq.advZP7QXFbHH4
+    advance_request_number:
+      in: query
+      name: advance_request_number
+      schema:
+        type: string
+      description: >
+        Filters the objects by advance_request_number. For single value use
+        `advance_request_number=eq.<value>`.
+
+        For mulitple values, use
+        `advance_request_number=in.(value1,value2,value3)`. <br>
+
+        Supported operators: `in`, `eq`, `not.in`, `not.eq`
+      example: eq.AR/2019/03/R/2
+    trip_request_id:
+      in: query
+      name: trip_request_id
+      schema:
+        type: string
+      description: >
+        Filters the objects by trip_request_id. For single value use
+        `trip_request_id=eq.<value>`.
+
+        For mulitple values, use `trip_request_id=in.(value1,value2,value3)`.
+        <br>
+
+        Supported operators: `in`, `eq`, `not.in`, `not.eq`
+      example: eq.trObdH5YgKzL
+    is_sent_back:
+      in: query
+      name: is_sent_back
+      description: |
+        This param is used to filer records by
+        Supported operators are `eq`,`not.eq`.<br>
+      schema:
+        type: boolean
+        example: eq.true
+    is_pulled_back:
+      in: query
+      name: is_pulled_back
+      description: |
+        This param is used to filer records by
+        Supported operators are `eq`,`not.eq`.<br>
+      schema:
+        type: boolean
+        example: eq.true
+    policy_amount:
+      in: query
+      name: policy_amount
+      description: |
+        Supported operators are `eq`,`gte`,`lte`,`gt`,`lt`,`in`.<br>
+        policy_amount=in.(value1,value2)
+      schema:
+        type: integer
+        example: eq.100
+    policy_state:
+      in: query
+      name: policy_state
+      description: |
+        Possible values : SUCCESS, FAILED.<br>
+        Supported operators are `eq`, `like`, `in`.<br>
+      schema:
+        type: string
+        example: in.(SUCCESS)
+    policy_flag:
+      in: query
+      name: policy_flag
+      description: |
+        This param is used to filer records by
+        Supported operators are `eq`,`not.eq`.<br>
+      schema:
+        type: boolean
+        example: eq.true
+    employee_id:
+      in: query
+      name: employee_id
+      description: |
+        This param is used to filer records based employee id.
+        Supported operators are `in`,`eq`.<br>
+      schema:
+        type: string
+        example: eq.ouvneouegi
+    employee_code:
+      in: query
+      name: employee->employee_code
       description: |
         Supported operators are `in`,`eq`.<br>
       schema:
         type: string
-        example: eq.setRd8Dw5hD
+        example: eq.DFS552KK
+    project_id:
+      in: query
+      name: project_id
+      schema:
+        type: string
+      description: >-
+        Filters the objects by project_id. For single value use
+        `project_id=eq.<value>`. For multiple values, use
+        `project_id=in.(value1,value2,value3)`.
+      example: eq.2341
     exported:
       in: query
       name: export_info->exported
@@ -320,6 +344,22 @@ components:
       schema:
         type: string
         example: 'cs.{expD3QWBgoZ2U,expf9H3sh1B}'
+    employee_user_id:
+      in: query
+      name: employee->user_id
+      description: |
+        Supported operators are `in`,`eq`.<br>
+      schema:
+        type: string
+        example: eq.usIfhs65KvvF
+    settlement_id:
+      in: query
+      name: settlement_id
+      description: |
+        Supported operators are `in`,`eq`.<br>
+      schema:
+        type: string
+        example: eq.setRd8Dw5hD
     payment_id:
       in: query
       name: payment_id
@@ -328,7 +368,7 @@ components:
       schema:
         type: string
         example: eq.pay3hGs8ne
-    state:
+    reimbursements_state:
       in: query
       name: state
       description: |
@@ -490,6 +530,88 @@ components:
       schema:
         type: string
         example: eq.Personal Account
+    sub_project:
+      in: query
+      name: sub_project
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        sub_project=in.(value1,value2)
+      schema:
+        type: string
+        example: like.Formula*
+    display_name:
+      in: query
+      name: display_name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        display_name=in.(value1,value2)
+      schema:
+        type: string
+        example: like.Fast*
+    code:
+      in: query
+      name: code
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        code=in.(value1,value2)
+      schema:
+        type: string
+        example: like.high*
+    category_ids:
+      in: query
+      name: category_ids
+      description: |
+        List of strings.<br>
+        Supported operators are `eq`,`cs`.<br>
+      schema:
+        type: string
+        example: 'cs.{89234,2341}'
+    primary_approver_id:
+      in: query
+      name: primary_approver_id
+      schema:
+        type: string
+      description: >-
+        Filters the objects by primary_approver_id. For single value use
+        `primary_approver_id=eq.<value>`. For multiple values, use
+        `primary_approver_id=in.(value1,value2,value3)`.
+      example: eq.ouX2Rv617cW0
+    secondary_approver_id:
+      in: query
+      name: secondary_approver_id
+      schema:
+        type: string
+      description: >-
+        Filters the objects by secondary_approver_id. For single value use
+        `secondary_approver_id=eq.<value>`. For multiple values, use
+        `secondary_approver_id=in.(value1,value2,value3)`.
+      example: eq.ouFOpg9CGLZ5
+    cost_centers_name:
+      in: query
+      name: name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: like.ABCD*
+    cost_centers_id:
+      in: query
+      name: id
+      description: |
+        This param is used to filter cost center record based on cost center id.
+        Supported operators are `in`,`eq`.<br>
+      schema:
+        type: string
+        example: eq.7
+    cost_centers_code:
+      in: query
+      name: code
+      description: |
+        Supported operators are `in`,`eq`,`like`.<br>
+      schema:
+        type: string
+        example: eq.CC01
   schemas:
     '401':
       type: object
@@ -1285,9 +1407,6 @@ components:
             Once a Report is paid, the value of this field cannot be changed and
             is immutable. <br>
           example: setzS7mbPKPWg
-        trip_request_id:
-          type: string
-          description: An ID of the TripRequest associated with it
         settled_at:
           type: string
           format: date-time
@@ -1296,6 +1415,9 @@ components:
             "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
             timestamp on which the report approved was settled. <br>
           example: '2020-07-23T09:32:00.933Z'
+        trip_request_id:
+          type: string
+          description: An ID of the TripRequest associated with it
     file:
       type: object
       readOnly: true
@@ -2081,68 +2203,74 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/reports'
-    category:
+    advance_request_id:
+      type: string
+      maxLength: 255
+      description: >
+        This id is provided by Fyle to identify an advance request from this
+        organisation.
+
+        This id is always prefixed with `areq`.
+      example: areq0AluN2n1RE
+    email:
+      type: string
+      format: email
+      maxLength: 127
+      example: john.doe@example.com
+      description: >
+        An immutable field that represents the email address.
+
+        Must be compliant with <a href="https://www.ietf.org/rfc/rfc822.txt">RFC
+        822.</a>
+    advance_id:
+      type: string
+      maxLength: 255
+      description: >
+        This id is provided by Fyle to identify an advance from this
+        organisation.
+
+        This id is always prefixed with `adv`.
+      example: advZP7QXFbHH4
+    advance_request_number:
+      type: string
+      maxLength: 255
+      description: >
+        This value is provided by Fyle to facilitate easy identification of an
+        advance request
+      example: AR/2019/03/R/2
+    trip_request_id:
+      type: string
+      maxLength: 255
+      description: >
+        This id is provided by Fyle to identify a trip request from this
+        organisation.
+
+        This id is always prefixed with `tr`.
+      example: trObdH5YgKzL
+    approved_at:
+      type: string
+      format: date-time
+      description: >
+        <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC 3339,
+        section 5.6 compliant timestamp.</a>
+
+        Signifies when this object was approved.
+      readOnly: true
+      example: '2020-07-03T18:19:31.193'
+    project_id:
+      type: string
+      maxLength: 255
+      description: >
+        This id is provided by Fyle to identify a project from this
+        organisation.
+
+        This id is a numeric string.
+
+        This id is unique within the organisation.
+      example: '2391'
+    project:
       type: object
       properties:
-        id:
-          type: string
-          maxLength: 10
-          example: '16570'
-          description: >
-            This id provided by Fyle to identify a category from this
-            organisation.
-
-            This id is a numeric string.
-
-            This id is unique within the organisation.
-        name:
-          type: string
-          maxLength: 255
-          example: Engine
-          description: Represents the name of the category.
-        sub_category:
-          type: string
-          maxLength: 255
-          example: Turbo charged
-          description: Represents the name of the sub_category.
-        display_name:
-          type: string
-          maxLength: 255
-          example: Engine / Turbo charged
-          description: >
-            This is a combination of name and sub_category separated by a / and
-            spaces.
-
-            In case if no sub_category is present it is same as name of the
-            category.
-        system_category:
-          type: string
-          maxLength: 255
-          example: Others
-          description: Represents the name of the system_category.
-    projects:
-      type: object
-      properties:
-        id:
-          type: string
-          maxLength: 10
-          description: >
-            This id provided by Fyle to identify a project from this
-            organisation.
-
-            This id is a numeric string.
-
-            This id is unique within the organisation.
-          readOnly: true
-          example: '2391'
-        org_id:
-          $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
-        created_at:
-          $ref: '#/components/schemas/created_at'
-        updated_at:
-          $ref: '#/components/schemas/updated_at'
         name:
           type: string
           maxLength: 255
@@ -2169,166 +2297,131 @@ components:
           description: |
             This represents the code of project.
           example: FF-032
-        description:
-          type: string
-          maxLength: 255
-          description: |
-            This represents the description of project.
-          example: Win the trophy
-        enabled:
-          type: boolean
-          description: >
-            This indicates if the project is enabled for use within the
-            organisation.
-          default: true
-          example: true
-        category_ids:
-          type: array
-          description: >
-            Has the list of all category ids that are applicable for this
-            project.
-          items:
+    policy_state:
+      type: string
+      enum:
+        - SUCCESS
+        - FAILED
+      description: |
+        Enum value signifying the action of policy on this object.
+      example: SUCCESS
+    policy_flag:
+      type: boolean
+      readOnly: true
+      description: |
+        Flag to indicate if this object has been processed by policy.
+      example: true
+    is_sent_back:
+      type: boolean
+      description: |
+        Flag which indicates if this object was sent back for clarification.
+      example: false
+    is_pulled_back:
+      type: boolean
+      description: |
+        Flag which indicates if this object was pulled back by the requestor.
+      example: false
+    approvals:
+      type: object
+      description: |
+        siginifies all the approvals of a particular object.
+      additionalProperties:
+        type: object
+        properties:
+          state:
             type: string
-          example:
-            - '16570'
-        categories:
-          type: array
-          description: |
-            This list of categories that are applicable for this project.
-          items:
-            $ref: '#/components/schemas/category'
-        primary_approver:
-          allOf:
-            - $ref: '#/components/schemas/user'
-          description: >
-            Primary approver who will be added as an approver by default for all
-            the submitted reports and expenses.
-          example:
-            full_name: primary approver
-            email: primary_approver@example.com
-        primary_approver_id:
-          type: string
-          maxLength: 255
-          description: |
-            Employee Id of the primary approver.
-          example: ou4b24ugv3vg
-        secondary_approver:
-          allOf:
-            - $ref: '#/components/schemas/user'
-          description: |
-            A secondary approver who can be added to reports via policies.
-          example:
-            full_name: secondary approver
-            email: secondary_approver@example.com
-        secondary_approver_id:
-          type: string
-          maxLength: 255
-          description: |
-            Employee Id of the secondary approver.
-          example: ourjgeugv3vg
-    get_projects:
-      type: object
-      properties:
-        count:
-          $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
-        url:
-          type: string
-          example: /v4/admin/projects
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/projects'
-    requests_projects:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/projects'
-        test:
-          type: boolean
-          example: false
-          default: false
-      required:
-        - data
-    post_projects:
+            enum:
+              - APPROVED
+              - APPROVAL_PENDING
+              - APPROVAL_DISABLED
+      example:
+        oueoblnegf:
+          state: APPROVED
+    advance_requests:
       type: object
       properties:
         id:
+          $ref: '#/components/schemas/advance_request_id'
+        employee_id:
+          $ref: '#/components/schemas/employee_id'
+        employee_email:
+          $ref: '#/components/schemas/email'
+        employee:
+          $ref: '#/components/schemas/minimals_employees'
+        amount:
+          $ref: '#/components/schemas/amount'
+        currency:
+          $ref: '#/components/schemas/currency'
+        advance_id:
+          $ref: '#/components/schemas/advance_id'
+        advance_request_number:
+          $ref: '#/components/schemas/advance_request_number'
+        trip_request_id:
+          $ref: '#/components/schemas/trip_request_id'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        approved_at:
+          $ref: '#/components/schemas/approved_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        notes:
           type: string
-          maxLength: 255
-          description: >
-            This id provided by Fyle to identify a project from this
-            organisation.
-
-            This id is a numeric string.
-
-            This id is unique within the organisation.
-          readOnly: true
-          example: '2391'
-        name:
-          type: string
-          maxLength: 255
-          description: Represents the name of the project.
-          example: Fast and Furious
-        sub_project:
-          type: string
-          maxLength: 255
-          description: Represents the name of the sub_project.
-          example: Formula One
-        code:
-          type: string
-          maxLength: 255
           description: |
-            This represents the code of project.
-          example: FF-032
-    cost_centers:
-      type: object
-      properties:
-        id:
+            Optional descriptive notes which can be added to an advance request.
+          example: onsite client meeting
+        purpose:
           type: string
-          maxLength: 255
-          description: >
-            This is provided by Fyle to identify a cost center from this
-            organisation.
-          readOnly: true
-          example: '1'
-        name:
+          description: |
+            Descriptive purpose which is added to an advance request.
+          example: onsite client meeting
+        state:
           type: string
-          maxLength: 255
+          enum:
+            - DRAFT
+            - APPROVAL_PENDING
+            - APPROVED
+            - REJECTED
+            - PAID
           description: |
-            This represents the name of the cost center.
-          example: sales & marketing
-        code:
-          type: string
-          maxLength: 255
+            State of the advance request.
+          example: PAID
+        project_id:
+          $ref: '#/components/schemas/project_id'
+        project:
+          $ref: '#/components/schemas/project'
+        custom_properties:
+          $ref: '#/components/schemas/custom_properties'
+        policy_amount:
+          allOf:
+            - $ref: '#/components/schemas/amount'
           description: |
-            This represents the code of cost center.
-          example: sm-cc
-        description:
-          type: string
-          maxLength: 255
-          description: |
-            This field provides a decription about the cost center.
-          example: Initial Cost center
-        enabled:
-          type: boolean
-          description: |
-            This field specifies if the current cost center is enabled or not.
-          example: true
+            Amount set by policy
+        policy_state:
+          $ref: '#/components/schemas/policy_state'
+        policy_flag:
+          $ref: '#/components/schemas/policy_flag'
+        is_sent_back:
+          $ref: '#/components/schemas/is_sent_back'
+        is_pulled_back:
+          $ref: '#/components/schemas/is_pulled_back'
         org_id:
           $ref: '#/components/schemas/org_id'
         org_name:
           $ref: '#/components/schemas/org_name'
-        created_at:
-          $ref: '#/components/schemas/created_at'
-        updated_at:
-          $ref: '#/components/schemas/updated_at'
-    get_cost_centers:
+        source:
+          type: string
+          enum:
+            - WEBAPP
+            - MOBILE
+          description: >
+            Enum value signifying the client method from which this
+            advance_request was initiated.
+          example: WEBAPP
+        advance_request_approvals:
+          $ref: '#/components/schemas/approvals'
+        export_info:
+          $ref: '#/components/schemas/export_info'
+    get_advance_requests:
       type: object
       properties:
         count:
@@ -2339,24 +2432,133 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/cost_centers
+          example: /v4/admin/advance_requests
         data:
           type: array
           items:
-            $ref: '#/components/schemas/cost_centers'
-    requests_cost_centers:
+            $ref: '#/components/schemas/advance_requests'
+    advances:
       type: object
       properties:
+        id:
+          $ref: '#/components/schemas/advance_id'
+        assingee_id:
+          $ref: '#/components/schemas/employee_id'
+        assignee_email:
+          $ref: '#/components/schemas/email'
+        assignee:
+          $ref: '#/components/schemas/minimals_employees'
+        issuer_id:
+          allOf:
+            $ref: '#/components/schemas/employee_id'
+          description: |
+            Employee id of person who issued the advance.
+          example: ouebvjwgjgl
+        issuer_email:
+          allOf:
+            $ref: '#/components/schemas/email'
+          description: |
+            Email of the person who issued the advance.
+          example: issuer@example.com
+        issuer:
+          allOf:
+            $ref: '#/components/schemas/minimals_employees'
+          description: |
+            Details for the person who issued the advance.
+          example: null
+        amount:
+          $ref: '#/components/schemas/amount'
+        currency:
+          maxLength: 10
+          $ref: '#/components/schemas/currency'
+        advance_request_id:
+          $ref: '#/components/schemas/advance_request_id'
+        advance_number:
+          type: string
+        trip_request_id:
+          $ref: '#/components/schemas/trip_request_id'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        approved_at:
+          $ref: '#/components/schemas/approved_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        purpose:
+          type: string
+          description: |
+            Descriptive purpose which is added to an advance request.
+          example: onsite client meeting
+        project_id:
+          $ref: '#/components/schemas/project_id'
+        project:
+          $ref: '#/components/schemas/project'
+        custom_properties:
+          $ref: '#/components/schemas/custom_properties'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        source:
+          type: string
+          enum:
+            - WEBAPP
+            - MOBILE
+          description: >
+            Enum value signifying the client method from which this
+            advance_request was initiated.
+          example: WEBAPP
+        export_info:
+          $ref: '#/components/schemas/export_info'
+        mode:
+          type: string
+          enum:
+            - CASH
+            - BANK_TRANSFER
+            - FOREX
+            - CHEQUE_DD
+          example: CASH
+        card_number:
+          type: string
+        reference_code:
+          type: string
+          description: |
+            This is used to store external system's unique identifier.
+          example: ITIvwowggwng
+        settlement_id:
+          type: string
+          maxLength: 255
+          description: >
+            An unique ID, generated by Fyle, for identifying the Settlement.
+
+            Once a Report is paid, the value of this field cannot be changed and
+            is immutable. <br>
+          example: setzS7mbPKPWg
+        settled_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the report approved was settled. <br>
+          example: '2020-07-23T09:32:00.933Z'
+        advance_request_approvals:
+          $ref: '#/components/schemas/approvals'
+    get_advances:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/admin/advances
         data:
           type: array
           items:
-            $ref: '#/components/schemas/cost_centers'
-        test:
-          type: boolean
-          example: false
-          default: false
-      required:
-        - data
+            $ref: '#/components/schemas/advances'
     settlement_id:
       type: string
       maxLength: 255
@@ -2711,67 +2913,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/settlements'
-    orgs:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/org_id'
-        name:
-          $ref: '#/components/schemas/org_name'
-        domain:
-          type: string
-          maxLength: 255
-          description: >
-            This field specifies the domain with which the organisation is
-            registered.
-          example: example.com
-        currency:
-          type: string
-          maxLength: 255
-          description: |
-            This field specifies the default currency to be used in expenses.
-          example: INR
-        branch_ifsc:
-          type: string
-          maxLength: 255
-          description: >
-            This is the IFSC code of the bank branch with which the organisation
-            is associated.
-          example: HDFC0122333
-        branch_account:
-          type: string
-          maxLength: 255
-          description: >
-            This field specifies the bank branch with which the organisation is
-            associated.
-          example: '2019238034424802'
-        verified:
-          type: boolean
-          description: |
-            This field specifies if the organisation is verified or not.
-          example: true
-        created_at:
-          $ref: '#/components/schemas/created_at'
-        updated_at:
-          $ref: '#/components/schemas/updated_at'
-    get_orgs:
-      type: object
-      properties:
-        count:
-          allOf:
-            - $ref: '#/components/schemas/count'
-          example: 1
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
-        url:
-          type: string
-          example: /v4/admin/orgs
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/orgs'
     balance_transfers:
       type: object
       properties:
@@ -2856,76 +2997,68 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/balance_transfers'
-    advance_request_id:
-      type: string
-      maxLength: 255
-      description: >
-        This id is provided by Fyle to identify an advance request from this
-        organisation.
-
-        This id is always prefixed with `areq`.
-      example: areq0AluN2n1RE
-    email:
-      type: string
-      format: email
-      maxLength: 127
-      example: john.doe@example.com
-      description: >
-        An immutable field that represents the email address.
-
-        Must be compliant with <a href="https://www.ietf.org/rfc/rfc822.txt">RFC
-        822.</a>
-    advance_id:
-      type: string
-      maxLength: 255
-      description: >
-        This id is provided by Fyle to identify an advance from this
-        organisation.
-
-        This id is always prefixed with `adv`.
-      example: advZP7QXFbHH4
-    advance_request_number:
-      type: string
-      maxLength: 255
-      description: >
-        This value is provided by Fyle to facilitate easy identification of an
-        advance request
-      example: AR/2019/03/R/2
-    trip_request_id:
-      type: string
-      maxLength: 255
-      description: >
-        This id is provided by Fyle to identify a project from this
-        organisation.
-
-        This id is always prefixed with `tr`.
-
-        example: 'trObdH5YgKzL'
-    approved_at:
-      type: string
-      format: date-time
-      description: >
-        <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC 3339,
-        section 5.6 compliant timestamp.</a>
-
-        Signifies when this object was approved.
-      readOnly: true
-      example: '2020-07-03T18:19:31.193'
-    project_id:
-      type: string
-      maxLength: 255
-      description: >
-        This id is provided by Fyle to identify a project from this
-        organisation.
-
-        This id is a numeric string.
-
-        This id is unique within the organisation.
-
-        example: '2391'
-    project:
+    category:
       type: object
       properties:
+        id:
+          type: string
+          maxLength: 10
+          example: '16570'
+          description: >
+            This id provided by Fyle to identify a category from this
+            organisation.
+
+            This id is a numeric string.
+
+            This id is unique within the organisation.
+        name:
+          type: string
+          maxLength: 255
+          example: Engine
+          description: Represents the name of the category.
+        sub_category:
+          type: string
+          maxLength: 255
+          example: Turbo charged
+          description: Represents the name of the sub_category.
+        display_name:
+          type: string
+          maxLength: 255
+          example: Engine / Turbo charged
+          description: >
+            This is a combination of name and sub_category separated by a / and
+            spaces.
+
+            In case if no sub_category is present it is same as name of the
+            category.
+        system_category:
+          type: string
+          maxLength: 255
+          example: Others
+          description: Represents the name of the system_category.
+    projects:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 10
+          description: >
+            This id provided by Fyle to identify a project from this
+            organisation.
+
+            This id is a numeric string.
+
+            This id is unique within the organisation.
+          readOnly: true
+          example: '2391'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
         name:
           type: string
           maxLength: 255
@@ -2952,114 +3085,64 @@ components:
           description: |
             This represents the code of project.
           example: FF-032
-    policy_state:
-      type: string
-      enum:
-        - SUCCESS
-        - FAILED
-      description: |
-        Enum value signifying the action of policy on this object.
-      example: SUCCESS
-    policy_flag:
-      type: boolean
-      readOnly: true
-      description: |
-        Flag to indicate if this object has been processed by policy.
-      example: true
-    is_sent_back:
-      type: boolean
-      description: |
-        Flag which indicates if this object was sent back for clarification.
-      example: false
-    is_pulled_back:
-      type: boolean
-      description: |
-        Flag which indicates if this object was pulled back by the requestor.
-      example: false
-    advance_requests:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/advance_request_id'
-        employee_id:
-          $ref: '#/components/schemas/employee_id'
-        employee_email:
-          $ref: '#/components/schemas/email'
-        employee:
-          $ref: '#/components/schemas/minimals_employees'
-        amount:
-          $ref: '#/components/schemas/amount'
-        currency:
-          maxLength: 10
-          $ref: '#/components/schemas/currency'
-        advance_id:
-          $ref: '#/components/schemas/advance_id'
-        advance_request_number:
-          $ref: '#/components/schemas/advance_request_number'
-        trip_request_id:
-          $ref: '#/components/schemas/trip_request_id'
-        created_at:
-          $ref: '#/components/schemas/created_at'
-        approved_at:
-          $ref: '#/components/schemas/approved_at'
-        updated_at:
-          $ref: '#/components/schemas/updated_at'
-        notes:
+        description:
           type: string
+          maxLength: 255
           description: |
-            Optional descriptive notes which can be added to an advance request.
-          example: onsite client meeting
-        purpose:
-          type: string
-          description: |
-            Descriptive purpose which is added to an advance request.
-          example: onsite client meeting
-        state:
-          type: string
-          enum:
-            - DRAFT
-            - APPROVAL_PENDING
-            - APPROVED
-            - REJECTED
-            - PAID
-          description: |
-            State of the advance request.
-          example: PAID
-        project_id:
-          $ref: '#/components/schemas/project_id'
-        project:
-          $ref: '#/components/schemas/project'
-        custom_properties:
-          $ref: '#/components/schemas/custom_properties'
-        policy_amount:
-          allOf:
-            - $ref: '#/components/schemas/amount'
-          description: |
-            Amount set by policy
-        policy_state:
-          $ref: '#/components/schemas/policy_state'
-        policy_flag:
-          $ref: '#/components/schemas/policy_flag'
-        is_sent_back:
-          $ref: '#/components/schemas/is_sent_back'
-        is_pulled_back:
-          $ref: '#/components/schemas/is_pulled_back'
-        org_id:
-          $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
-        source:
-          type: string
-          enum:
-            - WEBAPP
-            - MOBILE
+            This represents the description of project.
+          example: Win the trophy
+        enabled:
+          type: boolean
           description: >
-            Enum value signifying the client method from which this
-            advance_request was initiated.
-          example: WEBAPP
-        export_info:
-          $ref: '#/components/schemas/export_info'
-    get_advance_requests:
+            This indicates if the project is enabled for use within the
+            organisation.
+          default: true
+          example: true
+        category_ids:
+          type: array
+          description: >
+            Has the list of all category ids that are applicable for this
+            project.
+          items:
+            type: string
+          example:
+            - '16570'
+        categories:
+          type: array
+          description: |
+            This list of categories that are applicable for this project.
+          items:
+            $ref: '#/components/schemas/category'
+        primary_approver:
+          allOf:
+            - $ref: '#/components/schemas/user'
+          description: >
+            Primary approver who will be added as an approver by default for all
+            the submitted reports and expenses.
+          example:
+            full_name: primary approver
+            email: primary_approver@example.com
+        primary_approver_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the primary approver.
+          example: ou4b24ugv3vg
+        secondary_approver:
+          allOf:
+            - $ref: '#/components/schemas/user'
+          description: |
+            A secondary approver who can be added to reports via policies.
+          example:
+            full_name: secondary approver
+            email: secondary_approver@example.com
+        secondary_approver_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the secondary approver.
+          example: ourjgeugv3vg
+    get_projects:
       type: object
       properties:
         count:
@@ -3070,11 +3153,187 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/advance_requests
+          example: /v4/admin/projects
         data:
           type: array
           items:
-            $ref: '#/components/schemas/advance_requests'
+            $ref: '#/components/schemas/projects'
+    requests_projects:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/projects'
+        test:
+          type: boolean
+          example: false
+          default: false
+      required:
+        - data
+    post_projects:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 255
+          description: >
+            This id provided by Fyle to identify a project from this
+            organisation.
+
+            This id is a numeric string.
+
+            This id is unique within the organisation.
+          readOnly: true
+          example: '2391'
+        name:
+          type: string
+          maxLength: 255
+          description: Represents the name of the project.
+          example: Fast and Furious
+        sub_project:
+          type: string
+          maxLength: 255
+          description: Represents the name of the sub_project.
+          example: Formula One
+        code:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the code of project.
+          example: FF-032
+    cost_centers:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 255
+          description: >
+            This is provided by Fyle to identify a cost center from this
+            organisation.
+          readOnly: true
+          example: '1'
+        name:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the name of the cost center.
+          example: sales & marketing
+        code:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the code of cost center.
+          example: sm-cc
+        description:
+          type: string
+          maxLength: 255
+          description: |
+            This field provides a decription about the cost center.
+          example: Initial Cost center
+        enabled:
+          type: boolean
+          description: |
+            This field specifies if the current cost center is enabled or not.
+          example: true
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+    get_cost_centers:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/admin/cost_centers
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/cost_centers'
+    requests_cost_centers:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/cost_centers'
+        test:
+          type: boolean
+          example: false
+          default: false
+      required:
+        - data
+    orgs:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/org_id'
+        name:
+          $ref: '#/components/schemas/org_name'
+        domain:
+          type: string
+          maxLength: 255
+          description: >
+            This field specifies the domain with which the organisation is
+            registered.
+          example: example.com
+        currency:
+          type: string
+          maxLength: 255
+          description: |
+            This field specifies the default currency to be used in expenses.
+          example: INR
+        branch_ifsc:
+          type: string
+          maxLength: 255
+          description: >
+            This is the IFSC code of the bank branch with which the organisation
+            is associated.
+          example: HDFC0122333
+        branch_account:
+          type: string
+          maxLength: 255
+          description: >
+            This field specifies the bank branch with which the organisation is
+            associated.
+          example: '2019238034424802'
+        verified:
+          type: boolean
+          description: |
+            This field specifies if the organisation is verified or not.
+          example: true
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+    get_orgs:
+      type: object
+      properties:
+        count:
+          allOf:
+            - $ref: '#/components/schemas/count'
+          example: 1
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/admin/orgs
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/orgs'
 tags:
   - name: Employees
     description: |
@@ -3089,6 +3348,9 @@ tags:
   - name: Reports
     description: |
       This API gives you access to your organisation's Expense Reports data.
+  - name: Advances
+    description: |
+      This API gives you access to Issued Advances data of your organisation.
   - name: Advance Requests
     description: |
       This API gives you access to your organisation's Advance requests data.
@@ -3325,6 +3587,270 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
+  /v4/admin/advance_requests:
+    get:
+      tags:
+        - Advance Requests
+      summary: Returns a list of Advance Request objects.
+      operationId: GetAdvanceRequests
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/currency'
+        - $ref: '#/components/parameters/amount'
+        - $ref: '#/components/parameters/approved_at'
+        - $ref: '#/components/parameters/state'
+        - $ref: '#/components/parameters/advance_id'
+        - $ref: '#/components/parameters/advance_request_number'
+        - $ref: '#/components/parameters/trip_request_id'
+        - $ref: '#/components/parameters/is_sent_back'
+        - $ref: '#/components/parameters/is_pulled_back'
+        - $ref: '#/components/parameters/policy_amount'
+        - $ref: '#/components/parameters/policy_state'
+        - $ref: '#/components/parameters/policy_flag'
+        - $ref: '#/components/parameters/employee_id'
+        - $ref: '#/components/parameters/employee_code'
+        - $ref: '#/components/parameters/employee_email'
+        - $ref: '#/components/parameters/org_id'
+        - $ref: '#/components/parameters/project_id'
+        - $ref: '#/components/parameters/exported'
+        - $ref: '#/components/parameters/exported_at'
+        - $ref: '#/components/parameters/export_ids'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_advance_requests'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /v4/admin/advances:
+    get:
+      tags:
+        - Advances
+      summary: Returns a list of Issued Advances objects.
+      operationId: GetAdvances
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/currency'
+        - $ref: '#/components/parameters/amount'
+        - $ref: '#/components/parameters/approved_at'
+        - $ref: '#/components/parameters/state'
+        - $ref: '#/components/parameters/advance_id'
+        - $ref: '#/components/parameters/advance_request_number'
+        - $ref: '#/components/parameters/trip_request_id'
+        - $ref: '#/components/parameters/is_sent_back'
+        - $ref: '#/components/parameters/is_pulled_back'
+        - $ref: '#/components/parameters/policy_amount'
+        - $ref: '#/components/parameters/policy_state'
+        - $ref: '#/components/parameters/policy_flag'
+        - $ref: '#/components/parameters/employee_id'
+        - $ref: '#/components/parameters/employee_code'
+        - $ref: '#/components/parameters/employee_email'
+        - $ref: '#/components/parameters/org_id'
+        - $ref: '#/components/parameters/project_id'
+        - $ref: '#/components/parameters/exported'
+        - $ref: '#/components/parameters/exported_at'
+        - $ref: '#/components/parameters/export_ids'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_advances'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /v4/admin/reimbursements:
+    get:
+      tags:
+        - Reimbursements
+      summary: Returns a list of reimbursement objects.
+      operationId: GetReimbursements
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/employee_id'
+        - $ref: '#/components/parameters/employee_user_id'
+        - $ref: '#/components/parameters/employee_code'
+        - $ref: '#/components/parameters/currency'
+        - $ref: '#/components/parameters/amount'
+        - $ref: '#/components/parameters/settlement_id'
+        - $ref: '#/components/parameters/exported'
+        - $ref: '#/components/parameters/exported_at'
+        - $ref: '#/components/parameters/export_ids'
+        - $ref: '#/components/parameters/payment_id'
+        - $ref: '#/components/parameters/reimbursements_state'
+        - $ref: '#/components/parameters/purpose'
+        - $ref: '#/components/parameters/unique_id'
+        - $ref: '#/components/parameters/accounting_exported'
+        - $ref: '#/components/parameters/mode'
+        - $ref: '#/components/parameters/ach_state'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_reimbursements'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /v4/admin/refunds:
+    get:
+      tags:
+        - Refunds
+      summary: Returns a list of Refund objects.
+      operationId: GetRefunds
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/currency'
+        - $ref: '#/components/parameters/amount'
+        - $ref: '#/components/parameters/foreign_currency'
+        - $ref: '#/components/parameters/foreign_amount'
+        - $ref: '#/components/parameters/exported'
+        - $ref: '#/components/parameters/exported_at'
+        - $ref: '#/components/parameters/export_ids'
+        - $ref: '#/components/parameters/payment_id'
+        - $ref: '#/components/parameters/payment_mode'
+        - $ref: '#/components/parameters/collector_id'
+        - $ref: '#/components/parameters/returnee_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_refunds'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /v4/admin/settlements:
+    get:
+      tags:
+        - Settlements
+      summary: Returns a list of settlement objects.
+      operationId: GetSettlements
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/employee_id'
+        - $ref: '#/components/parameters/employee_user_id'
+        - $ref: '#/components/parameters/employee_code'
+        - $ref: '#/components/parameters/opening_dt'
+        - $ref: '#/components/parameters/closing_dt'
+        - $ref: '#/components/parameters/total_opening_balance'
+        - $ref: '#/components/parameters/total_closing_balance'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_settlements'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /v4/admin/balance_transfers:
+    get:
+      tags:
+        - Balance Transfers
+      summary: Returns a list of Balance Transfer objects.
+      operationId: GetBalanceTransfers
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/currency'
+        - $ref: '#/components/parameters/amount'
+        - $ref: '#/components/parameters/exported'
+        - $ref: '#/components/parameters/exported_at'
+        - $ref: '#/components/parameters/export_ids'
+        - $ref: '#/components/parameters/issued_at'
+        - $ref: '#/components/parameters/issuer_id'
+        - $ref: '#/components/parameters/source_account'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_balance_transfers'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
   /v4/admin/projects:
     get:
       tags:
@@ -3505,130 +4031,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/admin/reimbursements:
-    get:
-      tags:
-        - Reimbursements
-      summary: Returns a list of reimbursement objects.
-      operationId: GetReimbursements
-      parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/employee_id'
-        - $ref: '#/components/parameters/employee_user_id'
-        - $ref: '#/components/parameters/employee_code'
-        - $ref: '#/components/parameters/currency'
-        - $ref: '#/components/parameters/amount'
-        - $ref: '#/components/parameters/settlement_id'
-        - $ref: '#/components/parameters/exported'
-        - $ref: '#/components/parameters/exported_at'
-        - $ref: '#/components/parameters/export_ids'
-        - $ref: '#/components/parameters/payment_id'
-        - $ref: '#/components/parameters/state'
-        - $ref: '#/components/parameters/purpose'
-        - $ref: '#/components/parameters/unique_id'
-        - $ref: '#/components/parameters/accounting_exported'
-        - $ref: '#/components/parameters/mode'
-        - $ref: '#/components/parameters/ach_state'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/get_reimbursements'
-        '401':
-          description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/403'
-  /v4/admin/refunds:
-    get:
-      tags:
-        - Refunds
-      summary: Returns a list of Refund objects.
-      operationId: GetRefunds
-      parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/currency'
-        - $ref: '#/components/parameters/amount'
-        - $ref: '#/components/parameters/foreign_currency'
-        - $ref: '#/components/parameters/foreign_amount'
-        - $ref: '#/components/parameters/exported'
-        - $ref: '#/components/parameters/exported_at'
-        - $ref: '#/components/parameters/export_ids'
-        - $ref: '#/components/parameters/payment_id'
-        - $ref: '#/components/parameters/payment_mode'
-        - $ref: '#/components/parameters/collector_id'
-        - $ref: '#/components/parameters/returnee_id'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/get_refunds'
-        '401':
-          description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/403'
-  /v4/admin/settlements:
-    get:
-      tags:
-        - Settlements
-      summary: Returns a list of settlement objects.
-      operationId: GetSettlements
-      parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/employee_id'
-        - $ref: '#/components/parameters/employee_user_id'
-        - $ref: '#/components/parameters/employee_code'
-        - $ref: '#/components/parameters/opening_dt'
-        - $ref: '#/components/parameters/closing_dt'
-        - $ref: '#/components/parameters/total_opening_balance'
-        - $ref: '#/components/parameters/total_closing_balance'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/get_settlements'
-        '401':
-          description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/403'
   /v4/admin/orgs:
     get:
       tags:
@@ -3655,76 +4057,3 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/admin/balance_transfers:
-    get:
-      tags:
-        - Balance Transfers
-      summary: Returns a list of Balance Transfer objects.
-      operationId: GetBalanceTransfers
-      parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/currency'
-        - $ref: '#/components/parameters/amount'
-        - $ref: '#/components/parameters/exported'
-        - $ref: '#/components/parameters/exported_at'
-        - $ref: '#/components/parameters/export_ids'
-        - $ref: '#/components/parameters/issued_at'
-        - $ref: '#/components/parameters/issuer_id'
-        - $ref: '#/components/parameters/source_account'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/get_balance_transfers'
-        '401':
-          description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/403'
-  /v4/admin/advance_requests:
-    get:
-      tags:
-        - Advance Requests
-      summary: Returns a list of Advance Request objects.
-      operationId: GetAdvanceRequests
-      parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/currency'
-        - $ref: '#/components/parameters/amount'
-        - $ref: '#/components/parameters/exported'
-        - $ref: '#/components/parameters/exported_at'
-        - $ref: '#/components/parameters/export_ids'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/get_advance_requests'
-        '401':
-          description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/403'

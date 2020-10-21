@@ -1,0 +1,9 @@
+in: query
+name: advance_id
+schema:
+  type: string
+description: |
+  Filters the objects by advance_id. For single value use `advance_id=eq.<value>`.
+  For mulitple values, use `advance_id=in.(value1,value2,value3)`. <br>
+  Supported operators: `in`, `eq`, `not.in`, `not.eq`
+example: eq.advZP7QXFbHH4

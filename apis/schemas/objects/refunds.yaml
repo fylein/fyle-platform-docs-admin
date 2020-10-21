@@ -36,7 +36,7 @@ properties:
     description: |
       Details of employee who is the returnee of this refund.
   org_id:
-      $ref: 'commons/org_id.yaml'
+    $ref: 'commons/org_id.yaml'
   org_name:
     $ref: 'commons/org_name.yaml'
   payment_mode:

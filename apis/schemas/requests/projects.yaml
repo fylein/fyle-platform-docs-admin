@@ -8,4 +8,4 @@ properties:
     type: boolean
     example: false
     default: false
-required: [data]
+required: [ data ]

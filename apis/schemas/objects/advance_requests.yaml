@@ -11,7 +11,6 @@ properties:
   amount:
     $ref: 'commons/amount.yaml'
   currency:
-    maxLength: 10
     $ref: 'commons/currency.yaml'
   advance_id:
     $ref: 'commons/advance_id.yaml'
@@ -77,5 +76,7 @@ properties:
     description: |
       Enum value signifying the client method from which this advance_request was initiated.
     example: WEBAPP
+  advance_request_approvals:
+    $ref: 'commons/approvals.yaml'
   export_info:
     $ref: 'minimals/export_info.yaml'

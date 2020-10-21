@@ -27,8 +27,8 @@ properties:
     type: string
     format: date-time
     description: |
-     RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the Report was submitted to the Approvers.
-     If the Report is not yet submitted, this could be null. <br>
+      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the Report was submitted to the Approvers.
+      If the Report is not yet submitted, this could be null. <br>
     readOnly: true
   purpose:
     type: string

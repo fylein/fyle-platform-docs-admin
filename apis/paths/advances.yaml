@@ -1,8 +1,8 @@
 get:
   tags:
-    - Advance Requests
-  summary: Returns a list of Advance Request objects.
-  operationId: GetAdvanceRequests
+    - Advances
+  summary: Returns a list of Issued Advances objects.
+  operationId: GetAdvances
   parameters:
     - $ref: "../schemas/requests/commons/offset.yaml"
     - $ref: "../schemas/requests/commons/limit.yaml"
@@ -36,7 +36,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../schemas/responses/get/advance_requests.yaml"
+            $ref: "../schemas/responses/get/advances.yaml"
     "401":
       description: Unauthorised request
       content:

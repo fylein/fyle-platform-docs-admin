@@ -140,7 +140,7 @@ properties:
         - AUDITOR
         - HOD
         - HOP
-    example: ['FYLER', 'APPROVER']
+    example: [ 'FYLER', 'APPROVER' ]
   branch_ifsc:
     type: string
     maxLength: 11
@@ -258,7 +258,7 @@ properties:
         - FOUR_WHEELER4
         - BICYCLE
         - ELECTRIC_CAR
-    example: ['TWO_WHEELER', 'FOUR_WHEELER']
+    example: [ 'TWO_WHEELER', 'FOUR_WHEELER' ]
   cost_centers:
     type: array
     description: |

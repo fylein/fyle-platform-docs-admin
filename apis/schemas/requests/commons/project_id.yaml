@@ -1,0 +1,8 @@
+in: query
+name: project_id
+schema:
+  type: string
+description:
+  Filters the objects by project_id. For single value use `project_id=eq.<value>`.
+  For multiple values, use `project_id=in.(value1,value2,value3)`.
+example: eq.2341

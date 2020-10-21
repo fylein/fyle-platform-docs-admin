@@ -33,6 +33,9 @@ tags:
   - name: Reports
     description: |
       This API gives you access to your organisation's Expense Reports data.
+  - name: Advances
+    description: |
+      This API gives you access to Issued Advances data of your organisation.
   - name: Advance Requests
     description: |
       This API gives you access to your organisation's Advance requests data.
@@ -67,19 +70,21 @@ paths:
     $ref: 'paths/expense_custom_properties.yaml'
   /v4/admin/reports:
     $ref: 'paths/reports.yaml'
-  /v4/admin/projects:
-    $ref: 'paths/projects.yaml'
-  /v4/admin/cost_centers:
-      $ref: 'paths/cost_centers.yaml'
+  /v4/admin/advance_requests:
+    $ref: 'paths/advance_requests.yaml'
+  /v4/admin/advances:
+    $ref: 'paths/advances.yaml'
   /v4/admin/reimbursements:
     $ref: 'paths/reimbursements.yaml'
   /v4/admin/refunds:
     $ref: 'paths/refunds.yaml'
   /v4/admin/settlements:
     $ref: 'paths/settlements.yaml'
-  /v4/admin/orgs:
-    $ref: 'paths/orgs.yaml'
   /v4/admin/balance_transfers:
     $ref: 'paths/balance_transfers.yaml'
-  /v4/admin/advance_requests:
-    $ref: 'paths/advance_requests.yaml'
+  /v4/admin/projects:
+    $ref: 'paths/projects.yaml'
+  /v4/admin/cost_centers:
+    $ref: 'paths/cost_centers.yaml'
+  /v4/admin/orgs:
+    $ref: 'paths/orgs.yaml'
