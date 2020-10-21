@@ -1831,7 +1831,6 @@ components:
         per_diem_rate_id:
           type: string
         per_diem_rate:
-          type: object
           $ref: '#/components/schemas/perdiem'
         activity_details:
           type: string
@@ -1897,12 +1896,23 @@ components:
           type: boolean
         transcription_state:
           type: string
+          enum:
+            - IN_PROGRESS
+            - SUCCESS
+            - FAILURE
+            - NO_WORK
+          example: SUCCESS
         receipt_required:
           type: boolean
         is_holiday_expense:
           type: boolean
         risk_state:
-          type: boolean
+          type: string
+          enum:
+            - HIGH_RISK
+            - MODERATE_RISK
+            - NO_RISK
+          example: NO_RISK
         external_id:
           type: string
         split_group_id:
