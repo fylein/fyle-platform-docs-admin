@@ -29,7 +29,6 @@ properties:
   amount:
     $ref: 'commons/amount.yaml'
   currency:
-    maxLength: 10
     $ref: 'commons/currency.yaml'
   advance_request_id:
     $ref: 'commons/advance_request_id.yaml'

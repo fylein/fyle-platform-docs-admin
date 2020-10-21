@@ -4,13 +4,4 @@ description: |
   Supported operators are `eq`, `in`.<br>
 schema:
   type: string
-  enum:
-    - TEXT
-    - NUMBER
-    - SELECT
-    - BOOLEAN
-    - MULTI_SELECT
-    - LOCATION
-    - USER_LIST
-    - DATE
   example: 'eq.SELECT'

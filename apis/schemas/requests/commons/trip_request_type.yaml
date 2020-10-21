@@ -4,8 +4,4 @@ description: |
   Supported operators are `eq`, `in`.<br>
 schema:
   type: string
-  enum:
-    - TRIP_REQUEST
-    - TRANSPORTATION_REQUEST
-    - HOTEL_REQUEST
   example: 'eq.TRIP_REQUEST'
