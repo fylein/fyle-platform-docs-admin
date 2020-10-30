@@ -1,8 +1,7 @@
 get:
   tags:
     - Employees
-  summary: |
-    List employees
+  summary: List employees
   operationId: GetEmployees
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
@@ -36,8 +35,7 @@ get:
 post:
   tags:
     - Employees
-  summary: |
-    Create or update employees
+  summary: Create or update employees
   description: |
     creates or update employees in bulk. This API is written in such way to support bulk operations only.
   operationId: PostEmployees

@@ -1,7 +1,7 @@
 get:
   tags:
     - Advances
-  summary: Returns a list of Issued Advances objects.
+  summary: List advances
   operationId: GetAdvances
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'

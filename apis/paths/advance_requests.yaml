@@ -1,7 +1,7 @@
 get:
   tags:
     - Advance Requests
-  summary: Returns a list of Advance Request objects.
+  summary: List advance requests
   operationId: GetAdvanceRequests
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'

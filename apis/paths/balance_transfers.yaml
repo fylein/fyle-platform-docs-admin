@@ -1,7 +1,7 @@
 get:
   tags:
     - Balance Transfers
-  summary: Returns a list of Balance Transfer objects.
+  summary: List Balance Transfer
   operationId: GetBalanceTransfers
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'

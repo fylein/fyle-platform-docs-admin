@@ -1,7 +1,7 @@
 get:
   tags:
     - Reimbursements
-  summary: Returns a list of reimbursement objects.
+  summary: List reimbursement
   operationId: GetReimbursements
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'

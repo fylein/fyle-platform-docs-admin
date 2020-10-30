@@ -1,7 +1,7 @@
 get:
   tags:
     - Projects
-  summary: Returns a list of projects
+  summary: List projects
   operationId: GetProjects
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
@@ -27,8 +27,7 @@ get:
 post:
   tags:
     - Projects
-  summary:
-    upsert projects
+  summary: Create or update projects
   description: |
     creates or updates projects in bulk. This API is written in such a way to support bulk operations only.
   operationId: PostProjects

@@ -1,7 +1,7 @@
 get:
   tags:
     - Settlements
-  summary: Returns a list of settlement objects.
+  summary: List settlement
   operationId: GetSettlements
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'

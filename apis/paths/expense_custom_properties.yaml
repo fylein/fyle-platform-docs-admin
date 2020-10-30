@@ -1,7 +1,7 @@
 get:
   tags:
     - Expense Custom Properties
-  summary: Returns a list of expense custom Properties
+  summary: List expense custom properties
   operationId: GetExpenseCustomProperties
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
