@@ -992,7 +992,7 @@ components:
         (expense/advance/refund/etc.) was originally created.
       example: INR
     foreign_amount:
-      type: integer
+      type: number
       description: >
         Amount value of the object, in original currency i.e the currency in
         which the object was initially created.
@@ -3008,8 +3008,7 @@ paths:
     get:
       tags:
         - Employees
-      summary: |
-        List employees
+      summary: List employees
       operationId: GetEmployees
       parameters:
         - $ref: '#/components/parameters/offset'
@@ -3041,8 +3040,7 @@ paths:
     post:
       tags:
         - Employees
-      summary: |
-        Create or update employees
+      summary: Create or update employees
       description: >
         creates or update employees in bulk. This API is written in such way to
         support bulk operations only.
@@ -3098,8 +3096,7 @@ paths:
     get:
       tags:
         - Expenses
-      summary: |
-        list expenses
+      summary: List expenses
       operationId: GetExpenses
       parameters:
         - $ref: '#/components/parameters/offset'
@@ -3128,7 +3125,7 @@ paths:
     get:
       tags:
         - Expense Custom Properties
-      summary: Returns a list of expense custom Properties
+      summary: List expense custom properties
       operationId: GetExpenseCustomProperties
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3154,7 +3151,7 @@ paths:
     get:
       tags:
         - Reports
-      summary: Returns a list of Reports
+      summary: List reports
       operationId: GetReports
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3182,7 +3179,7 @@ paths:
     get:
       tags:
         - Advance Requests
-      summary: Returns a list of Advance Request objects.
+      summary: List advance requests
       operationId: GetAdvanceRequests
       parameters:
         - $ref: '#/components/parameters/offset'
@@ -3215,7 +3212,7 @@ paths:
     get:
       tags:
         - Advances
-      summary: Returns a list of Issued Advances objects.
+      summary: List advances
       operationId: GetAdvances
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3247,7 +3244,7 @@ paths:
     get:
       tags:
         - Reimbursements
-      summary: Returns a list of reimbursement objects.
+      summary: List reimbursement
       operationId: GetReimbursements
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3277,7 +3274,7 @@ paths:
     get:
       tags:
         - Refunds
-      summary: Returns a list of Refund objects.
+      summary: List Refund
       operationId: GetRefunds
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3307,7 +3304,7 @@ paths:
     get:
       tags:
         - Settlements
-      summary: Returns a list of settlement objects.
+      summary: List settlement
       operationId: GetSettlements
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3337,7 +3334,7 @@ paths:
     get:
       tags:
         - Balance Transfers
-      summary: Returns a list of Balance Transfer objects.
+      summary: List Balance Transfer
       operationId: GetBalanceTransfers
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3367,7 +3364,7 @@ paths:
     get:
       tags:
         - Projects
-      summary: Returns a list of projects
+      summary: List projects
       operationId: GetProjects
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3392,7 +3389,7 @@ paths:
     post:
       tags:
         - Projects
-      summary: upsert projects
+      summary: Create or update projects
       description: >
         creates or updates projects in bulk. This API is written in such a way
         to support bulk operations only.
@@ -3448,7 +3445,7 @@ paths:
     get:
       tags:
         - Cost Centers
-      summary: Returns a list of cost Centers
+      summary: List cost centers
       operationId: GetCostCenters
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3472,7 +3469,7 @@ paths:
     post:
       tags:
         - Cost Centers
-      summary: upsert cost Centers
+      summary: Create or update cost Centers
       description: >
         creates or updates cost centers in bulk. This API is written in such a
         way to support bulk operations only.
