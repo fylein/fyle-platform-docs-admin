@@ -46,14 +46,15 @@ components:
 
         Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
 
-        created_at=gte.2020-06-01T00:00:00.000Z filters all employees created on
+        created_at=gte.2020-06-01T00:00:00.000Z filters all objects created on
         or after 1st Jun 2020.<br>
 
         created_at=gte.2020-06-01T00:00:00.000Z&created_at=lt.2020-07-01T00:00:00.000Z
-        filters all employees `created` in the month of Jun 2020.<br>
+        filters all objects `created` in the month of Jun 2020.<br>
       schema:
         type: string
-        example: 'gte.2020-06-01T00:00:00.000Z'
+        example: >-
+          created_at=gte.2020-06-01T00:00:00.000Z&created_at=lt.2020-07-01T00:00:00.000Z
     updated_at:
       in: query
       name: updated_at
@@ -63,23 +64,24 @@ components:
 
         Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
 
-        updated_at=gte.2020-06-01T00:00:00.000Z filters all employees updated on
+        updated_at=gte.2020-06-01T00:00:00.000Z filters all objects updated on
         or after 1st Jun 2020.<br>
 
         updated_at=gte.2020-06-01T00:00:00.000Z&updated_at=lt.2020-07-01T00:00:00.000Z
-        filters all employees `updated` in the month of Jun 2020.<br>
+        filters all objects `updated` in the month of Jun 2020.<br>
       schema:
         type: string
-        example: 'gte.2020-06-01T00:00:00.000Z'
-    org_id:
+        example: >-
+          updated_at=gte.2020-06-01T00:00:00.000Z&updated_at=lt.2020-07-01T00:00:00.000Z
+    order:
       in: query
-      name: org_id
+      name: order
       description: |
-        This param is used to filter records based org id.
-        Supported operators are `in`,`eq`.<br>
+        use comma separated column names for sorting the results.
+        For sorting in descending order, use `column_name.desc`
       schema:
         type: string
-        example: eq.orvneouegi
+        example: 'created_at.desc,id'
     employee_email:
       in: query
       name: employee_email
@@ -89,86 +91,6 @@ components:
       schema:
         type: string
         example: eq.employee1@example.com
-    name:
-      in: query
-      name: name
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: like.Add*
-    type:
-      in: query
-      name: type
-      description: |
-        Supported operators are `eq`, `in`.<br>
-      schema:
-        type: string
-        example: eq.SELECT
-    options:
-      in: query
-      name: options
-      description: |
-        List of strings.<br>
-        Supported operators are `eq`,`cs`.<br>
-      schema:
-        type: string
-        example: 'cs.{food,travel}'
-    mandatory:
-      in: query
-      name: mandatory
-      description: |
-        This param is used to filer records by
-        Supported operators are `eq`,`not.eq`.<br>
-      schema:
-        type: string
-        example: eq.true
-    org_category_ids:
-      in: query
-      name: org_category_ids
-      description: |
-        List of strings.<br>
-        Supported operators are `eq`,`cs`.<br>
-      schema:
-        type: string
-        example: 'cs.{12,7}'
-    enabled:
-      in: query
-      name: enabled
-      description: |
-        This param is used to filer records by
-        Supported operators are `eq`,`not.eq`.<br>
-      schema:
-        type: string
-        example: eq.true
-    id:
-      in: query
-      name: id
-      schema:
-        type: string
-      description: >-
-        Filters the objects by id. For single value use `id=eq.<value>`. For
-        multiple values, use `id=in.(value1,value2,value3)`.
-      example: eq.<id>
-    currency:
-      in: query
-      name: currency
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        currency=in.(value1,value2)
-      schema:
-        type: string
-        example: 'in.(USD,INR)'
-    amount:
-      in: query
-      name: amount
-      description: |
-        Supported operators are `eq`,`gte`,`lte`,`gt`,`lt`,`in`.<br>
-        amount=in.(value1,value2)
-      schema:
-        type: string
-        example: eq.100
     approved_at:
       in: query
       name: approved_at
@@ -178,358 +100,150 @@ components:
 
         Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
 
-        approved_at=gte.2020-06-01T00:00:00.000Z filters all objects created on
+        approved_at=gte.2020-06-01T00:00:00.000Z filters all objects approved on
         or after 1st Jun 2020.<br>
 
         approved_at=gte.2020-06-01T00:00:00.000Z&approved_at=lt.2020-07-01T00:00:00.000Z
-        filters all objects `created` in the month of Jun 2020.<br>
+        filters all objects `approved` in the month of Jun 2020.<br>
       schema:
         type: string
-        example: 'gte.2020-06-05T00:00:00.000Z'
+        example: >-
+          approved_at=gte.2020-06-01T00:00:00.000Z&approved_at=lt.2020-07-01T00:00:00.000Z
     state:
       in: query
       name: state
-      description: |
-        Possible values : DRAFT, APPROVAL_PENDING, APPROVED, REJECTED, PAID.<br>
-        Supported operators are `eq`, `like`, `in`.<br>
-      schema:
-        type: string
-        example: in.(APPROVED)
-    advance_id:
-      in: query
-      name: advance_id
-      schema:
-        type: string
       description: >
-        Filters the objects by advance_id. For single value use
-        `advance_id=eq.<value>`.
+        Accepted states are DRAFT, COMPLETE, APPROVER_PENDING, APPROVED,
+        PAYMENT_PENDING, PAYMENT_PROCESSING, PAID.<br>
 
-        For mulitple values, use `advance_id=in.(value1,value2,value3)`. <br>
-
-        Supported operators: `in`, `eq`, `not.in`, `not.eq`
-      example: eq.advZP7QXFbHH4
-    advance_request_number:
-      in: query
-      name: advance_request_number
-      schema:
-        type: string
-      description: >
-        Filters the objects by advance_request_number. For single value use
-        `advance_request_number=eq.<value>`.
-
-        For mulitple values, use
-        `advance_request_number=in.(value1,value2,value3)`. <br>
-
-        Supported operators: `in`, `eq`, `not.in`, `not.eq`
-      example: eq.AR/2019/03/R/2
-    trip_request_id:
-      in: query
-      name: trip_request_id
-      schema:
-        type: string
-      description: >
-        Filters the objects by trip_request_id. For single value use
-        `trip_request_id=eq.<value>`.
-
-        For mulitple values, use `trip_request_id=in.(value1,value2,value3)`.
-        <br>
-
-        Supported operators: `in`, `eq`, `not.in`, `not.eq`
-      example: eq.trObdH5YgKzL
-    is_sent_back:
-      in: query
-      name: is_sent_back
-      description: |
-        This param is used to filer records by
-        Supported operators are `eq`,`not.eq`.<br>
-      schema:
-        type: string
-        example: eq.true
-    is_pulled_back:
-      in: query
-      name: is_pulled_back
-      description: |
-        This param is used to filer records by
-        Supported operators are `eq`,`not.eq`.<br>
-      schema:
-        type: string
-        example: eq.true
-    policy_amount:
-      in: query
-      name: policy_amount
-      description: |
-        Supported operators are `eq`,`gte`,`lte`,`gt`,`lt`,`in`.<br>
-        policy_amount=in.(value1,value2)
-      schema:
-        type: string
-        example: eq.100
-    policy_state:
-      in: query
-      name: policy_state
-      description: |
-        Possible values : SUCCESS, FAILED.<br>
-        Supported operators are `eq`, `like`, `in`.<br>
-      schema:
-        type: string
-        example: in.(SUCCESS)
-    policy_flag:
-      in: query
-      name: policy_flag
-      description: |
-        This param is used to filer records by
-        Supported operators are `eq`,`not.eq`.<br>
-      schema:
-        type: string
-        example: eq.true
-    employee_id:
-      in: query
-      name: employee_id
-      description: |
-        This param is used to filer records based employee id.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.ouvneouegi
-    employee_code:
-      in: query
-      name: employee->employee_code
-      description: |
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.DFS552KK
-    project_id:
-      in: query
-      name: project_id
-      schema:
-        type: string
-      description: >-
-        Filters the objects by project_id. For single value use
-        `project_id=eq.<value>`. For multiple values, use
-        `project_id=in.(value1,value2,value3)`.
-      example: eq.2341
-    exported:
-      in: query
-      name: export_info->exported
-      description: |
-        Supported operators are `eq`,`not.eq`.<br>
-      schema:
-        type: string
-        example: eq.false
-    exported_at:
-      in: query
-      name: export_info->exported_at
-      description: >
-        Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
-        RHS dot pattern.<br>
-
-        Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
-      schema:
-        type: string
-        example: 'gte.2020-06-01T00:00:00.000Z'
-    export_ids:
-      in: query
-      name: export_info->export_ids
-      description: |
-        Supported operators are `eq`,`cs`.<br>
-      schema:
-        type: string
-        example: 'cs.{expD3QWBgoZ2U,expf9H3sh1B}'
-    employee_user_id:
-      in: query
-      name: employee->user_id
-      description: |
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.usIfhs65KvvF
-    settlement_id:
-      in: query
-      name: settlement_id
-      description: |
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.setRd8Dw5hD
-    payment_id:
-      in: query
-      name: payment_id
-      description: |
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.pay3hGs8ne
-    reimbursements_state:
-      in: query
-      name: state
-      description: |
-        Possible values : COMPLETE, PENDING.<br>
         Supported operators are `eq`, `like`, `in`.<br>
       schema:
         type: string
         example: in.(COMPLETE)
-    purpose:
+    verified:
       in: query
-      name: purpose
-      description: |
-        Supported operators are `eq`, `like`.<br>
+      name: verified
       schema:
         type: string
-        example: like.(trip*)
-    unique_id:
-      in: query
-      name: unique_id
-      description: |
-        Sample values :  `P/2020/06/R/205`.<br>
-        Supported operators are `eq`, `like`, `in`.<br>
-      schema:
-        type: string
-        example: eq.P/2020/06/R/205
-    accounting_exported:
-      in: query
-      name: accounting_exported
-      description: |
-        Possible values : true, false.<br>
-        Supported operators are `eq`, `in`.<br>
-      schema:
-        type: string
-        example: accounting_exported=eq.true
-    mode:
-      in: query
-      name: mode
-      description: |
-        Possible values : ACH, OFFLINE.<br>
-        Supported operators are `eq`, `like`, `in`.<br>
-      schema:
-        type: string
-        example: in.(ACH)
-    ach_state:
-      in: query
-      name: ach_state
+        example: eq.true
       description: >
-        Possible values : ACH_INITIATED, ACH_COMPLETE, ACH_FAILED,
-        ACH_RETRY.<br>
+        verified is used to filter expenses by verified flag.
+
+        For example, if verified is true, it will return all the verified
+        expenses. If verififed is false, it will return all the unverified
+        expenses. leaving it blank will return all the expenses.
+    name:
+      in: query
+      name: name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: like.Add*
+    only_enabled:
+      in: query
+      name: only_enabled
+      description: |
+        This param is used to filer records by
+        Supported operators are `eq`,`not.eq`.<br>
+      schema:
+        type: string
+        example: eq.true
+    reports_state:
+      in: query
+      name: state
+      description: >
+        Accepted states are DRAFT, APPROVER_INQUIRY, APPROVER_PENDING, APPROVED,
+        PAYMENT_PENDING, PAYMENT_PROCESSING, PAID.<br>
 
         Supported operators are `eq`, `like`, `in`.<br>
       schema:
         type: string
-        example: in.(ACH_COMPLETE)
-    foreign_currency:
+        example: in.(COMPLETE)
+    settled_at:
       in: query
-      name: original_currency
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-      schema:
-        type: string
-        example: 'in.(USD,INR)'
-    foreign_amount:
-      in: query
-      name: original_amount
-      description: |
-        Supported operators are `eq`,`gte`,`lte`,`gt`,`lt`,`in`.<br>
-      schema:
-        type: string
-        example: eq.100
-    payment_mode:
-      in: query
-      name: payment_mode
-      description: |
-        Supported operators for filtering are : `eq`.
-      schema:
-        type: string
-        example: eq.BANK_TRANSFER
-    collector_id:
-      in: query
-      name: collector_id
-      description: |
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.ouvneouegi
-    returnee_id:
-      in: query
-      name: returnee_id
-      description: |
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.ouvneouegi
-    opening_dt:
-      in: query
-      name: opening_dt
+      name: settled_at
       description: >
         Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
         RHS dot pattern.<br>
 
         Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
+
+        settled_at=gte.2020-06-01T00:00:00.000Z filters all reports settled on
+        or after 1st Jun 2020.<br>
+
+        settled_at=gte.2020-06-01T00:00:00.000Z&settled_at=lt.2020-07-01T00:00:00.000Z
+        filters all reports settled in the month of Jun 2020.<br>
       schema:
         type: string
-        example: 'gte.2020-06-01T00:00:00.000Z'
-    closing_dt:
+        example: >-
+          settled_at=gte.2020-06-01T00:00:00.000Z&settled_at=lt.2020-07-01T00:00:00.000Z
+    reimbursed_at:
       in: query
-      name: closing_dt
+      name: reimbursed_at
       description: >
         Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
         RHS dot pattern.<br>
 
         Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
-      schema:
-        type: string
-        example: 'gte.2020-06-01T00:00:00.000Z'
-    total_opening_balance:
-      in: query
-      name: total_opening_balance
-      description: |
-        Supported operators are `eq`,`gte`,`lte`,`gt`,`lt`,`in`.<br>
-        total_opening_balance=in.(value1,value2)
-      schema:
-        type: string
-        example: eq.100
-    total_closing_balance:
-      in: query
-      name: total_closing_balance
-      description: |
-        Supported operators are `eq`,`gte`,`lte`,`gt`,`lt`,`in`.<br>
-        total_closing_balance=in.(value1,value2)
-      schema:
-        type: string
-        example: eq.100
-    issued_at:
-      in: query
-      name: issued_at
-      description: >
-        Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
-        RHS dot pattern.<br>
 
-        Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
+        reimbursed_at=gte.2020-06-01T00:00:00.000Z filters all reports
+        reimbursed on or after 1st Jun 2020.<br>
+
+        reimbursed_at=gte.2020-06-01T00:00:00.000Z&reimbursed_at=lt.2020-07-01T00:00:00.000Z
+        filters all reports reimbursed in the month of Jun 2020.<br>
       schema:
         type: string
-        example: 'gte.2020-06-01T00:00:00.000Z'
-    issuer_id:
+        example: >-
+          reimbursed_at=gte.2020-06-01T00:00:00.000Z&reimbursed_at=lt.2020-07-01T00:00:00.000Z
+    advance_requests_state:
       in: query
-      name: issuer_id
-      description: |
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.ouvneouegi
-    source_account:
-      in: query
-      name: source_account
-      description: |
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.Personal Account
-    sub_project:
-      in: query
-      name: sub_project
-      description: |
+      name: state
+      description: >
+        Accepted states are DRAFT, APPROVAL_PENDING, APPROVED, REJECTED,
+        PAID.<br>
+
         Supported operators are `eq`, `like`, `in`.<br>
-        sub_project=in.(value1,value2)
       schema:
         type: string
-        example: like.Formula*
+        example: in.(APPROVED)
+    advance_requests_settled_at:
+      in: query
+      name: advance->settled_at
+      description: >
+        Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
+        RHS dot pattern.<br>
+
+        Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
+
+        advance->settled_at=gte.2020-06-01T00:00:00.000Z filters all advance
+        requests settled on or after 1st Jun 2020.<br>
+
+        advance->settled_at=gte.2020-06-01T00:00:00.000Z&advance->settled_at=lt.2020-07-01T00:00:00.000Z
+        filters all advance requests settled in the month of Jun 2020.<br>
+      schema:
+        type: string
+        example: >-
+          advance->settled_at=gte.2020-06-01T00:00:00.000Z&advance->settled_at=lt.2020-07-01T00:00:00.000Z
+    advances_settled_at:
+      in: query
+      name: settled_at
+      description: >
+        Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
+        RHS dot pattern.<br>
+
+        Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
+
+        settled_at=gte.2020-06-01T00:00:00.000Z filters all advances settled on
+        or after 1st Jun 2020.<br>
+
+        settled_at=gte.2020-06-01T00:00:00.000Z&settled_at=lt.2020-07-01T00:00:00.000Z
+        filters all advances settled in the month of Jun 2020.<br>
+      schema:
+        type: string
+        example: >-
+          settled_at=gte.2020-06-01T00:00:00.000Z&settled_at=lt.2020-07-01T00:00:00.000Z
     display_name:
       in: query
       name: display_name
@@ -539,70 +253,6 @@ components:
       schema:
         type: string
         example: like.Fast*
-    code:
-      in: query
-      name: code
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        code=in.(value1,value2)
-      schema:
-        type: string
-        example: like.high*
-    category_ids:
-      in: query
-      name: category_ids
-      description: |
-        List of strings.<br>
-        Supported operators are `eq`,`cs`.<br>
-      schema:
-        type: string
-        example: 'cs.{89234,2341}'
-    primary_approver_id:
-      in: query
-      name: primary_approver_id
-      schema:
-        type: string
-      description: >-
-        Filters the objects by primary_approver_id. For single value use
-        `primary_approver_id=eq.<value>`. For multiple values, use
-        `primary_approver_id=in.(value1,value2,value3)`.
-      example: eq.ouX2Rv617cW0
-    secondary_approver_id:
-      in: query
-      name: secondary_approver_id
-      schema:
-        type: string
-      description: >-
-        Filters the objects by secondary_approver_id. For single value use
-        `secondary_approver_id=eq.<value>`. For multiple values, use
-        `secondary_approver_id=in.(value1,value2,value3)`.
-      example: eq.ouFOpg9CGLZ5
-    cost_centers_name:
-      in: query
-      name: name
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: like.ABCD*
-    cost_centers_id:
-      in: query
-      name: id
-      description: |
-        This param is used to filter cost center record based on cost center id.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.7
-    cost_centers_code:
-      in: query
-      name: code
-      description: |
-        Supported operators are `in`,`eq`,`like`.<br>
-      schema:
-        type: string
-        example: eq.CC01
   schemas:
     '401':
       type: object
@@ -824,7 +474,7 @@ components:
           type: string
           maxLength: 255
           description: >
-            This id prodvided by Fyle to identify a employee from this
+            This id prodvided by Fyle to identify an employee from this
             organisation.
 
             This id is always prefixed with `ou`.
@@ -837,13 +487,15 @@ components:
           maxLength: 255
           description: |
             This id helps to identify employees in other organisations.
-            It is always prefixed with the string `us`.
-            It is unique per email.
+            This id is always prefixed with the string `us`.
+            This id is unique per email.
+          readOnly: true
           example: usIYTLwzlaGu
         email:
           type: string
           format: email
           maxLength: 127
+          readOnly: true
           example: john.doe@example.com
           description: >
             An immutable field that represents the email address of the
@@ -878,9 +530,6 @@ components:
             section 5.6 compliant timestamp.</a>
 
             Shows when this employees entry was created.
-
-            This field shall be ignored in POST calls to create/update
-            employees.
           readOnly: true
           example: '2020-06-01T13:14:54.804Z'
         updated_at:
@@ -891,9 +540,6 @@ components:
             section 5.6 compliant timestamp.</a>
 
             Shows when this employees entry was updated.
-
-            This field shall be ignored in POST calls to create/update
-            employees.
           readOnly: true
           example: '2020-06-11T13:14:55.201598Z'
         email_verified_at:
@@ -1141,6 +787,13 @@ components:
             $ref: '#/components/schemas/perdiem'
         custom_properties:
           $ref: '#/components/schemas/custom_properties'
+        status:
+          type: string
+          enum:
+            - PENDING_DETAILS
+            - ACTIVE
+            - DISABLED
+          example: ACTIVE
         disabled:
           type: boolean
           description: >
@@ -1166,13 +819,6 @@ components:
           $ref: '#/components/schemas/dwolla_cutomers_metadata'
         annual_mileage_of_user_before_joining_fyle:
           $ref: '#/components/schemas/annual_mileage'
-        status:
-          type: string
-          enum:
-            - PENDING_DETAILS
-            - ACTIVE
-            - DISABLED
-          example: ACTIVE
         is_primary:
           type: boolean
           description: >
@@ -1203,10 +849,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/employees'
-        test:
-          type: boolean
-          example: false
-          default: false
       required:
         - data
     post_employees:
@@ -1340,6 +982,21 @@ components:
           description: >-
             Represents the full name of the employee. Must be at least 3
             characters.
+    foreign_currency:
+      type: string
+      description: >
+        The three-letter currency code following ISO standard <a
+        href='https://www.iso.org/iso-4217-currency-codes.html'>ISO 4217</a>.
+
+        Original currency signifies the currency in which the object
+        (expense/advance/refund/etc.) was originally created.
+      example: INR
+    foreign_amount:
+      type: integer
+      description: >
+        Amount value of the object, in original currency i.e the currency in
+        which the object was initially created.
+      example: 40292.23
     project:
       type: object
       properties:
@@ -1472,7 +1129,7 @@ components:
           description: >
             RFC 3339, section 5.6
             "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp on which the report approved was settled. <br>
+            timestamp on which the report was settled. <br>
           example: '2020-07-23T09:32:00.933Z'
         trip_request_id:
           type: string
@@ -1544,7 +1201,7 @@ components:
         id:
           type: string
           maxLength: 255
-          example: tx12345
+          example: txg3053jg33
           description: >-
             An unique string to identify the Expense. Ignore this field when
             used as part of a POST request to create an Expense.
@@ -1642,30 +1299,9 @@ components:
           description: Tax amount as setup by your organisation.
           deprecated: true
         foreign_currency:
-          type: string
-          maxLength: 3
-          example: INR
-          description: >
-            ISO 4217 currency codes that are usually of three upper case
-            letters.
-
-            See "https://www.iban.com/currency-codes" for examples.
-
-            This field is used when expense is of non-default currency of an
-            organisation.
+          $ref: '#/components/schemas/foreign_currency'
         foreign_amount:
-          type: number
-          description: >
-            The transaction foriegn amount for which the expense was/will-be
-            fyled.
-
-            The amount will be in the currency that is mentioned in the `foriegn
-            currncy`<br>
-
-            Note that, if an expense of currency other default currency of an
-            organistation is used then `amount`, `foreign_currency`,
-            `foreign_amount` are mandatory.
-          example: 138962.05
+          $ref: '#/components/schemas/foreign_amount'
         created_by:
           type: string
           maxLength: 255
@@ -2244,7 +1880,7 @@ components:
           description: >
             RFC 3339, section 5.6
             "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp on which the report approved was settled. <br>
+            timestamp on which the report was settled. <br>
           example: '2017-07-21T17:32:28Z'
         num_transactions:
           type: integer
@@ -2328,6 +1964,58 @@ components:
 
         This id is always prefixed with `adv`.
       example: advZP7QXFbHH4
+    advance:
+      type: object
+      readOnly: true
+      properties:
+        advance_number:
+          type: string
+          description: >
+            An non-unique human readable id to identify an advance within an
+            organisation.
+          maxLength: 255
+        issued_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the advance was issued. <br>
+          example: '2020-07-23T09:32:00.933Z'
+        settlement_id:
+          type: string
+          maxLength: 255
+          description: >
+            An unique ID, generated by Fyle, for identifying the Settlement.
+
+            Once a Report is paid, the value of this field cannot be changed and
+            is immutable. <br>
+          example: setzS7mbPKPWg
+        settled_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the advance was settled. <br>
+          example: '2020-07-23T09:32:00.933Z'
+        issuer_id:
+          allOf:
+            - $ref: '#/components/schemas/employee_id'
+          description: |
+            Employee id of person who issued the advance.
+          example: ouebvjwgjgl
+        issuer_email:
+          allOf:
+            - $ref: '#/components/schemas/email'
+          description: |
+            Email of the person who issued the advance.
+          example: issuer@example.com
+        issuer:
+          allOf:
+            - $ref: '#/components/schemas/minimals_employees'
+          description: |
+            Details for the person who issued the advance.
     advance_request_number:
       type: string
       maxLength: 255
@@ -2406,6 +2094,8 @@ components:
           $ref: '#/components/schemas/currency'
         advance_id:
           $ref: '#/components/schemas/advance_id'
+        advance:
+          $ref: '#/components/schemas/advance'
         advance_request_number:
           $ref: '#/components/schemas/advance_request_number'
         trip_request_id:
@@ -2517,15 +2207,21 @@ components:
             - $ref: '#/components/schemas/minimals_employees'
           description: |
             Details for the person who issued the advance.
-          example: null
         amount:
           $ref: '#/components/schemas/amount'
         currency:
           $ref: '#/components/schemas/currency'
+        foreign_currency:
+          $ref: '#/components/schemas/foreign_currency'
+        foreign_amount:
+          $ref: '#/components/schemas/foreign_amount'
         advance_request_id:
           $ref: '#/components/schemas/advance_request_id'
         advance_number:
           type: string
+          description: >
+            An non-unique human readable id to identify an advance within an
+            organisation.
         trip_request_id:
           $ref: '#/components/schemas/trip_request_id'
         created_at:
@@ -2590,7 +2286,7 @@ components:
           description: >
             RFC 3339, section 5.6
             "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp on which the report approved was settled. <br>
+            timestamp on which the advance was settled.<br>
           example: '2020-07-23T09:32:00.933Z'
         advance_request_approvals:
           $ref: '#/components/schemas/approvals'
@@ -2718,21 +2414,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/reimbursements'
-    foreign_currency:
-      type: string
-      description: >
-        The three-letter currency code following ISO standard <a
-        href='https://www.iso.org/iso-4217-currency-codes.html'>ISO 4217</a>.
-
-        Original currency signifies the currency in which the object
-        (expense/advance/refund/etc.) was originally created.
-      example: USD
-    foreign_amount:
-      type: integer
-      description: >
-        Amount value of the object, in original currency i.e the currency in
-        which the object was initially created.
-      example: 100
     payment_id:
       type: string
       maxLength: 255
@@ -3177,10 +2858,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/projects'
-        test:
-          type: boolean
-          example: false
-          default: false
       required:
         - data
     post_projects:
@@ -3279,73 +2956,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/cost_centers'
-        test:
-          type: boolean
-          example: false
-          default: false
       required:
         - data
-    orgs:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/org_id'
-        name:
-          $ref: '#/components/schemas/org_name'
-        domain:
-          type: string
-          maxLength: 255
-          description: >
-            This field specifies the domain with which the organisation is
-            registered.
-          example: example.com
-        currency:
-          type: string
-          maxLength: 255
-          description: |
-            This field specifies the default currency to be used in expenses.
-          example: INR
-        branch_ifsc:
-          type: string
-          maxLength: 255
-          description: >
-            This is the IFSC code of the bank branch with which the organisation
-            is associated.
-          example: HDFC0122333
-        branch_account:
-          type: string
-          maxLength: 255
-          description: >
-            This field specifies the bank branch with which the organisation is
-            associated.
-          example: '2019238034424802'
-        verified:
-          type: boolean
-          description: |
-            This field specifies if the organisation is verified or not.
-          example: true
-        created_at:
-          $ref: '#/components/schemas/created_at'
-        updated_at:
-          $ref: '#/components/schemas/updated_at'
-    get_orgs:
-      type: object
-      properties:
-        count:
-          allOf:
-            - $ref: '#/components/schemas/count'
-          example: 1
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
-        url:
-          type: string
-          example: /v4/admin/orgs
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/orgs'
 tags:
   - name: Employees
     description: |
@@ -3397,23 +3009,13 @@ paths:
       tags:
         - Employees
       summary: |
-        Returns a list of employees.
+        List employees
       operationId: GetEmployees
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/org_id'
-        - in: query
-          name: id
-          schema:
-            type: string
-          description: |
-            Filters the objects by id. For single value use `id=eq.<value>`.
-            For mulitple values, use `id=in.(value1,value2,value3)`. <br>
-            Supported operators: `in`, `eq`, `not.in`, `not.eq`
-          example: eq.ouvjegwriw
         - in: query
           name: email
           description: |
@@ -3421,16 +3023,8 @@ paths:
             Supported operators are `in`,`eq`.<br>
           schema:
             type: string
-            format: email
           example: eq.employee1@example.com
-        - in: query
-          name: order
-          description: |
-            use comma separated column names for sorting the results.
-            For sorting in descending order, use `column_name.desc`
-          schema:
-            type: string
-          example: 'created_at.desc,id'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3448,11 +3042,11 @@ paths:
       tags:
         - Employees
       summary: |
-        upsert employees
+        Create or update employees
       description: >
         creates or update employees in bulk. This API is written in such way to
         support bulk operations only.
-      operationId: PosEmployees
+      operationId: PostEmployees
       requestBody:
         required: true
         content:
@@ -3505,32 +3099,18 @@ paths:
       tags:
         - Expenses
       summary: |
-        Returns a list of expenses.
+        list expenses
       operationId: GetExpenses
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/org_id'
         - $ref: '#/components/parameters/employee_email'
-        - in: query
-          name: id
-          schema:
-            type: string
-          description: |
-            Filters the objects by id. For single value use `id=eq.<value>`.
-            For mulitple values, use `id=in.(value1,value2,value3)`. <br>
-            Supported operators: `in`, `eq`, `not.in`, `not.eq`
-          example: eq.txg3053jg33
-        - in: query
-          name: order
-          description: |
-            use comma separated column names for sorting the results.
-            For sorting in descending order, use `column_name.desc`
-          schema:
-            type: string
-          example: 'created_at.desc,id'
+        - $ref: '#/components/parameters/order'
+        - $ref: '#/components/parameters/approved_at'
+        - $ref: '#/components/parameters/state'
+        - $ref: '#/components/parameters/verified'
       responses:
         '200':
           description: OK
@@ -3551,17 +3131,12 @@ paths:
       summary: Returns a list of expense custom Properties
       operationId: GetExpenseCustomProperties
       parameters:
-        - $ref: '#/components/parameters/org_id'
-        - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/type'
-        - $ref: '#/components/parameters/options'
-        - $ref: '#/components/parameters/mandatory'
-        - $ref: '#/components/parameters/org_category_ids'
-        - $ref: '#/components/parameters/enabled'
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
@@ -3582,10 +3157,14 @@ paths:
       summary: Returns a list of Reports
       operationId: GetReports
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/approved_at'
+        - $ref: '#/components/parameters/reports_state'
+        - $ref: '#/components/parameters/settled_at'
+        - $ref: '#/components/parameters/reimbursed_at'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
@@ -3608,29 +3187,11 @@ paths:
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/id'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/currency'
-        - $ref: '#/components/parameters/amount'
         - $ref: '#/components/parameters/approved_at'
-        - $ref: '#/components/parameters/state'
-        - $ref: '#/components/parameters/advance_id'
-        - $ref: '#/components/parameters/advance_request_number'
-        - $ref: '#/components/parameters/trip_request_id'
-        - $ref: '#/components/parameters/is_sent_back'
-        - $ref: '#/components/parameters/is_pulled_back'
-        - $ref: '#/components/parameters/policy_amount'
-        - $ref: '#/components/parameters/policy_state'
-        - $ref: '#/components/parameters/policy_flag'
-        - $ref: '#/components/parameters/employee_id'
-        - $ref: '#/components/parameters/employee_code'
-        - $ref: '#/components/parameters/employee_email'
-        - $ref: '#/components/parameters/org_id'
-        - $ref: '#/components/parameters/project_id'
-        - $ref: '#/components/parameters/exported'
-        - $ref: '#/components/parameters/exported_at'
-        - $ref: '#/components/parameters/export_ids'
+        - $ref: '#/components/parameters/advance_requests_state'
+        - $ref: '#/components/parameters/advance_requests_settled_at'
       responses:
         '200':
           description: OK
@@ -3657,23 +3218,12 @@ paths:
       summary: Returns a list of Issued Advances objects.
       operationId: GetAdvances
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/id'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/currency'
-        - $ref: '#/components/parameters/amount'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/approved_at'
-        - $ref: '#/components/parameters/state'
-        - $ref: '#/components/parameters/advance_id'
-        - $ref: '#/components/parameters/advance_request_number'
-        - $ref: '#/components/parameters/trip_request_id'
-        - $ref: '#/components/parameters/org_id'
-        - $ref: '#/components/parameters/project_id'
-        - $ref: '#/components/parameters/exported'
-        - $ref: '#/components/parameters/exported_at'
-        - $ref: '#/components/parameters/export_ids'
+        - $ref: '#/components/parameters/advances_settled_at'
       responses:
         '200':
           description: OK
@@ -3700,26 +3250,10 @@ paths:
       summary: Returns a list of reimbursement objects.
       operationId: GetReimbursements
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/employee_id'
-        - $ref: '#/components/parameters/employee_user_id'
-        - $ref: '#/components/parameters/employee_code'
-        - $ref: '#/components/parameters/currency'
-        - $ref: '#/components/parameters/amount'
-        - $ref: '#/components/parameters/settlement_id'
-        - $ref: '#/components/parameters/exported'
-        - $ref: '#/components/parameters/exported_at'
-        - $ref: '#/components/parameters/export_ids'
-        - $ref: '#/components/parameters/payment_id'
-        - $ref: '#/components/parameters/reimbursements_state'
-        - $ref: '#/components/parameters/purpose'
-        - $ref: '#/components/parameters/unique_id'
-        - $ref: '#/components/parameters/accounting_exported'
-        - $ref: '#/components/parameters/mode'
-        - $ref: '#/components/parameters/ach_state'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
@@ -3746,21 +3280,10 @@ paths:
       summary: Returns a list of Refund objects.
       operationId: GetRefunds
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/currency'
-        - $ref: '#/components/parameters/amount'
-        - $ref: '#/components/parameters/foreign_currency'
-        - $ref: '#/components/parameters/foreign_amount'
-        - $ref: '#/components/parameters/exported'
-        - $ref: '#/components/parameters/exported_at'
-        - $ref: '#/components/parameters/export_ids'
-        - $ref: '#/components/parameters/payment_id'
-        - $ref: '#/components/parameters/payment_mode'
-        - $ref: '#/components/parameters/collector_id'
-        - $ref: '#/components/parameters/returnee_id'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
@@ -3787,17 +3310,10 @@ paths:
       summary: Returns a list of settlement objects.
       operationId: GetSettlements
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/employee_id'
-        - $ref: '#/components/parameters/employee_user_id'
-        - $ref: '#/components/parameters/employee_code'
-        - $ref: '#/components/parameters/opening_dt'
-        - $ref: '#/components/parameters/closing_dt'
-        - $ref: '#/components/parameters/total_opening_balance'
-        - $ref: '#/components/parameters/total_closing_balance'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
@@ -3824,18 +3340,10 @@ paths:
       summary: Returns a list of Balance Transfer objects.
       operationId: GetBalanceTransfers
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/currency'
-        - $ref: '#/components/parameters/amount'
-        - $ref: '#/components/parameters/exported'
-        - $ref: '#/components/parameters/exported_at'
-        - $ref: '#/components/parameters/export_ids'
-        - $ref: '#/components/parameters/issued_at'
-        - $ref: '#/components/parameters/issuer_id'
-        - $ref: '#/components/parameters/source_account'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
@@ -3862,27 +3370,12 @@ paths:
       summary: Returns a list of projects
       operationId: GetProjects
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/id'
-        - in: query
-          name: name
-          description: |
-            Supported operators are `eq`, `like`, `in`.<br>
-            name=in.(value1,value2)
-          schema:
-            type: string
-            example: eq.Project1
-        - $ref: '#/components/parameters/sub_project'
         - $ref: '#/components/parameters/display_name'
-        - $ref: '#/components/parameters/enabled'
-        - $ref: '#/components/parameters/code'
-        - $ref: '#/components/parameters/org_id'
-        - $ref: '#/components/parameters/category_ids'
-        - $ref: '#/components/parameters/primary_approver_id'
-        - $ref: '#/components/parameters/secondary_approver_id'
+        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
@@ -3958,15 +3451,11 @@ paths:
       summary: Returns a list of cost Centers
       operationId: GetCostCenters
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/enabled'
-        - $ref: '#/components/parameters/org_id'
-        - $ref: '#/components/parameters/cost_centers_name'
-        - $ref: '#/components/parameters/cost_centers_id'
-        - $ref: '#/components/parameters/cost_centers_code'
+        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
@@ -4035,29 +3524,3 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/admin/orgs:
-    get:
-      tags:
-        - Orgs
-      summary: >-
-        Returns a list with a single element, i.e., organisation of the current
-        user.
-      operationId: GetOrgs
-      parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/get_orgs'
-        '401':
-          description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
