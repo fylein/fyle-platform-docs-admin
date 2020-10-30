@@ -29,7 +29,7 @@ properties:
   employee_id:
     $ref: 'commons/employee_id.yaml'
   employee:
-    $ref: './minimals/employees.yaml'
+    $ref: 'minimals/employees.yaml'
   reimbursement_id:
     type: string
     maxLength: 255
@@ -54,7 +54,7 @@ properties:
   org_name:
     $ref: 'commons/org_name.yaml'
   export_info:
-    $ref: './minimals/export_info.yaml'
+    $ref: 'minimals/export_info.yaml'
   settlement_number:
     type: integer
     description: |

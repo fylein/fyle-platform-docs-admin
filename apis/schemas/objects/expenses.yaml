@@ -3,7 +3,7 @@ properties:
   id:
     type: string
     maxLength: 255
-    example: tx12345
+    example: txg3053jg33
     description: An unique string to identify the Expense. Ignore this field when used as part of a POST request to create an Expense.
     readOnly: true
   employee_email:
@@ -72,20 +72,9 @@ properties:
       Tax amount as setup by your organisation.
     deprecated: true
   foreign_currency:
-    type: string
-    maxLength: 3
-    example: INR
-    description: |
-      ISO 4217 currency codes that are usually of three upper case letters.
-      See "https://www.iban.com/currency-codes" for examples.
-      This field is used when expense is of non-default currency of an organisation.
+    $ref: 'commons/foreign_currency.yaml'
   foreign_amount:
-    type: number
-    description: |
-      The transaction foriegn amount for which the expense was/will-be fyled.
-      The amount will be in the currency that is mentioned in the `foriegn currncy`<br>
-      Note that, if an expense of currency other default currency of an organistation is used then `amount`, `foreign_currency`, `foreign_amount` are mandatory.
-    example: 138962.05
+    $ref: 'commons/foreign_amount.yaml'
   created_by:
     type: string
     maxLength: 255

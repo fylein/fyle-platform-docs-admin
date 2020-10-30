@@ -4,10 +4,14 @@ get:
   summary: Returns a list of Reports
   operationId: GetReports
   parameters:
-    - $ref: '../schemas/requests/commons/offset.yaml'
-    - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
+    - $ref: '../schemas/requests/commons/approved_at.yaml'
+    - $ref: '../schemas/requests/reports/state.yaml'
+    - $ref: '../schemas/requests/reports/settled_at.yaml'
+    - $ref: '../schemas/requests/reports/reimbursed_at.yaml'
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
 
   responses:
     '200':

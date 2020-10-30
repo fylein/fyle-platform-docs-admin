@@ -1,7 +1,7 @@
 in: query
 name: state
 description: |
-  Possible values : DRAFT, APPROVAL_PENDING, APPROVED, REJECTED, PAID.<br>
+  Accepted states are DRAFT, APPROVAL_PENDING, APPROVED, REJECTED, PAID.<br>
   Supported operators are `eq`, `like`, `in`.<br>
 schema:
   type: string

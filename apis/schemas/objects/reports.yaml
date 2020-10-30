@@ -18,7 +18,7 @@ properties:
       Email address of the Employee for whom the expense was/will-be created. Once an Expense is created, the value of this field cannot be changed and is immutable. <br>
     example: john.doe@example.com
   employee:
-    $ref: './minimals/employees.yaml'
+    $ref: 'minimals/employees.yaml'
   created_at:
     $ref: 'commons/created_at.yaml'
   updated_at:
@@ -79,7 +79,7 @@ properties:
     type: string
     format: date-time
     description: |
-      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the report approved was settled. <br>
+      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the report was settled. <br>
     example: '2017-07-21T17:32:28Z'
   num_transactions:
     type: integer

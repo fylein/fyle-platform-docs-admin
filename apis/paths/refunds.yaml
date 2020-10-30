@@ -4,21 +4,10 @@ get:
   summary: Returns a list of Refund objects.
   operationId: GetRefunds
   parameters:
-    - $ref: '../schemas/requests/commons/offset.yaml'
-    - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - $ref: '../schemas/requests/commons/currency.yaml'
-    - $ref: '../schemas/requests/commons/amount.yaml'
-    - $ref: '../schemas/requests/commons/foreign_currency.yaml'
-    - $ref: '../schemas/requests/commons/foreign_amount.yaml'
-    - $ref: '../schemas/requests/commons/exported.yaml'
-    - $ref: '../schemas/requests/commons/exported_at.yaml'
-    - $ref: '../schemas/requests/commons/export_ids.yaml'
-    - $ref: '../schemas/requests/commons/payment_id.yaml'
-    - $ref: '../schemas/requests/refunds/payment_mode.yaml'
-    - $ref: '../schemas/requests/refunds/collector_id.yaml'
-    - $ref: '../schemas/requests/refunds/returnee_id.yaml'
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
 
   responses:
     '200':

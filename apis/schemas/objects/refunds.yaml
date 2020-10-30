@@ -97,4 +97,4 @@ properties:
       Enum value signifying the client method from which this refund was initiated.
     example: 'WEBAPP_BULK_EXCEL'
   export_info:
-    $ref: './minimals/export_info.yaml'
+    $ref: 'minimals/export_info.yaml'

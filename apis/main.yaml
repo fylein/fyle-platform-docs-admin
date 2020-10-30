@@ -86,5 +86,3 @@ paths:
     $ref: 'paths/projects.yaml'
   /v4/admin/cost_centers:
     $ref: 'paths/cost_centers.yaml'
-  /v4/admin/orgs:
-    $ref: 'paths/orgs.yaml'

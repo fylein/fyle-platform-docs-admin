@@ -4,18 +4,10 @@ get:
   summary: Returns a list of Balance Transfer objects.
   operationId: GetBalanceTransfers
   parameters:
-    - $ref: '../schemas/requests/commons/offset.yaml'
-    - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - $ref: '../schemas/requests/commons/currency.yaml'
-    - $ref: '../schemas/requests/commons/amount.yaml'
-    - $ref: '../schemas/requests/commons/exported.yaml'
-    - $ref: '../schemas/requests/commons/exported_at.yaml'
-    - $ref: '../schemas/requests/commons/export_ids.yaml'
-    - $ref: '../schemas/requests/balance_transfers/issued_at.yaml'
-    - $ref: '../schemas/requests/balance_transfers/issuer_id.yaml'
-    - $ref: '../schemas/requests/balance_transfers/source_account.yaml'
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
 
   responses:
     '200':

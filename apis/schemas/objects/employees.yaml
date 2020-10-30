@@ -4,7 +4,7 @@ properties:
     type: string
     maxLength: 255
     description: |
-      This id prodvided by Fyle to identify a employee from this organisation.
+      This id prodvided by Fyle to identify an employee from this organisation.
       This id is always prefixed with `ou`.
       This id is unique per organisation per email.
     readOnly: true
@@ -14,13 +14,15 @@ properties:
     maxLength: 255
     description: |
       This id helps to identify employees in other organisations.
-      It is always prefixed with the string `us`.
-      It is unique per email.
+      This id is always prefixed with the string `us`.
+      This id is unique per email.
+    readOnly: true
     example: 'usIYTLwzlaGu'
   email:
     type: string
     format: email
     maxLength: 127
+    readOnly: true
     example: 'john.doe@example.com'
     description: |
       An immutable field that represents the email address of the employee.
@@ -44,7 +46,6 @@ properties:
     description: |
       <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
       Shows when this employees entry was created.
-      This field shall be ignored in POST calls to create/update employees.
     readOnly: true
     example: '2020-06-01T13:14:54.804Z'
   updated_at:
@@ -53,7 +54,6 @@ properties:
     description: |
       <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
       Shows when this employees entry was updated.
-      This field shall be ignored in POST calls to create/update employees.
     readOnly: true
     example: '2020-06-11T13:14:55.201598Z'
   email_verified_at:
@@ -272,6 +272,13 @@ properties:
       $ref: 'minimals/perdiem.yaml'
   custom_properties:
     $ref: 'custom_properties.yaml'
+  status:
+    type: string
+    enum:
+      - PENDING_DETAILS
+      - ACTIVE
+      - DISABLED
+    example: ACTIVE
   disabled:
     type: boolean
     description: |
@@ -291,13 +298,6 @@ properties:
     $ref: 'minimals/dwolla_cutomers_metadata.yaml'
   annual_mileage_of_user_before_joining_fyle:
     $ref: 'annual_mileage.yaml'
-  status:
-    type: string
-    enum:
-      - PENDING_DETAILS
-      - ACTIVE
-      - DISABLED
-    example: ACTIVE
   is_primary:
     type: boolean
     description: |

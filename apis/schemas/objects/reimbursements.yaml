@@ -11,7 +11,7 @@ properties:
   employee_id:
     $ref: 'commons/employee_id.yaml'
   employee:
-    $ref: './minimals/employees.yaml'
+    $ref: 'minimals/employees.yaml'
   org_id:
     $ref: 'commons/org_id.yaml'
   org_name:
@@ -77,4 +77,4 @@ properties:
       Status of ACH if this reimbursment is processed via ACH.
     example: 'ACH_COMPLETE'
   export_info:
-    $ref: './minimals/export_info.yaml'
+    $ref: 'minimals/export_info.yaml'

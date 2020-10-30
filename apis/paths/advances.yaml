@@ -4,40 +4,29 @@ get:
   summary: Returns a list of Issued Advances objects.
   operationId: GetAdvances
   parameters:
-    - $ref: "../schemas/requests/commons/offset.yaml"
-    - $ref: "../schemas/requests/commons/limit.yaml"
-    - $ref: "../schemas/requests/commons/id.yaml"
-    - $ref: "../schemas/requests/commons/created_at.yaml"
-    - $ref: "../schemas/requests/commons/updated_at.yaml"
-    - $ref: "../schemas/requests/commons/currency.yaml"
-    - $ref: "../schemas/requests/commons/amount.yaml"
-    - $ref: "../schemas/requests/commons/approved_at.yaml"
-    - $ref: "../schemas/requests/advance_requests/state.yaml"
-    - $ref: "../schemas/requests/commons/advance_id.yaml"
-    - $ref: "../schemas/requests/commons/advance_request_number.yaml"
-    - $ref: "../schemas/requests/commons/trip_request_id.yaml"
-    - $ref: "../schemas/requests/commons/org_id.yaml"
-    - $ref: "../schemas/requests/commons/project_id.yaml"
-    - $ref: "../schemas/requests/commons/exported.yaml"
-    - $ref: "../schemas/requests/commons/exported_at.yaml"
-    - $ref: "../schemas/requests/commons/export_ids.yaml"
+    - $ref: '../schemas/requests/commons/created_at.yaml'
+    - $ref: '../schemas/requests/commons/updated_at.yaml'
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
+    - $ref: '../schemas/requests/commons/approved_at.yaml'
+    - $ref: '../schemas/requests/advances/settled_at.yaml'
 
   responses:
-    "200":
+    '200':
       description: OK
       content:
         application/json:
           schema:
-            $ref: "../schemas/responses/get/advances.yaml"
-    "401":
+            $ref: '../schemas/responses/get/advances.yaml'
+    '401':
       description: Unauthorised request
       content:
         application/json:
           schema:
-            $ref: "../schemas/errors/401.yaml"
-    "403":
+            $ref: '../schemas/errors/401.yaml'
+    '403':
       description: Forbidden
       content:
         application/json:
           schema:
-            $ref: "../schemas/errors/403.yaml"
+            $ref: '../schemas/errors/403.yaml'

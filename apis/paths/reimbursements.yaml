@@ -4,26 +4,10 @@ get:
   summary: Returns a list of reimbursement objects.
   operationId: GetReimbursements
   parameters:
-    - $ref: '../schemas/requests/commons/offset.yaml'
-    - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - $ref: '../schemas/requests/commons/employee_id.yaml'
-    - $ref: '../schemas/requests/commons/employee_user_id.yaml'
-    - $ref: '../schemas/requests/commons/employee_code.yaml'
-    - $ref: '../schemas/requests/commons/currency.yaml'
-    - $ref: '../schemas/requests/commons/amount.yaml'
-    - $ref: '../schemas/requests/commons/settlement_id.yaml'
-    - $ref: '../schemas/requests/commons/exported.yaml'
-    - $ref: '../schemas/requests/commons/exported_at.yaml'
-    - $ref: '../schemas/requests/commons/export_ids.yaml'
-    - $ref: '../schemas/requests/commons/payment_id.yaml'
-    - $ref: '../schemas/requests/reimbursements/state.yaml'
-    - $ref: '../schemas/requests/reimbursements/purpose.yaml'
-    - $ref: '../schemas/requests/reimbursements/unique_id.yaml'
-    - $ref: '../schemas/requests/reimbursements/accounting_exported.yaml'
-    - $ref: '../schemas/requests/reimbursements/mode.yaml'
-    - $ref: '../schemas/requests/reimbursements/ach_state.yaml'
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
 
   responses:
     '200':

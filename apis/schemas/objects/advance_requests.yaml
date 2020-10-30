@@ -14,6 +14,8 @@ properties:
     $ref: 'commons/currency.yaml'
   advance_id:
     $ref: 'commons/advance_id.yaml'
+  advance:
+    $ref: 'minimals/advance.yaml'
   advance_request_number:
     $ref: 'commons/advance_request_number.yaml'
   trip_request_id:

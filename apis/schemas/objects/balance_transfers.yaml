@@ -11,7 +11,7 @@ properties:
   employee_id:
     $ref: './commons/employee_id.yaml'
   employee:
-    $ref: './minimals/employees.yaml'
+    $ref: 'minimals/employees.yaml'
   issuer_id:
     type: string
     maxLength: 255
@@ -62,5 +62,5 @@ properties:
     example: Personal Account
 
   export_info:
-    $ref: './minimals/export_info.yaml'
+    $ref: 'minimals/export_info.yaml'
 

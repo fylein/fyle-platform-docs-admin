@@ -25,15 +25,20 @@ properties:
       - $ref: 'minimals/employees.yaml'
     description: |
       Details for the person who issued the advance.
-    example:
   amount:
     $ref: 'commons/amount.yaml'
   currency:
     $ref: 'commons/currency.yaml'
+  foreign_currency:
+    $ref: 'commons/foreign_currency.yaml'
+  foreign_amount:
+    $ref: 'commons/foreign_amount.yaml'
   advance_request_id:
     $ref: 'commons/advance_request_id.yaml'
   advance_number:
     type: string
+    description: |
+      An non-unique human readable id to identify an advance within an organisation.
   trip_request_id:
     $ref: 'commons/trip_request_id.yaml'
   created_at:
@@ -93,7 +98,7 @@ properties:
     type: string
     format: date-time
     description: |
-      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the report approved was settled. <br>
+      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the advance was settled.<br>
     example: '2020-07-23T09:32:00.933Z'
   advance_request_approvals:
     $ref: 'commons/approvals.yaml'

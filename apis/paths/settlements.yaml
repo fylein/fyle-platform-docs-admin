@@ -4,17 +4,10 @@ get:
   summary: Returns a list of settlement objects.
   operationId: GetSettlements
   parameters:
-    - $ref: '../schemas/requests/commons/offset.yaml'
-    - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - $ref: '../schemas/requests/commons/employee_id.yaml'
-    - $ref: '../schemas/requests/commons/employee_user_id.yaml'
-    - $ref: '../schemas/requests/commons/employee_code.yaml'
-    - $ref: '../schemas/requests/settlements/opening_dt.yaml'
-    - $ref: '../schemas/requests/settlements/closing_dt.yaml'
-    - $ref: '../schemas/requests/settlements/total_opening_balance.yaml'
-    - $ref: '../schemas/requests/settlements/total_closing_balance.yaml'
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
 
   responses:
     '200':

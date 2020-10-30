@@ -2,23 +2,13 @@ get:
   tags:
     - Employees
   summary: |
-    Returns a list of employees.
+    List employees
   operationId: GetEmployees
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - $ref: '../schemas/requests/commons/org_id.yaml'
-    - in: query
-      name: id
-      schema:
-        type: string
-      description: |
-        Filters the objects by id. For single value use `id=eq.<value>`.
-        For mulitple values, use `id=in.(value1,value2,value3)`. <br>
-        Supported operators: `in`, `eq`, `not.in`, `not.eq`
-      example: eq.ouvjegwriw
     - in: query
       name: email
       description: |
@@ -26,16 +16,8 @@ get:
         Supported operators are `in`,`eq`.<br>
       schema:
         type: string
-        format: email
       example: 'eq.employee1@example.com'
-    - in: query
-      name: order
-      description: |
-        use comma separated column names for sorting the results.
-        For sorting in descending order, use `column_name.desc`
-      schema:
-        type: string
-      example: 'created_at.desc,id'
+    - $ref: '../schemas/requests/commons/order.yaml'
 
   responses:
     '200':
@@ -55,10 +37,10 @@ post:
   tags:
     - Employees
   summary: |
-    upsert employees
+    Create or update employees
   description: |
     creates or update employees in bulk. This API is written in such way to support bulk operations only.
-  operationId: PosEmployees
+  operationId: PostEmployees
   requestBody:
     required: true
     content:
