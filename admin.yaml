@@ -446,25 +446,25 @@ components:
     annual_mileage:
       type: object
       properties:
-        twoWheeler:
+        two_wheeler:
           type: number
           example: 0
-        fourWheeler:
+        four_wheeler:
           type: number
           example: 0
-        fourWheeler1:
+        four_wheeler1:
           type: number
           example: 0
-        fourWheeler3:
+        four_wheeler3:
           type: number
           example: 0
-        fourWheeler4:
+        four_wheeler4:
           type: number
           example: 0
         bicycle:
           type: number
           example: 0
-        electricCar:
+        electric_car:
           type: number
           example: 0
     employees:
