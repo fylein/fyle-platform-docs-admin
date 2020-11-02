@@ -6,7 +6,7 @@ info:
     name: Integrations
     email: support@fyle.in
 servers:
-  - url: 'https://accounts.fylehq.com'
+  - url: 'https://platform.fylehq.com/v1/'
     description: Live Server
 
 components:
@@ -62,27 +62,27 @@ tags:
       This API gives you access to your current org data.
 
 paths:
-  /v4/admin/employees:
+  /admin/employees:
     $ref: 'paths/employees.yaml'
-  /v4/admin/expenses:
+  /admin/expenses:
     $ref: 'paths/expenses.yaml'
-  /v4/admin/expense_custom_properties:
+  /admin/expense_custom_properties:
     $ref: 'paths/expense_custom_properties.yaml'
-  /v4/admin/reports:
+  /admin/reports:
     $ref: 'paths/reports.yaml'
-  /v4/admin/advance_requests:
+  /admin/advance_requests:
     $ref: 'paths/advance_requests.yaml'
-  /v4/admin/advances:
+  /admin/advances:
     $ref: 'paths/advances.yaml'
-  /v4/admin/reimbursements:
+  /admin/reimbursements:
     $ref: 'paths/reimbursements.yaml'
-  /v4/admin/refunds:
+  /admin/refunds:
     $ref: 'paths/refunds.yaml'
-  /v4/admin/settlements:
+  /admin/settlements:
     $ref: 'paths/settlements.yaml'
-  /v4/admin/balance_transfers:
+  /admin/balance_transfers:
     $ref: 'paths/balance_transfers.yaml'
-  /v4/admin/projects:
+  /admin/projects:
     $ref: 'paths/projects.yaml'
-  /v4/admin/cost_centers:
+  /admin/cost_centers:
     $ref: 'paths/cost_centers.yaml'

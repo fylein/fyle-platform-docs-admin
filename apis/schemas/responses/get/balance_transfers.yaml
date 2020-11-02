@@ -8,7 +8,7 @@ properties:
     $ref: '../commons/limit.yaml'
   url:
     type: string
-    example: '/v4/admin/balance_transfers'
+    example: '/admin/balance_transfers'
   data:
     type: array
     items:

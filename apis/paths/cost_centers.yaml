@@ -49,7 +49,7 @@ post:
             properties:
               url:
                 type: string
-                example: '/v4/admin/cost_centers'
+                example: '/admin/cost_centers'
               data:
                 type: array
                 items:

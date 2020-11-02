@@ -50,7 +50,7 @@ post:
             properties:
               url:
                 type: string
-                example: '/v4/admin/projects'
+                example: '/admin/projects'
               data:
                 type: array
                 items:

@@ -56,7 +56,7 @@ post:
             properties:
               url:
                 type: string
-                example: '/v4/admin/employees'
+                example: '/admin/employees'
               data:
                 type: array
                 items:
