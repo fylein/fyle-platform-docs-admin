@@ -13,8 +13,8 @@ get:
     - in: query
       name: order
       description: |
-        use comma separated column names for sorting the results.
-        For sorting in descending order, use `updated_at.desc`.
+        use comma separated column names for sorting the results. <br>
+        For sorting in descending order, use `updated_at.desc`.<br>
         Supported columns are `updated_at`, `id`.
       schema:
         type: string
