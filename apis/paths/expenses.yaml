@@ -4,15 +4,15 @@ get:
   summary: List expenses
   operationId: GetExpenses
   parameters:
-    - $ref: '../schemas/requests/commons/offset.yaml'
-    - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
     - $ref: '../schemas/requests/commons/employee_email.yaml'
-    - $ref: '../schemas/requests/commons/order.yaml'
     - $ref: '../schemas/requests/commons/approved_at.yaml'
     - $ref: '../schemas/requests/expenses/state.yaml'
     - $ref: '../schemas/requests/commons/verified.yaml'
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
+    - $ref: '../schemas/requests/commons/order.yaml'
 
   responses:
     '200':

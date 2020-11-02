@@ -8,6 +8,7 @@ get:
     - $ref: '../schemas/requests/commons/updated_at.yaml'
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'
+    - $ref: '../schemas/requests/commons/order.yaml'
 
   responses:
     '200':

@@ -10,6 +10,8 @@ get:
     - $ref: '../schemas/requests/commons/only_enabled.yaml'
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'
+    - $ref: '../schemas/requests/commons/order.yaml'
+
   responses:
     '200':
       description: OK
