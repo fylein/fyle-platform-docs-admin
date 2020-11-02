@@ -2,7 +2,7 @@ get:
   tags:
     - Balance Transfers
   summary: List Balance Transfer
-  operationId: GetBalanceTransfers
+  operationId: get-balance-transfers
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'

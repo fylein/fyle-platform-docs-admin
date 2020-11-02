@@ -2,7 +2,7 @@ get:
   tags:
     - Advances
   summary: List advances
-  operationId: GetAdvances
+  operationId: get-advances
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'

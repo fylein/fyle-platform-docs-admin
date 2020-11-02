@@ -2,7 +2,7 @@ get:
   tags:
     - Settlements
   summary: List settlement
-  operationId: GetSettlements
+  operationId: get-settlements
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'

@@ -2,7 +2,7 @@ get:
   tags:
     - Reports
   summary: List reports
-  operationId: GetReports
+  operationId: get-reports
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'

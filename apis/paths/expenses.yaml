@@ -2,7 +2,7 @@ get:
   tags:
     - Expenses
   summary: List expenses
-  operationId: GetExpenses
+  operationId: get-expenses
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'

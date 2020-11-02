@@ -2,7 +2,7 @@ get:
   tags:
     - Employees
   summary: List employees
-  operationId: GetEmployees
+  operationId: get-employees
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
@@ -46,7 +46,7 @@ post:
   summary: Create or update employees
   description: |
     creates or update employees in bulk. This API is written in such way to support bulk operations only.
-  operationId: PostEmployees
+  operationId: post-employees
   requestBody:
     required: true
     content:
