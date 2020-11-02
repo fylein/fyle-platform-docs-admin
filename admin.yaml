@@ -19,24 +19,6 @@ components:
           scopes:
             admin.*: Grant all ADMIN actions
   parameters:
-    offset:
-      in: query
-      name: offest
-      description: |
-        offset is used to skip that many number of objects before counting. <br>
-      schema:
-        type: integer
-        example: 10
-    limit:
-      in: query
-      name: limit
-      description: >
-        A limit on the number of objects to be returned. Allowed values are from
-        1 to 200.
-      schema:
-        type: integer
-        example: 100
-        default: 200
     created_at:
       in: query
       name: created_at
@@ -73,6 +55,25 @@ components:
         type: string
         example: >-
           updated_at=gte.2020-06-01T00:00:00.000Z&updated_at=lt.2020-07-01T00:00:00.000Z
+    offset:
+      in: query
+      name: offest
+      description: |
+        offset is used to skip that many number of objects before counting. <br>
+      schema:
+        type: integer
+        example: 10
+    limit:
+      in: query
+      name: limit
+      description: >
+        A limit on the number of objects to be returned. Allowed values are from
+        1 to 200.
+      schema:
+        type: integer
+        example: 20
+        default: 50
+        maximum: 200
     order:
       in: query
       name: order
@@ -81,7 +82,7 @@ components:
         For sorting in descending order, use `column_name.desc`
       schema:
         type: string
-        example: 'created_at.desc,id'
+        example: 'updated_at.desc,id'
     employee_email:
       in: query
       name: employee_email
@@ -197,17 +198,6 @@ components:
         type: string
         example: >-
           reimbursed_at=gte.2020-06-01T00:00:00.000Z&reimbursed_at=lt.2020-07-01T00:00:00.000Z
-    advance_requests_state:
-      in: query
-      name: state
-      description: >
-        Accepted states are DRAFT, APPROVAL_PENDING, APPROVED, REJECTED,
-        PAID.<br>
-
-        Supported operators are `eq`, `like`, `in`.<br>
-      schema:
-        type: string
-        example: in.(APPROVED)
     advance_requests_settled_at:
       in: query
       name: advance->settled_at
@@ -226,6 +216,17 @@ components:
         type: string
         example: >-
           advance->settled_at=gte.2020-06-01T00:00:00.000Z&advance->settled_at=lt.2020-07-01T00:00:00.000Z
+    advance_requests_state:
+      in: query
+      name: state
+      description: >
+        Accepted states are DRAFT, APPROVAL_PENDING, APPROVED, REJECTED,
+        PAID.<br>
+
+        Supported operators are `eq`, `like`, `in`.<br>
+      schema:
+        type: string
+        example: in.(APPROVED)
     advances_settled_at:
       in: query
       name: settled_at
@@ -3011,10 +3012,10 @@ paths:
       summary: List employees
       operationId: GetEmployees
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
         - in: query
           name: email
           description: |
@@ -3099,15 +3100,15 @@ paths:
       summary: List expenses
       operationId: GetExpenses
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/employee_email'
-        - $ref: '#/components/parameters/order'
         - $ref: '#/components/parameters/approved_at'
         - $ref: '#/components/parameters/state'
         - $ref: '#/components/parameters/verified'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3134,6 +3135,7 @@ paths:
         - $ref: '#/components/parameters/only_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3162,6 +3164,7 @@ paths:
         - $ref: '#/components/parameters/reimbursed_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3182,13 +3185,14 @@ paths:
       summary: List advance requests
       operationId: GetAdvanceRequests
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/approved_at'
-        - $ref: '#/components/parameters/advance_requests_state'
         - $ref: '#/components/parameters/advance_requests_settled_at'
+        - $ref: '#/components/parameters/advance_requests_state'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3217,10 +3221,11 @@ paths:
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/approved_at'
         - $ref: '#/components/parameters/advances_settled_at'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3251,6 +3256,7 @@ paths:
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3281,6 +3287,7 @@ paths:
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3311,6 +3318,7 @@ paths:
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3341,6 +3349,7 @@ paths:
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3373,6 +3382,7 @@ paths:
         - $ref: '#/components/parameters/only_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
@@ -3453,6 +3463,7 @@ paths:
         - $ref: '#/components/parameters/only_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: OK
