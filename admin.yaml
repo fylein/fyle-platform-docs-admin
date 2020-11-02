@@ -6,7 +6,7 @@ info:
     name: Integrations
     email: support@fyle.in
 servers:
-  - url: 'https://platform.fylehq.com/v1/'
+  - url: 'https://platform.fylehq.com/v1'
     description: Live Server
 components:
   securitySchemes:
@@ -74,15 +74,6 @@ components:
         example: 20
         default: 50
         maximum: 200
-    order:
-      in: query
-      name: order
-      description: |
-        use comma separated column names for sorting the results.
-        For sorting in descending order, use `column_name.desc`
-      schema:
-        type: string
-        example: 'updated_at.desc,id'
     employee_email:
       in: query
       name: employee_email
@@ -147,7 +138,7 @@ components:
       name: only_enabled
       description: |
         This param is used to filer records by
-        Supported operators are `eq`,`not.eq`.<br>
+        Supported operators are `eq`.<br>
       schema:
         type: string
         example: eq.true
@@ -1191,11 +1182,6 @@ components:
       description: |
         The unique id of the Organization to which the object is associated.
       example: orwruogwnngg
-    org_name:
-      type: string
-      description: |
-        The Name of the Organization to which the object is associated.
-      example: Ministry of Magic
     expenses:
       type: object
       properties:
@@ -1629,8 +1615,6 @@ components:
               state: APPROVAL_PENDING
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
     get_expenses:
       type: object
       properties:
@@ -1718,8 +1702,6 @@ components:
           $ref: '#/components/schemas/mandatory'
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         created_at:
           $ref: '#/components/schemas/created_at'
         updated_at:
@@ -1915,8 +1897,6 @@ components:
             $ref: '#/components/schemas/location'
         report_approvals:
           type: object
-        org_name:
-          $ref: '#/components/schemas/org_name'
         org_id:
           $ref: '#/components/schemas/org_id'
         export_info:
@@ -2149,8 +2129,6 @@ components:
           $ref: '#/components/schemas/is_pulled_back'
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         source:
           type: string
           enum:
@@ -2244,8 +2222,6 @@ components:
           $ref: '#/components/schemas/custom_properties'
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         source:
           type: string
           enum:
@@ -2330,8 +2306,6 @@ components:
           $ref: '#/components/schemas/minimals_employees'
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         currency:
           $ref: '#/components/schemas/currency'
         amount:
@@ -2466,8 +2440,6 @@ components:
             Details of employee who is the returnee of this refund.
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         payment_mode:
           type: string
           enum:
@@ -2608,8 +2580,6 @@ components:
             settlement.
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         export_info:
           $ref: '#/components/schemas/export_info'
         settlement_number:
@@ -2679,8 +2649,6 @@ components:
             Details of employee who issued this balance transfer.
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         currency:
           $ref: '#/components/schemas/currency'
         amount:
@@ -2747,8 +2715,6 @@ components:
           example: '2391'
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         created_at:
           $ref: '#/components/schemas/created_at'
         updated_at:
@@ -2928,8 +2894,6 @@ components:
           example: true
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         created_at:
           $ref: '#/components/schemas/created_at'
         updated_at:
@@ -3024,7 +2988,15 @@ paths:
           schema:
             type: string
           example: eq.employee1@example.com
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3108,7 +3080,15 @@ paths:
         - $ref: '#/components/parameters/verified'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3135,7 +3115,15 @@ paths:
         - $ref: '#/components/parameters/only_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3164,7 +3152,15 @@ paths:
         - $ref: '#/components/parameters/reimbursed_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3192,7 +3188,15 @@ paths:
         - $ref: '#/components/parameters/advance_requests_state'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3225,7 +3229,15 @@ paths:
         - $ref: '#/components/parameters/advances_settled_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3256,7 +3268,15 @@ paths:
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3287,7 +3307,15 @@ paths:
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3318,7 +3346,15 @@ paths:
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3349,7 +3385,15 @@ paths:
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3382,7 +3426,15 @@ paths:
         - $ref: '#/components/parameters/only_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
@@ -3463,7 +3515,15 @@ paths:
         - $ref: '#/components/parameters/only_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/order'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `updated_at.desc`.
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
       responses:
         '200':
           description: OK
