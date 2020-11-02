@@ -14,8 +14,6 @@ properties:
     $ref: 'minimals/employees.yaml'
   org_id:
     $ref: 'commons/org_id.yaml'
-  org_name:
-    $ref: 'commons/org_name.yaml'
   currency:
     $ref: 'commons/currency.yaml'
   amount:

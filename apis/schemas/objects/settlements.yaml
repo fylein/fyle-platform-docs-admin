@@ -51,8 +51,6 @@ properties:
       Details of employee who created the reimbursement linked to this settlement.
   org_id:
     $ref: 'commons/org_id.yaml'
-  org_name:
-    $ref: 'commons/org_name.yaml'
   export_info:
     $ref: 'minimals/export_info.yaml'
   settlement_number:

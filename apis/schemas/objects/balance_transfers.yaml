@@ -28,8 +28,6 @@ properties:
       Details of employee who issued this balance transfer.
   org_id:
     $ref: './commons/org_id.yaml'
-  org_name:
-    $ref: './commons/org_name.yaml'
   currency:
     $ref: './commons/currency.yaml'
   amount:

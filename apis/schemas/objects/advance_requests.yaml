@@ -68,8 +68,6 @@ properties:
     $ref: 'commons/is_pulled_back.yaml'
   org_id:
     $ref: 'commons/org_id.yaml'
-  org_name:
-    $ref: 'commons/org_name.yaml'
   source:
     type: string
     enum:

@@ -16,7 +16,15 @@ get:
       schema:
         type: string
       example: 'eq.employee1@example.com'
-    - $ref: '../schemas/requests/commons/order.yaml'
+    - in: query
+      name: order
+      description: |
+        use comma separated column names for sorting the results.
+        For sorting in descending order, use `updated_at.desc`.
+        Supported columns are `updated_at`, `id`.
+      schema:
+        type: string
+        example: 'updated_at.desc,id'
 
   responses:
     '200':
