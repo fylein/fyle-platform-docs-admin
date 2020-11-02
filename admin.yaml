@@ -2974,7 +2974,7 @@ paths:
       tags:
         - Employees
       summary: List employees
-      operationId: GetEmployees
+      operationId: get-employees
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3017,7 +3017,7 @@ paths:
       description: >
         creates or update employees in bulk. This API is written in such way to
         support bulk operations only.
-      operationId: PostEmployees
+      operationId: post-employees
       requestBody:
         required: true
         content:
@@ -3070,7 +3070,7 @@ paths:
       tags:
         - Expenses
       summary: List expenses
-      operationId: GetExpenses
+      operationId: get-expenses
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3107,7 +3107,7 @@ paths:
       tags:
         - Expense Custom Properties
       summary: List expense custom properties
-      operationId: GetExpenseCustomProperties
+      operationId: get-expense-custom-properties
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3142,7 +3142,7 @@ paths:
       tags:
         - Reports
       summary: List reports
-      operationId: GetReports
+      operationId: get-reports
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3179,7 +3179,7 @@ paths:
       tags:
         - Advance Requests
       summary: List advance requests
-      operationId: GetAdvanceRequests
+      operationId: get-advance-requests
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3221,7 +3221,7 @@ paths:
       tags:
         - Advances
       summary: List advances
-      operationId: GetAdvances
+      operationId: get-advances
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3262,7 +3262,7 @@ paths:
       tags:
         - Reimbursements
       summary: List reimbursement
-      operationId: GetReimbursements
+      operationId: get-reimbursements
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3301,7 +3301,7 @@ paths:
       tags:
         - Refunds
       summary: List Refund
-      operationId: GetRefunds
+      operationId: get-refunds
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3340,7 +3340,7 @@ paths:
       tags:
         - Settlements
       summary: List settlement
-      operationId: GetSettlements
+      operationId: get-settlements
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3379,7 +3379,7 @@ paths:
       tags:
         - Balance Transfers
       summary: List Balance Transfer
-      operationId: GetBalanceTransfers
+      operationId: get-balance-transfers
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3418,7 +3418,7 @@ paths:
       tags:
         - Projects
       summary: List projects
-      operationId: GetProjects
+      operationId: get-projects
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3455,7 +3455,7 @@ paths:
       description: >
         creates or updates projects in bulk. This API is written in such a way
         to support bulk operations only.
-      operationId: PostProjects
+      operationId: post-projects
       requestBody:
         required: true
         content:
@@ -3508,7 +3508,7 @@ paths:
       tags:
         - Cost Centers
       summary: List cost centers
-      operationId: GetCostCenters
+      operationId: get-cost-centers
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -3544,7 +3544,7 @@ paths:
       description: >
         creates or updates cost centers in bulk. This API is written in such a
         way to support bulk operations only.
-      operationId: PostCostCenters
+      operationId: post-cost-centers
       requestBody:
         required: true
         content:
