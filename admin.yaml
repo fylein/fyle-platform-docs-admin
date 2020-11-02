@@ -6,7 +6,7 @@ info:
     name: Integrations
     email: support@fyle.in
 servers:
-  - url: 'https://accounts.fylehq.com'
+  - url: 'https://platform.fylehq.com/v1/'
     description: Live Server
 components:
   securitySchemes:
@@ -838,7 +838,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/employees
+          example: /admin/employees
         data:
           type: array
           items:
@@ -1642,7 +1642,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/expenses
+          example: /admin/expenses
         data:
           type: array
           items:
@@ -1735,7 +1735,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/expense_custom_properties
+          example: /admin/expense_custom_properties
         data:
           type: array
           items:
@@ -1932,7 +1932,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/expenses
+          example: /admin/expenses
         data:
           type: array
           items:
@@ -2175,7 +2175,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/advance_requests
+          example: /admin/advance_requests
         data:
           type: array
           items:
@@ -2302,7 +2302,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/advances
+          example: /admin/advances
         data:
           type: array
           items:
@@ -2410,7 +2410,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/reimbursements
+          example: /admin/reimbursements
         data:
           type: array
           items:
@@ -2541,7 +2541,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/refunds
+          example: /admin/refunds
         data:
           type: array
           items:
@@ -2641,7 +2641,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/settlements
+          example: /admin/settlements
         data:
           type: array
           items:
@@ -2725,7 +2725,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/balance_transfers
+          example: /admin/balance_transfers
         data:
           type: array
           items:
@@ -2847,7 +2847,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/projects
+          example: /admin/projects
         data:
           type: array
           items:
@@ -2945,7 +2945,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/admin/cost_centers
+          example: /admin/cost_centers
         data:
           type: array
           items:
@@ -3005,7 +3005,7 @@ tags:
     description: |
       This API gives you access to your current org data.
 paths:
-  /v4/admin/employees:
+  /admin/employees:
     get:
       tags:
         - Employees
@@ -3062,7 +3062,7 @@ paths:
                 properties:
                   url:
                     type: string
-                    example: /v4/admin/employees
+                    example: /admin/employees
                   data:
                     type: array
                     items:
@@ -3093,7 +3093,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/admin/expenses:
+  /admin/expenses:
     get:
       tags:
         - Expenses
@@ -3122,7 +3122,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/admin/expense_custom_properties:
+  /admin/expense_custom_properties:
     get:
       tags:
         - Expense Custom Properties
@@ -3149,7 +3149,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/admin/reports:
+  /admin/reports:
     get:
       tags:
         - Reports
@@ -3178,7 +3178,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/admin/advance_requests:
+  /admin/advance_requests:
     get:
       tags:
         - Advance Requests
@@ -3212,7 +3212,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/admin/advances:
+  /admin/advances:
     get:
       tags:
         - Advances
@@ -3245,7 +3245,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/admin/reimbursements:
+  /admin/reimbursements:
     get:
       tags:
         - Reimbursements
@@ -3276,7 +3276,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/admin/refunds:
+  /admin/refunds:
     get:
       tags:
         - Refunds
@@ -3307,7 +3307,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/admin/settlements:
+  /admin/settlements:
     get:
       tags:
         - Settlements
@@ -3338,7 +3338,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/admin/balance_transfers:
+  /admin/balance_transfers:
     get:
       tags:
         - Balance Transfers
@@ -3369,7 +3369,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/admin/projects:
+  /admin/projects:
     get:
       tags:
         - Projects
@@ -3420,7 +3420,7 @@ paths:
                 properties:
                   url:
                     type: string
-                    example: /v4/admin/projects
+                    example: /admin/projects
                   data:
                     type: array
                     items:
@@ -3451,7 +3451,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/admin/cost_centers:
+  /admin/cost_centers:
     get:
       tags:
         - Cost Centers
@@ -3501,7 +3501,7 @@ paths:
                 properties:
                   url:
                     type: string
-                    example: /v4/admin/cost_centers
+                    example: /admin/cost_centers
                   data:
                     type: array
                     items:
