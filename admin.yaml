@@ -834,15 +834,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/employees'
-    requests_employees:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/employees'
-      required:
-        - data
     post_employees:
       type: object
       properties:
@@ -2818,15 +2809,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/projects'
-    requests_projects:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/projects'
-      required:
-        - data
     post_projects:
       type: object
       properties:
@@ -2914,15 +2896,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/cost_centers'
-    requests_cost_centers:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/cost_centers'
-      required:
-        - data
 tags:
   - name: Employees
     description: |
@@ -3023,7 +2996,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/requests_employees'
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/employees'
+              required:
+                - data
       responses:
         '200':
           description: OK
@@ -3036,9 +3014,7 @@ paths:
                     type: string
                     example: /admin/employees
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/post_employees'
+                    $ref: '#/components/schemas/post_employees'
         '400':
           description: Bad request
           content:
@@ -3461,7 +3437,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/requests_projects'
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/projects'
+              required:
+                - data
       responses:
         '200':
           description: OK
@@ -3474,9 +3455,7 @@ paths:
                     type: string
                     example: /admin/projects
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/post_projects'
+                    $ref: '#/components/schemas/post_projects'
         '400':
           description: Bad request
           content:
@@ -3550,7 +3529,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/requests_cost_centers'
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/cost_centers'
+              required:
+                - data
       responses:
         '200':
           description: OK
@@ -3563,9 +3547,7 @@ paths:
                     type: string
                     example: /admin/cost_centers
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/cost_center'
+                    $ref: '#/components/schemas/cost_center'
         '400':
           description: Bad request
           content:
