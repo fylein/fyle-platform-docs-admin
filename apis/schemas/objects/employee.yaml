@@ -68,7 +68,7 @@ properties:
     description: |
       This flag indicates whether an employee has completed the onboarding flow or not.
     example: true
-  joining_date:
+  joined_at:
     type: string
     format: date
     example: '2018-10-31'
