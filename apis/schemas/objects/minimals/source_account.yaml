@@ -1,5 +1,5 @@
 type: object
-propeties:
+properties:
   id:
     type: string
     example: acct0vTfdNQrT
