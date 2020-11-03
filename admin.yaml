@@ -1895,7 +1895,13 @@ components:
           items:
             $ref: '#/components/schemas/location'
         report_approvals:
-          type: object
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/approvals'
+            rank:
+              type: integer
+              example: 1
         org_id:
           $ref: '#/components/schemas/org_id'
         export_info:
