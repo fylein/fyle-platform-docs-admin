@@ -18,7 +18,7 @@ properties:
       Email address of the Employee for whom the expense was/will-be created. Once an Expense is created, the value of this field cannot be changed and is immutable. <br>
     example: john.doe@example.com
   employee:
-    $ref: 'minimals/employees.yaml'
+    $ref: 'minimals/employee.yaml'
   created_at:
     $ref: 'commons/created_at.yaml'
   updated_at:

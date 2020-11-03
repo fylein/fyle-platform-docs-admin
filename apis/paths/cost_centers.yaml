@@ -48,7 +48,7 @@ post:
           type: object
           properties:
             data:
-              $ref: '../schemas/objects/cost_centers.yaml'
+              $ref: '../schemas/objects/cost_center.yaml'
           required: [ data ]
 
   responses:

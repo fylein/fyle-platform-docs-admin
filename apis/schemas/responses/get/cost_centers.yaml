@@ -12,4 +12,4 @@ properties:
   data:
     type: array
     items:
-      $ref: '../../objects/cost_centers.yaml'
+      $ref: '../../objects/cost_center.yaml'

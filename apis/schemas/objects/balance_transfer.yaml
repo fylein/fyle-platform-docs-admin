@@ -11,7 +11,7 @@ properties:
   employee_id:
     $ref: './commons/employee_id.yaml'
   employee:
-    $ref: 'minimals/employees.yaml'
+    $ref: 'minimals/employee.yaml'
   issuer_id:
     type: string
     maxLength: 255
@@ -23,7 +23,7 @@ properties:
   # note : use this notation to override description for issuer/creator/returnee/etc. i.e secondary type of employee objects
   issuer:
     allOf:
-      - $ref: 'minimals/employees.yaml'
+      - $ref: 'minimals/employee.yaml'
     description: |
       Details of employee who issued this balance transfer.
   org_id:

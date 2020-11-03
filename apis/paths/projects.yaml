@@ -49,7 +49,7 @@ post:
           type: object
           properties:
             data:
-              $ref: '../schemas/objects/projects.yaml'
+              $ref: '../schemas/objects/project.yaml'
           required: [ data ]
 
   responses:

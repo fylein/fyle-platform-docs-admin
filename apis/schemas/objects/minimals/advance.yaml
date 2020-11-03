@@ -39,6 +39,6 @@ properties:
     example: 'issuer@example.com'
   issuer:
     allOf:
-      - $ref: '../minimals/employees.yaml'
+      - $ref: '../minimals/employee.yaml'
     description: |
       Details for the person who issued the advance.

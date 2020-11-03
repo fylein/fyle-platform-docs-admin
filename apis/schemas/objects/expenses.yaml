@@ -16,7 +16,7 @@ properties:
   employee_id:
     $ref: 'commons/employee_id.yaml'
   employee:
-    $ref: 'minimals/employees.yaml'
+    $ref: 'minimals/employee.yaml'
   spent_at:
     type: string
     format: date-time
@@ -291,7 +291,9 @@ properties:
     items:
       $ref: 'minimals/file.yaml'
   custom_properties:
-    $ref: 'custom_properties.yaml'
+    type: array
+    items:
+      - $ref: 'custom_property.yaml'
   user_can_delete:
     type: boolean
     description: |
@@ -355,12 +357,13 @@ properties:
   corporate_credit_card_transaction:
     type: object
   transaction_approvals:
-    allOf:
+    type: array
+    items:
       - $ref: 'commons/approvals.yaml'
     example:
-      ougelgneget:
+      - approver_id: ougelgneget
         state: APPROVED
-      ougo3nlwfgg:
+      - approver_id: ougo3nlwfgg
         state: APPROVAL_PENDING
   org_id:
     $ref: 'commons/org_id.yaml'

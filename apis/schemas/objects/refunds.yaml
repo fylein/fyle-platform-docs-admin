@@ -19,7 +19,7 @@ properties:
   # note : use this notation to override description for issuer/creator/returnee/etc. i.e secondary type of employee objects
   collector:
     allOf:
-      - $ref: 'minimals/employees.yaml'
+      - $ref: 'minimals/employee.yaml'
     description: |
       Details of employee who is the collector of this refund.
   returnee_id:
@@ -32,7 +32,7 @@ properties:
     example: 'oul8zTHMnTjp'
   returnee:
     allOf:
-      - $ref: 'minimals/employees.yaml'
+      - $ref: 'minimals/employee.yaml'
     description: |
       Details of employee who is the returnee of this refund.
   org_id:

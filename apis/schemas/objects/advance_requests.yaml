@@ -7,7 +7,7 @@ properties:
   employee_email:
     $ref: 'commons/email.yaml'
   employee:
-    $ref: 'minimals/employees.yaml'
+    $ref: 'minimals/employee.yaml'
   amount:
     $ref: 'commons/amount.yaml'
   currency:
@@ -52,7 +52,9 @@ properties:
   project:
     $ref: 'minimals/project.yaml'
   custom_properties:
-    $ref: 'custom_properties.yaml'
+    type: array
+    items:
+      - $ref: 'custom_property.yaml'
   policy_amount:
     allOf:
       - $ref: 'commons/amount.yaml'
@@ -77,6 +79,8 @@ properties:
       Enum value signifying the client method from which this advance_request was initiated.
     example: WEBAPP
   advance_request_approvals:
-    $ref: 'commons/approvals.yaml'
+    type: array
+    items:
+      - $ref: 'commons/approvals.yaml'
   export_info:
     $ref: 'minimals/export_info.yaml'

@@ -55,7 +55,7 @@ post:
           type: object
           properties:
             data:
-              $ref: '../schemas/objects/employees.yaml'
+              $ref: '../schemas/objects/employee.yaml'
           required: [ data ]
 
   responses:

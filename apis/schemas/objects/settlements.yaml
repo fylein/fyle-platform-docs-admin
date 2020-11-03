@@ -29,7 +29,7 @@ properties:
   employee_id:
     $ref: 'commons/employee_id.yaml'
   employee:
-    $ref: 'minimals/employees.yaml'
+    $ref: 'minimals/employee.yaml'
   reimbursement_id:
     type: string
     maxLength: 255
@@ -46,7 +46,7 @@ properties:
     example: 'outGt9ju6qP'
   creator:
     allOf:
-      - $ref: 'minimals/employees.yaml'
+      - $ref: 'minimals/employee.yaml'
     description: |
       Details of employee who created the reimbursement linked to this settlement.
   org_id:

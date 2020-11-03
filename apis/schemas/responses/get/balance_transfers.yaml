@@ -12,4 +12,4 @@ properties:
   data:
     type: array
     items:
-      $ref: '../../objects/balance_transfers.yaml'
+      $ref: '../../objects/balance_transfer.yaml'

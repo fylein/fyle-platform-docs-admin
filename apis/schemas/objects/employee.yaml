@@ -271,7 +271,9 @@ properties:
     items:
       $ref: 'minimals/perdiem.yaml'
   custom_properties:
-    $ref: 'custom_properties.yaml'
+    type: array
+    items:
+      - $ref: 'custom_property.yaml'
   status:
     type: string
     enum:
