@@ -1045,7 +1045,7 @@ components:
           description: Represents the name of the system_category.
     source_account:
       type: object
-      propeties:
+      properties:
         id:
           type: string
           example: acct0vTfdNQrT
