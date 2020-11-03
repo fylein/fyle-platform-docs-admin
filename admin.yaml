@@ -1873,9 +1873,11 @@ components:
           items:
             allOf:
               - $ref: '#/components/schemas/approvals'
-            rank:
-              type: integer
-              example: 1
+              - type: object
+                properties:
+                  rank:
+                    type: integer
+                    example: 1
         org_id:
           $ref: '#/components/schemas/org_id'
         export_info:
