@@ -10,7 +10,9 @@ properties:
       It is always prefixed with the string `us`.
       It is unique per email.
     example: 'usIYTLwzlaGu'
-  employee_code:
+  email:
+    $ref: '../commons/email.yaml'
+  code:
     type: string
     maxLength: 255
     example: 'E84122'
@@ -45,7 +47,7 @@ properties:
       Mobile number of the employee.
       `Given example is a fake number. We don't know who might answer your call.`
     example: '+1-202-555-0167'
-  joining_dt:
+  joined_at:
     type: string
     format: date
     example: '2018-10-31'

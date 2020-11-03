@@ -27,14 +27,13 @@ properties:
     description: |
       An immutable field that represents the email address of the employee.
       Must be compliant with <a href='https://www.ietf.org/rfc/rfc822.txt'>RFC 822.</a>
-  employee_code:
+  code:
     type: string
     maxLength: 255
     example: 'E84122'
     description: |
       This field refers to any string that the client programs can use to refer to an employee's unique id.
       This could be any field such as an UUID from an Active Directory server or employee id in a HRMS system.
-      This field shall be ignored in POST requests.
   full_name:
     type: string
     maxLength: 255
@@ -62,7 +61,6 @@ properties:
     description: |
       <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
       Shows when this email was verified in Fyle.
-      This field shall be ignored in POST calls to create/update employees.
     readOnly: true
     example: '2020-06-01T16:19:00.000Z'
   onboarded:
@@ -116,7 +114,6 @@ properties:
     description: |
       <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
       Shows when the employee has verified his/her mobile number in Fyle.
-      This field shall be ignored in POST calls to create/update employees.
     readOnly: true
     example: '2020-06-01T16:19:00.000Z'
   roles:
@@ -162,14 +159,8 @@ properties:
     type: string
     description: |
       The unique id of the Organization to which the employee belongs.
-      This field shall be ignored in POST requests.
+    readOnly: true
     example: 'orwruogwnngg'
-  org_name:
-    type: string
-    description: |
-      The Name of the Organization to which the employee belongs.
-      This field shall be ignored in POST requests.
-    example: 'Ministry of Magic'
   primary_approver:
     allOf:
       - $ref: 'minimals/user.yaml'
@@ -232,8 +223,6 @@ properties:
     description: |
       <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
       Show when the employee has verified his/her mobile number in Fyle.
-      This field shall be ignored in POST calls to create/update employees.
-    readOnly: true
     example: '2020-06-01T16:19:00.000Z'
   delegation_start_at:
     type: string
@@ -241,8 +230,6 @@ properties:
     description: |
       <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
       Shows when the employee was verified his/her mobile number in Fyle.
-      This field shall be ignored in POST calls to create/update employees.
-    readOnly: true
     example: '2020-06-01T16:19:00.000Z'
   mileage_rate_labels:
     type: array

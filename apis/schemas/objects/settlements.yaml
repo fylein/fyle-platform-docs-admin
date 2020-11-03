@@ -12,14 +12,14 @@ properties:
     $ref: 'commons/created_at.yaml'
   updated_at:
     $ref: 'commons/updated_at.yaml'
-  opening_dt:
+  opened_at:
     type: string
     format: date-time
     description: |
       <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
       Signifies the opening date of this settlement.
     example: '2020-06-01T13:14:54.804Z'
-  closing_dt:
+  closed_at:
     type: string
     format: date-time
     description: |

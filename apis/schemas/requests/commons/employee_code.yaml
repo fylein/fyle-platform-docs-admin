@@ -1,5 +1,5 @@
 in: query
-name: employee->employee_code
+name: employee.code
 description: |
   Supported operators are `in`,`eq`.<br>
 schema:

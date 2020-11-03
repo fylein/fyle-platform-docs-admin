@@ -1,5 +1,5 @@
 in: query
-name: employee_email
+name: employee.email
 description: |
   This param is used to filer records based employee email.
   Supported operators are `in`,`eq`.<br>

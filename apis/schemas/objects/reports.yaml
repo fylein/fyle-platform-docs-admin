@@ -10,13 +10,6 @@ properties:
     example: 'rpevetgn3kl'
   employee_id:
     $ref: 'commons/employee_id.yaml'
-  employee_email:
-    type: string
-    maxLength: 127
-    format: email
-    description: |
-      Email address of the Employee for whom the expense was/will-be created. Once an Expense is created, the value of this field cannot be changed and is immutable. <br>
-    example: john.doe@example.com
   employee:
     $ref: 'minimals/employee.yaml'
   created_at:
@@ -103,9 +96,9 @@ properties:
     type: boolean
   type:
     type: string
-  from_dt:
+  started_at:
     type: string
-  to_dt:
+  ended_at:
     type: string
   locations:
     type: array

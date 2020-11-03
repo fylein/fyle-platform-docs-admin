@@ -6,13 +6,6 @@ properties:
     example: txg3053jg33
     description: An unique string to identify the Expense. Ignore this field when used as part of a POST request to create an Expense.
     readOnly: true
-  employee_email:
-    type: string
-    maxLength: 127
-    format: email
-    description: |
-      Email address of the Employee for whom the expense was/will-be created. Once an Expense is created, the value of this field cannot be changed and is immutable. <br>
-    example: john.doe@example.com
   employee_id:
     $ref: 'commons/employee_id.yaml'
   employee:
@@ -119,22 +112,12 @@ properties:
       - 'APPROVER_PENDING'
       - 'PAYMENT_PENDING'
       - 'APPROVED'
-    description: The state of the Expense. This field shall be ignored in POST calls when creating/updating an Expense.
+    description: The state of the Expense.
     readOnly: true
-  fund_source:
-    type: string
-    enum:
-      - 'PERSONAL'
-      - 'ADVANCE'
-      - 'CCC'
-    description: The fund source of the Expense. This field shall be ignored in POST calls when creating/updating an Expense.
-    readOnly: true
-  payment_id:
-    type: string
   source_account_id:
     type: string
-  source_account_type:
-    type: string
+  source_account:
+    $ref: 'minimals/source_account.yaml'
   invoice_number:
     type: string
     description: |
@@ -164,7 +147,6 @@ properties:
     type: string
     description: |
       Unique id given by Fyle to identify an Expense Report.
-  # todo JC add report API link.
   reported_at:
     type: string
     format: date-time
@@ -239,12 +221,12 @@ properties:
       This field is applicable only for bus category.
     type: string
     example: 'AC'
-  from_dt:
+  started_at:
     description: |
       This field is only relevant for travel related categories. This represents the onward date.
     type: string
     example: '2019-07-17T00:00:00.000Z'
-  to_dt:
+  ended_at:
     description: |
       This field is only relevant for travel related categories. This represents the return date.
     type: string
@@ -275,10 +257,10 @@ properties:
     type: string
   activity_policy_pending:
     type: boolean
-  num_files:
+  num_attachments:
     type: integer
     description: |
-      Number of files attached to this Expenses.
+      Number of attachments linked to this Expenses.
   has_attachments:
     type: boolean
     description: |
@@ -298,7 +280,7 @@ properties:
     type: boolean
     description: |
       This field describes whether a user can delete this expenses.
-      This is flag is set as false when travel agent creates expenses on your behalf.
+      This is flag is set as false when admin creates expenses on your behalf.
     example: true
   policy_flag:
     type: boolean
