@@ -2987,9 +2987,8 @@ paths:
       tags:
         - Employees
       summary: Create or update employees
-      description: >
-        creates or update employees in bulk. This API is written in such way to
-        support bulk operations only.
+      description: |
+        Create or update employees.
       operationId: post-employees
       requestBody:
         required: true
@@ -3428,9 +3427,8 @@ paths:
       tags:
         - Projects
       summary: Create or update projects
-      description: >
-        creates or updates projects in bulk. This API is written in such a way
-        to support bulk operations only.
+      description: |
+        Create or update projects.
       operationId: post-projects
       requestBody:
         required: true
@@ -3520,9 +3518,8 @@ paths:
       tags:
         - Cost Centers
       summary: Create or update cost Centers
-      description: >
-        creates or updates cost centers in bulk. This API is written in such a
-        way to support bulk operations only.
+      description: |
+        Create or update cost centers.
       operationId: post-cost-centers
       requestBody:
         required: true
