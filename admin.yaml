@@ -1278,7 +1278,6 @@ components:
         tax:
           type: number
           description: Tax amount as setup by your organisation.
-          deprecated: true
         foreign_currency:
           $ref: '#/components/schemas/foreign_currency'
         foreign_amount:
