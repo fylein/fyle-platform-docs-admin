@@ -46,7 +46,11 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../schemas/requests/projects.yaml'
+          type: object
+          properties:
+            data:
+              $ref: '../schemas/objects/projects.yaml'
+          required: [ data ]
 
   responses:
     '200':
@@ -60,9 +64,7 @@ post:
                 type: string
                 example: '/admin/projects'
               data:
-                type: array
-                items:
-                  $ref: '../schemas/responses/post/projects.yaml'
+                $ref: '../schemas/responses/post/projects.yaml'
 
     '401':
       description: Unauthorised request

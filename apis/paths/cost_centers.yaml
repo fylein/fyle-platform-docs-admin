@@ -45,7 +45,11 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../schemas/requests/cost_centers.yaml'
+          type: object
+          properties:
+            data:
+              $ref: '../schemas/objects/cost_centers.yaml'
+          required: [ data ]
 
   responses:
     '200':
@@ -59,9 +63,7 @@ post:
                 type: string
                 example: '/admin/cost_centers'
               data:
-                type: array
-                items:
-                  $ref: '../schemas/objects/minimals/cost_center.yaml'
+                $ref: '../schemas/objects/minimals/cost_center.yaml'
 
     '401':
       description: Unauthorised request

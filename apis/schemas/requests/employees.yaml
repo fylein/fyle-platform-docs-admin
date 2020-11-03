@@ -1,7 +1,0 @@
-type: object
-properties:
-  data:
-    type: array
-    items:
-      $ref: '../objects/employees.yaml'
-required: [ data ]
