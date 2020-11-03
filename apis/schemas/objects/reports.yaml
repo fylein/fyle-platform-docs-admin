@@ -109,9 +109,11 @@ properties:
     items:
       allOf:
         - $ref: 'commons/approvals.yaml'
-      rank:
-        type: integer
-        example: 1
+        - type: object
+          properties:
+            rank:
+              type: integer
+              example: 1
   org_id:
     $ref: 'commons/org_id.yaml'
   export_info:
