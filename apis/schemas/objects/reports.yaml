@@ -46,7 +46,8 @@ properties:
     readOnly: true
   verified:
     type: boolean
-    description: Indicates whether the Report is verified or not
+    description: |
+      Indicates whether the Report is verified or not.
     readOnly: true
   verified_at:
     type: string
@@ -74,7 +75,7 @@ properties:
     description: |
       RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the report was settled. <br>
     example: '2017-07-21T17:32:28Z'
-  num_transactions:
+  num_expenses:
     type: integer
   expense_ids:
     type: array
@@ -82,8 +83,13 @@ properties:
       type: string
   verification_state:
     type: string
-  created_by:
-    type: string
+  creator_id:
+    $ref: 'commons/creator_id.yaml'
+  creator:
+    allOf:
+      - $ref: 'minimals/employee.yaml'
+    description: |
+      Details of employee who created this report.
   trip_request_id:
     type: string
   physical_bill:
@@ -116,5 +122,3 @@ properties:
               example: 1
   org_id:
     $ref: 'commons/org_id.yaml'
-  export_info:
-    $ref: 'minimals/export_info.yaml'

@@ -44,13 +44,7 @@ properties:
   updated_at:
     $ref: 'commons/updated_at.yaml'
   creator_id:
-    type: string
-    maxLength: 255
-    description: |
-      Employee id of creator if this reimbursement which uniquely identify an the creator within an organization.
-      This id is always prefixed with `ou`.
-    readOnly: true
-    example: 'outGt9ju6qP'
+    $ref: 'commons/creator_id.yaml'
   creator:
     allOf:
       - $ref: 'minimals/employee.yaml'
@@ -74,5 +68,3 @@ properties:
     description: |
       Status of ACH if this reimbursment is processed via ACH.
     example: 'ACH_COMPLETE'
-  export_info:
-    $ref: 'minimals/export_info.yaml'

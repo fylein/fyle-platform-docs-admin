@@ -80,5 +80,3 @@ properties:
     type: array
     items:
       $ref: 'commons/approvals.yaml'
-  export_info:
-    $ref: 'minimals/export_info.yaml'

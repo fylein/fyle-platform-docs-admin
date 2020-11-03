@@ -37,13 +37,7 @@ properties:
       Unique identifier of reimbursement object linked to this settlement.
     example: 'reimd8Ywn4n0H'
   creator_id:
-    type: string
-    maxLength: 255
-    description: |
-      Employee id of creator of the reimbursement linked to this settlement, which uniquely identify an employee within an organization.
-      This id is always prefixed with `ou`.
-    readOnly: true
-    example: 'outGt9ju6qP'
+    $ref: 'commons/creator_id.yaml'
   creator:
     allOf:
       - $ref: 'minimals/employee.yaml'
@@ -51,8 +45,6 @@ properties:
       Details of employee who created the reimbursement linked to this settlement.
   org_id:
     $ref: 'commons/org_id.yaml'
-  export_info:
-    $ref: 'minimals/export_info.yaml'
   settlement_number:
     type: integer
     description: |

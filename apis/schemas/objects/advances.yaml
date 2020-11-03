@@ -70,8 +70,6 @@ properties:
     description: |
       Enum value signifying the client method from which this advance_request was initiated.
     example: WEBAPP
-  export_info:
-    $ref: 'minimals/export_info.yaml'
   mode:
     type: string
     enum:

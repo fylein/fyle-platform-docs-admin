@@ -59,6 +59,3 @@ properties:
       Few sample values : Advance Account, Corporate Credit Card Account, Organization Category Account
     example: Personal Account
 
-  export_info:
-    $ref: 'minimals/export_info.yaml'
-
