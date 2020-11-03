@@ -39,7 +39,7 @@ post:
     - Projects
   summary: Create or update projects
   description: |
-    creates or updates projects in bulk. This API is written in such a way to support bulk operations only.
+    Create or update projects.
   operationId: post-projects
   requestBody:
     required: true

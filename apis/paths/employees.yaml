@@ -45,7 +45,7 @@ post:
     - Employees
   summary: Create or update employees
   description: |
-    creates or update employees in bulk. This API is written in such way to support bulk operations only.
+    Create or update employees.
   operationId: post-employees
   requestBody:
     required: true
