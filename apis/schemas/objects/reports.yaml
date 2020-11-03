@@ -112,7 +112,13 @@ properties:
     items:
       $ref: 'location.yaml'
   report_approvals:
-    type: object
+    type: array
+    items:
+      allOf:
+        - $ref: 'commons/approvals.yaml'
+      rank:
+        type: integer
+        example: 1
   org_id:
     $ref: 'commons/org_id.yaml'
   export_info:
