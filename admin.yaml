@@ -76,7 +76,7 @@ components:
         maximum: 200
     employee_email:
       in: query
-      name: employee_email
+      name: employee.email
       description: |
         This param is used to filer records based employee email.
         Supported operators are `in`,`eq`.<br>
@@ -498,7 +498,7 @@ components:
 
             Must be compliant with <a
             href='https://www.ietf.org/rfc/rfc822.txt'>RFC 822.</a>
-        employee_code:
+        code:
           type: string
           maxLength: 255
           example: E84122
@@ -508,8 +508,6 @@ components:
 
             This could be any field such as an UUID from an Active Directory
             server or employee id in a HRMS system.
-
-            This field shall be ignored in POST requests.
         full_name:
           type: string
           maxLength: 255
@@ -545,9 +543,6 @@ components:
             section 5.6 compliant timestamp.</a>
 
             Shows when this email was verified in Fyle.
-
-            This field shall be ignored in POST calls to create/update
-            employees.
           readOnly: true
           example: '2020-06-01T16:19:00.000Z'
         onboarded:
@@ -606,9 +601,6 @@ components:
             section 5.6 compliant timestamp.</a>
 
             Shows when the employee has verified his/her mobile number in Fyle.
-
-            This field shall be ignored in POST calls to create/update
-            employees.
           readOnly: true
           example: '2020-06-01T16:19:00.000Z'
         roles:
@@ -661,14 +653,8 @@ components:
           type: string
           description: |
             The unique id of the Organization to which the employee belongs.
-            This field shall be ignored in POST requests.
+          readOnly: true
           example: orwruogwnngg
-        org_name:
-          type: string
-          description: |
-            The Name of the Organization to which the employee belongs.
-            This field shall be ignored in POST requests.
-          example: Ministry of Magic
         primary_approver:
           allOf:
             - $ref: '#/components/schemas/user'
@@ -734,10 +720,6 @@ components:
             section 5.6 compliant timestamp.</a>
 
             Show when the employee has verified his/her mobile number in Fyle.
-
-            This field shall be ignored in POST calls to create/update
-            employees.
-          readOnly: true
           example: '2020-06-01T16:19:00.000Z'
         delegation_start_at:
           type: string
@@ -747,10 +729,6 @@ components:
             section 5.6 compliant timestamp.</a>
 
             Shows when the employee was verified his/her mobile number in Fyle.
-
-            This field shall be ignored in POST calls to create/update
-            employees.
-          readOnly: true
           example: '2020-06-01T16:19:00.000Z'
         mileage_rate_labels:
           type: array
@@ -903,6 +881,16 @@ components:
         This id is always prefixed with `ou`.
       readOnly: true
       example: outGt9ju6qP
+    email:
+      type: string
+      format: email
+      maxLength: 127
+      example: john.doe@example.com
+      description: >
+        An immutable field that represents the email address.
+
+        Must be compliant with <a href="https://www.ietf.org/rfc/rfc822.txt">RFC
+        822.</a>
     minimals_employee:
       type: object
       description: Details of the employee to whom this object belongs to.
@@ -916,7 +904,9 @@ components:
             It is always prefixed with the string `us`.
             It is unique per email.
           example: usIYTLwzlaGu
-        employee_code:
+        email:
+          $ref: '#/components/schemas/email'
+        code:
           type: string
           maxLength: 255
           example: E84122
@@ -958,7 +948,7 @@ components:
             `Given example is a fake number. We don't know who might answer your
             call.`
           example: +1-202-555-0167
-        joining_dt:
+        joined_at:
           type: string
           format: date
           example: '2018-10-31'
@@ -1053,6 +1043,23 @@ components:
           maxLength: 255
           example: Others
           description: Represents the name of the system_category.
+    source_account:
+      type: object
+      propeties:
+        id:
+          type: string
+          example: acct0vTfdNQrT
+        type:
+          type: string
+          enum:
+            - PERSONAL_ACCOUNT
+            - PERSONAL_ADVANCE_ACCOUNT
+            - PERSONAL_CORPORATE_CREDIT_CARD_ACCOUNT
+            - COMPANY_EXPENSE_ACCOUNT
+            - COMPANY_ADVANCE_ACCOUNT
+            - COMPANY_CORPORATE_CREDIT_CARD_ACCOUNT
+            - COMPANY_CATEGORY_ACCOUNT
+          example: PERSONAL_ACCOUNT
     created_at:
       type: string
       format: date-time
@@ -1189,15 +1196,6 @@ components:
             An unique string to identify the Expense. Ignore this field when
             used as part of a POST request to create an Expense.
           readOnly: true
-        employee_email:
-          type: string
-          maxLength: 127
-          format: email
-          description: >
-            Email address of the Employee for whom the expense was/will-be
-            created. Once an Expense is created, the value of this field cannot
-            be changed and is immutable. <br>
-          example: john.doe@example.com
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
@@ -1335,26 +1333,12 @@ components:
             - APPROVER_PENDING
             - PAYMENT_PENDING
             - APPROVED
-          description: >-
-            The state of the Expense. This field shall be ignored in POST calls
-            when creating/updating an Expense.
+          description: The state of the Expense.
           readOnly: true
-        fund_source:
-          type: string
-          enum:
-            - PERSONAL
-            - ADVANCE
-            - CCC
-          description: >-
-            The fund source of the Expense. This field shall be ignored in POST
-            calls when creating/updating an Expense.
-          readOnly: true
-        payment_id:
-          type: string
         source_account_id:
           type: string
-        source_account_type:
-          type: string
+        source_account:
+          $ref: '#/components/schemas/source_account'
         invoice_number:
           type: string
           description: |
@@ -1476,13 +1460,13 @@ components:
             This field is applicable only for bus category.
           type: string
           example: AC
-        from_dt:
+        started_at:
           description: >
             This field is only relevant for travel related categories. This
             represents the onward date.
           type: string
           example: '2019-07-17T00:00:00.000Z'
-        to_dt:
+        ended_at:
           description: >
             This field is only relevant for travel related categories. This
             represents the return date.
@@ -1514,10 +1498,10 @@ components:
           type: string
         activity_policy_pending:
           type: boolean
-        num_files:
+        num_attachments:
           type: integer
           description: |
-            Number of files attached to this Expenses.
+            Number of attachments linked to this Expenses.
         has_attachments:
           type: boolean
           description: >
@@ -1540,8 +1524,8 @@ components:
           description: >
             This field describes whether a user can delete this expenses.
 
-            This is flag is set as false when travel agent creates expenses on
-            your behalf.
+            This is flag is set as false when admin creates expenses on your
+            behalf.
           example: true
         policy_flag:
           type: boolean
@@ -1775,15 +1759,6 @@ components:
           example: rpevetgn3kl
         employee_id:
           $ref: '#/components/schemas/employee_id'
-        employee_email:
-          type: string
-          maxLength: 127
-          format: email
-          description: >
-            Email address of the Employee for whom the expense was/will-be
-            created. Once an Expense is created, the value of this field cannot
-            be changed and is immutable. <br>
-          example: john.doe@example.com
         employee:
           $ref: '#/components/schemas/minimals_employee'
         created_at:
@@ -1886,9 +1861,9 @@ components:
           type: boolean
         type:
           type: string
-        from_dt:
+        started_at:
           type: string
-        to_dt:
+        ended_at:
           type: string
         locations:
           type: array
@@ -1931,16 +1906,6 @@ components:
 
         This id is always prefixed with `areq`.
       example: areq0AluN2n1RE
-    email:
-      type: string
-      format: email
-      maxLength: 127
-      example: john.doe@example.com
-      description: >
-        An immutable field that represents the email address.
-
-        Must be compliant with <a href="https://www.ietf.org/rfc/rfc822.txt">RFC
-        822.</a>
     advance_id:
       type: string
       maxLength: 255
@@ -2070,8 +2035,6 @@ components:
           $ref: '#/components/schemas/advance_request_id'
         employee_id:
           $ref: '#/components/schemas/employee_id'
-        employee_email:
-          $ref: '#/components/schemas/email'
         employee:
           $ref: '#/components/schemas/minimals_employee'
         amount:
@@ -2546,7 +2509,7 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
-        opening_dt:
+        opened_at:
           type: string
           format: date-time
           description: >
@@ -2555,7 +2518,7 @@ components:
 
             Signifies the opening date of this settlement.
           example: '2020-06-01T13:14:54.804Z'
-        closing_dt:
+        closed_at:
           type: string
           format: date-time
           description: >
