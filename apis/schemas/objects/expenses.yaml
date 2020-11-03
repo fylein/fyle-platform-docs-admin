@@ -63,7 +63,6 @@ properties:
     type: number
     description:
       Tax amount as setup by your organisation.
-    deprecated: true
   foreign_currency:
     $ref: 'commons/foreign_currency.yaml'
   foreign_amount:
