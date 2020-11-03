@@ -402,20 +402,23 @@ components:
         longitude:
           type: number
           example: 77.594566
-    custom_properties:
+    custom_property:
       type: object
-      additionalProperties:
-        oneOf:
-          - type: string
-          - type: boolean
-          - type: integer
-          - $ref: '#/components/schemas/location'
-          - type: array
-            items:
-              type: string
-        description: >
-          The value for the custom properties. This could be a String, Boolean,
-          Integer or an Array of Strings. <br>
+      description: |
+        custom properties
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+          oneOf:
+            - type: string
+            - type: boolean
+            - type: integer
+            - $ref: '#/components/schemas/location'
+            - type: array
+              items:
+                type: string
       example:
         house: gryffindor
     dwolla_cutomers_metadata:
@@ -459,7 +462,7 @@ components:
         electric_car:
           type: number
           example: 0
-    employees:
+    employee:
       type: object
       properties:
         id:
@@ -778,7 +781,9 @@ components:
           items:
             $ref: '#/components/schemas/perdiem'
         custom_properties:
-          $ref: '#/components/schemas/custom_properties'
+          type: array
+          items:
+            $ref: '#/components/schemas/custom_property'
         status:
           type: string
           enum:
@@ -818,7 +823,7 @@ components:
             or not.
           readOnly: true
           example: true
-    get_employees:
+    employees:
       type: object
       properties:
         count:
@@ -833,7 +838,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/employees'
+            $ref: '#/components/schemas/employee'
     post_employees:
       type: object
       properties:
@@ -898,7 +903,7 @@ components:
         This id is always prefixed with `ou`.
       readOnly: true
       example: outGt9ju6qP
-    minimals_employees:
+    minimals_employee:
       type: object
       description: Details of the employee to whom this object belongs to.
       readOnly: true
@@ -1156,18 +1161,18 @@ components:
       type: object
       description: |
         siginifies all the approvals of a particular object.
-      additionalProperties:
-        type: object
-        properties:
-          state:
-            type: string
-            enum:
-              - APPROVED
-              - APPROVAL_PENDING
-              - APPROVAL_DISABLED
+      properties:
+        approver_id:
+          type: string
+        state:
+          type: string
+          enum:
+            - APPROVED
+            - APPROVAL_PENDING
+            - APPROVAL_DISABLED
       example:
-        oueoblnegf:
-          state: APPROVED
+        approver_id: oueoblnegf
+        state: APPROVED
     org_id:
       type: string
       description: |
@@ -1196,7 +1201,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/minimals_employees'
+          $ref: '#/components/schemas/minimals_employee'
         spent_at:
           type: string
           format: date-time
@@ -1527,7 +1532,9 @@ components:
           items:
             $ref: '#/components/schemas/file'
         custom_properties:
-          $ref: '#/components/schemas/custom_properties'
+          type: array
+          items:
+            $ref: '#/components/schemas/custom_property'
         user_can_delete:
           type: boolean
           description: >
@@ -1597,12 +1604,13 @@ components:
         corporate_credit_card_transaction:
           type: object
         transaction_approvals:
-          allOf:
-            - $ref: '#/components/schemas/approvals'
+          type: array
+          items:
+            $ref: '#/components/schemas/approvals'
           example:
-            ougelgneget:
+            - approver_id: ougelgneget
               state: APPROVED
-            ougo3nlwfgg:
+            - approver_id: ougo3nlwfgg
               state: APPROVAL_PENDING
         org_id:
           $ref: '#/components/schemas/org_id'
@@ -1667,7 +1675,7 @@ components:
       description: |
         This field specifies if the custom property is mandatory or not.
       example: true
-    expense_custom_properties:
+    expense_custom_property:
       type: object
       properties:
         id:
@@ -1697,7 +1705,7 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
-    get_expense_custom_properties:
+    expense_custom_properties:
       type: object
       properties:
         count:
@@ -1712,7 +1720,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/expense_custom_properties'
+            $ref: '#/components/schemas/expense_custom_property'
     currency:
       type: string
       maxLength: 10
@@ -1777,7 +1785,7 @@ components:
             be changed and is immutable. <br>
           example: john.doe@example.com
         employee:
-          $ref: '#/components/schemas/minimals_employees'
+          $ref: '#/components/schemas/minimals_employee'
         created_at:
           $ref: '#/components/schemas/created_at'
         updated_at:
@@ -1985,7 +1993,7 @@ components:
           example: issuer@example.com
         issuer:
           allOf:
-            - $ref: '#/components/schemas/minimals_employees'
+            - $ref: '#/components/schemas/minimals_employee'
           description: |
             Details for the person who issued the advance.
     advance_request_number:
@@ -2059,7 +2067,7 @@ components:
         employee_email:
           $ref: '#/components/schemas/email'
         employee:
-          $ref: '#/components/schemas/minimals_employees'
+          $ref: '#/components/schemas/minimals_employee'
         amount:
           $ref: '#/components/schemas/amount'
         currency:
@@ -2104,7 +2112,9 @@ components:
         project:
           $ref: '#/components/schemas/project'
         custom_properties:
-          $ref: '#/components/schemas/custom_properties'
+          type: array
+          items:
+            $ref: '#/components/schemas/custom_property'
         policy_amount:
           allOf:
             - $ref: '#/components/schemas/amount'
@@ -2130,7 +2140,9 @@ components:
             advance_request was initiated.
           example: WEBAPP
         advance_request_approvals:
-          $ref: '#/components/schemas/approvals'
+          type: array
+          items:
+            $ref: '#/components/schemas/approvals'
         export_info:
           $ref: '#/components/schemas/export_info'
     get_advance_requests:
@@ -2159,7 +2171,7 @@ components:
         assignee_email:
           $ref: '#/components/schemas/email'
         assignee:
-          $ref: '#/components/schemas/minimals_employees'
+          $ref: '#/components/schemas/minimals_employee'
         issuer_id:
           allOf:
             - $ref: '#/components/schemas/employee_id'
@@ -2174,7 +2186,7 @@ components:
           example: issuer@example.com
         issuer:
           allOf:
-            - $ref: '#/components/schemas/minimals_employees'
+            - $ref: '#/components/schemas/minimals_employee'
           description: |
             Details for the person who issued the advance.
         amount:
@@ -2210,7 +2222,9 @@ components:
         project:
           $ref: '#/components/schemas/project'
         custom_properties:
-          $ref: '#/components/schemas/custom_properties'
+          type: array
+          items:
+            $ref: '#/components/schemas/custom_property'
         org_id:
           $ref: '#/components/schemas/org_id'
         source:
@@ -2257,7 +2271,9 @@ components:
             timestamp on which the advance was settled.<br>
           example: '2020-07-23T09:32:00.933Z'
         advance_request_approvals:
-          $ref: '#/components/schemas/approvals'
+          type: array
+          items:
+            $ref: '#/components/schemas/approvals'
     get_advances:
       type: object
       properties:
@@ -2294,7 +2310,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/minimals_employees'
+          $ref: '#/components/schemas/minimals_employee'
         org_id:
           $ref: '#/components/schemas/org_id'
         currency:
@@ -2341,7 +2357,7 @@ components:
           example: outGt9ju6qP
         creator:
           allOf:
-            - $ref: '#/components/schemas/minimals_employees'
+            - $ref: '#/components/schemas/minimals_employee'
           description: |
             Details of employee who created this reimbursement.
         mode:
@@ -2410,7 +2426,7 @@ components:
           example: outGt9ju6qP
         collector:
           allOf:
-            - $ref: '#/components/schemas/minimals_employees'
+            - $ref: '#/components/schemas/minimals_employee'
           description: |
             Details of employee who is the collector of this refund.
         returnee_id:
@@ -2426,7 +2442,7 @@ components:
           example: oul8zTHMnTjp
         returnee:
           allOf:
-            - $ref: '#/components/schemas/minimals_employees'
+            - $ref: '#/components/schemas/minimals_employee'
           description: |
             Details of employee who is the returnee of this refund.
         org_id:
@@ -2545,7 +2561,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/minimals_employees'
+          $ref: '#/components/schemas/minimals_employee'
         reimbursement_id:
           type: string
           maxLength: 255
@@ -2565,7 +2581,7 @@ components:
           example: outGt9ju6qP
         creator:
           allOf:
-            - $ref: '#/components/schemas/minimals_employees'
+            - $ref: '#/components/schemas/minimals_employee'
           description: >
             Details of employee who created the reimbursement linked to this
             settlement.
@@ -2607,7 +2623,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/settlements'
-    balance_transfers:
+    balance_transfer:
       type: object
       properties:
         id:
@@ -2621,7 +2637,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/minimals_employees'
+          $ref: '#/components/schemas/minimals_employee'
         issuer_id:
           type: string
           maxLength: 255
@@ -2635,7 +2651,7 @@ components:
           example: oul8zTHMnTjp
         issuer:
           allOf:
-            - $ref: '#/components/schemas/minimals_employees'
+            - $ref: '#/components/schemas/minimals_employee'
           description: |
             Details of employee who issued this balance transfer.
         org_id:
@@ -2673,7 +2689,7 @@ components:
           example: Personal Account
         export_info:
           $ref: '#/components/schemas/export_info'
-    get_balance_transfers:
+    balance_transfers:
       type: object
       properties:
         count:
@@ -2688,8 +2704,8 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/balance_transfers'
-    projects:
+            $ref: '#/components/schemas/balance_transfer'
+    objects_project:
       type: object
       properties:
         id:
@@ -2793,7 +2809,7 @@ components:
           description: |
             Employee Id of the secondary approver.
           example: ourjgeugv3vg
-    get_projects:
+    projects:
       type: object
       properties:
         count:
@@ -2808,7 +2824,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/projects'
+            $ref: '#/components/schemas/objects_project'
     post_projects:
       type: object
       properties:
@@ -2840,7 +2856,7 @@ components:
           description: |
             This represents the code of project.
           example: FF-032
-    cost_centers:
+    objects_cost_center:
       type: object
       properties:
         id:
@@ -2880,7 +2896,7 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
-    get_cost_centers:
+    cost_centers:
       type: object
       properties:
         count:
@@ -2895,7 +2911,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/cost_centers'
+            $ref: '#/components/schemas/objects_cost_center'
 tags:
   - name: Employees
     description: |
@@ -2976,7 +2992,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/get_employees'
+                $ref: '#/components/schemas/employees'
         '401':
           description: Unauthorised request
           content:
@@ -2998,7 +3014,7 @@ paths:
               type: object
               properties:
                 data:
-                  $ref: '#/components/schemas/employees'
+                  $ref: '#/components/schemas/employee'
               required:
                 - data
       responses:
@@ -3105,7 +3121,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/get_expense_custom_properties'
+                $ref: '#/components/schemas/expense_custom_properties'
         '401':
           description: Unauthorised request
           content:
@@ -3375,7 +3391,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/get_balance_transfers'
+                $ref: '#/components/schemas/balance_transfers'
         '401':
           description: Unauthorised request
           content:
@@ -3416,7 +3432,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/get_projects'
+                $ref: '#/components/schemas/projects'
         '401':
           description: Unauthorized request
           content:
@@ -3438,7 +3454,7 @@ paths:
               type: object
               properties:
                 data:
-                  $ref: '#/components/schemas/projects'
+                  $ref: '#/components/schemas/objects_project'
               required:
                 - data
       responses:
@@ -3507,7 +3523,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/get_cost_centers'
+                $ref: '#/components/schemas/cost_centers'
         '401':
           description: Unauthoried request
           content:
@@ -3529,7 +3545,7 @@ paths:
               type: object
               properties:
                 data:
-                  $ref: '#/components/schemas/cost_centers'
+                  $ref: '#/components/schemas/objects_cost_center'
               required:
                 - data
       responses:
