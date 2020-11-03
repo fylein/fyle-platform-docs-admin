@@ -14,7 +14,5 @@ properties:
       - type: array
         items:
           type: string
-      description: |
-        The value for the custom properties. This could be a String, Boolean, Integer or an Array of Strings. <br>
 example:
   house: 'gryffindor'

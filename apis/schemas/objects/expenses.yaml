@@ -293,7 +293,7 @@ properties:
   custom_properties:
     type: array
     items:
-      - $ref: 'custom_property.yaml'
+      $ref: 'custom_property.yaml'
   user_can_delete:
     type: boolean
     description: |
@@ -359,7 +359,7 @@ properties:
   transaction_approvals:
     type: array
     items:
-      - $ref: 'commons/approvals.yaml'
+      $ref: 'commons/approvals.yaml'
     example:
       - approver_id: ougelgneget
         state: APPROVED
