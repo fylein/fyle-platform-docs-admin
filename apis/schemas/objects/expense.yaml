@@ -257,7 +257,13 @@ properties:
   per_diem_rate_id:
     type: string
   per_diem_rate:
-    $ref: 'minimals/perdiem.yaml'
+    allOf:
+      - $ref: 'minimals/perdiem.yaml'
+      - type: object
+        properties:
+          num_days:
+            type: integer
+            example: 2
   num_days:
     type: integer
   activity_details:
