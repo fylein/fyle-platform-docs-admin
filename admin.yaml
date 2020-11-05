@@ -998,31 +998,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/objects_employee'
-    post_employees:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-          maxLength: 127
-          description: >
-            An immutable field that represents the email address of the
-            Employee.
-
-            Must be compliant with <a
-            href='https://www.ietf.org/rfc/rfc822.txt'>RFC 822.</a>
-          example: john.doe@example.com
-        id:
-          type: string
-          maxLength: 255
-          description: >
-            This id prodvided by Fyle to identify a employee from this
-            organisation.
-
-            This id is always prefixed with `ou`.
-
-            This id is unique per organisation per email.
-          example: ouHXboARkbAB
     json_parsing_error:
       type: object
       properties:
@@ -2807,35 +2782,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/objects_project'
-    post_projects:
-      type: object
-      properties:
-        id:
-          type: string
-          maxLength: 255
-          description: >
-            This id provided by Fyle to identify a project from this
-            organisation.
-
-            This id is unique within the organisation.
-          readOnly: true
-          example: '2391'
-        name:
-          type: string
-          maxLength: 255
-          description: Represents the name of the project.
-          example: Fast and Furious
-        sub_project:
-          type: string
-          maxLength: 255
-          description: Represents the name of the sub_project.
-          example: Formula One
-        code:
-          type: string
-          maxLength: 255
-          description: |
-            This represents the code of project.
-          example: FF-032
     limit:
       description: |
         The actual number of objects that are returned in the response.
@@ -2924,43 +2870,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/categories'
-    post_categories:
-      type: object
-      properties:
-        id:
-          type: string
-          maxLength: 10
-          example: '16570'
-          description: >
-            This id provided by Fyle to identify a category from this
-            organisation.
-
-            This id is unique within the organisation.
-        name:
-          type: string
-          maxLength: 255
-          example: Engine
-          description: Represents the name of the category.
-        sub_category:
-          type: string
-          maxLength: 255
-          example: Turbo charged
-          description: Represents the name of the sub_category.
-        display_name:
-          type: string
-          maxLength: 255
-          example: Engine / Turbo charged
-          description: >
-            This is a combination of name and sub_category separated by a / and
-            spaces.
-
-            In case if no sub_category is present it is same as name of the
-            category.
-        system_category:
-          type: string
-          maxLength: 255
-          example: Others
-          description: Represents the name of the system_category.
     objects_cost_center:
       type: object
       properties:
@@ -3142,7 +3051,7 @@ paths:
                     type: string
                     example: /admin/employees
                   data:
-                    $ref: '#/components/schemas/post_employees'
+                    $ref: '#/components/schemas/objects_employee'
         '400':
           description: Bad request
           content:
@@ -3581,7 +3490,7 @@ paths:
                     type: string
                     example: /admin/projects
                   data:
-                    $ref: '#/components/schemas/post_projects'
+                    $ref: '#/components/schemas/objects_project'
         '400':
           description: Bad request
           content:
@@ -3662,7 +3571,7 @@ paths:
                     type: string
                     example: /admin/categories
                   data:
-                    $ref: '#/components/schemas/post_categories'
+                    $ref: '#/components/schemas/categories'
         '400':
           description: Bad request
           content:
@@ -3752,7 +3661,7 @@ paths:
                     type: string
                     example: /admin/cost_centers
                   data:
-                    $ref: '#/components/schemas/cost_center'
+                    $ref: '#/components/schemas/objects_cost_center'
         '400':
           description: Bad request
           content:
