@@ -859,11 +859,6 @@ components:
           type: string
           description: |
             This error means that incoming json is not in right format.
-        code:
-          type: integer
-          default: 400
-          example: 400
-          deprecated: true
     employee_id:
       type: string
       maxLength: 255
@@ -3321,6 +3316,12 @@ paths:
       description: |
         Create or update a projects.
       operationId: post-projects
+      parameters:
+        - in: header
+          name: Content-type
+          schema:
+            type: string
+          default: application/json
       requestBody:
         required: true
         content:
