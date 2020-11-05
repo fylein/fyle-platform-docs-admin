@@ -14,8 +14,14 @@ properties:
     $ref: './custom_properties/options.yaml'
   placeholder:
     $ref: './custom_properties/placeholder.yaml'
-  org_category_ids:
+  category_ids:
     $ref: './commons/org_category_ids.yaml'
+  categories:
+    type: array
+    description: |
+      This list of categories that are applicable for this project.
+    items:
+      $ref: 'minimals/category.yaml'
   enabled:
     $ref: './commons/enabled.yaml'
   mandatory:
