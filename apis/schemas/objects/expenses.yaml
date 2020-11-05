@@ -329,7 +329,7 @@ properties:
   split_group_id:
     type: string
   split_group_user_amount:
-    type: numeric
+    type: number
   external_expense:
     type: object
   corporate_credit_card_transaction:

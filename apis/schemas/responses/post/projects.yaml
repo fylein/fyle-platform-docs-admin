@@ -5,7 +5,6 @@ properties:
     maxLength: 255
     description: |
       This id provided by Fyle to identify a project from this organisation.
-      This id is a numeric string.
       This id is unique within the organisation.
     readOnly: true
     example: '2391'
