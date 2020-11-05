@@ -41,6 +41,12 @@ post:
   description: |
     Create or update a projects.
   operationId: post-projects
+  parameters:
+    - in: header
+      name: Content-type
+      schema:
+        type: string
+      default: application/json
   requestBody:
     required: true
     content:
