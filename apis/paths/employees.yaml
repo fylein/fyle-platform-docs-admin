@@ -85,18 +85,16 @@ post:
         application/json:
           schema:
             $ref: '../schemas/errors/403.yaml'
-
     '400':
       description: Bad request
       content:
         application/json:
           schema:
             oneOf:
-              - type: array
-                items:
-                  $ref: '../schemas/errors/bulk_error.yaml'
+              - type: object
+                properties:
+                  message:
+                    type: string
                 example:
-                  - row: 1
-                    key: john.doe@example.com
-                    message: Invalid or disabled approver 1 email
+                  message: Invalid or disabled approver 1 email
               - $ref: '../schemas/errors/json_parsing_error.yaml'
