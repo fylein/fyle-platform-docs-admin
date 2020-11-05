@@ -54,7 +54,7 @@ post:
                 type: string
                 example: '/admin/categories'
               data:
-                $ref: '../schemas/responses/post/categories.yaml'
+                $ref: '../schemas/objects/categories.yaml'
 
     '401':
       description: Unauthorised request

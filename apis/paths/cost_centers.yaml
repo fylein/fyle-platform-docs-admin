@@ -63,7 +63,7 @@ post:
                 type: string
                 example: '/admin/cost_centers'
               data:
-                $ref: '../schemas/objects/minimals/cost_center.yaml'
+                $ref: '../schemas/objects/cost_center.yaml'
 
     '401':
       description: Unauthorised request

@@ -70,7 +70,7 @@ post:
                 type: string
                 example: '/admin/employees'
               data:
-                $ref: '../schemas/responses/post/employees.yaml'
+                $ref: '../schemas/objects/employee.yaml'
 
     '401':
       description: Unauthorised request
