@@ -3312,9 +3312,9 @@ paths:
     post:
       tags:
         - Projects
-      summary: Create or update a project
+      summary: Create or update a projects
       description: |
-        Create or update a project.
+        Create or update a projects.
       operationId: post-projects
       parameters:
         - in: header
@@ -3322,6 +3322,7 @@ paths:
           schema:
             type: string
           default: application/json
+          example: application/json
       requestBody:
         required: true
         content:
