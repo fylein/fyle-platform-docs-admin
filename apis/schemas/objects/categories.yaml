@@ -53,7 +53,7 @@ properties:
   last_updater_id:
     type: string
     description: |
-      This represents the id of employye who updated the category.
+      This represents the id of employee who updated this category.
     example: "ouGgsdfdq"
   last_updater:
     allOf:

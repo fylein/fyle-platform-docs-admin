@@ -323,3 +323,13 @@ properties:
       This flag indicates whether this is primary account of this employee or not.
     readOnly: true
     example: true
+  last_updater_id:
+    type: string
+    description: |
+      This represents the id of employee who updated this employee.
+    example: "ouGgsdfdq"
+  last_updater:
+    allOf:
+      - $ref: 'minimals/employee.yaml'
+    description: |
+      Details of employee who updated this employee.

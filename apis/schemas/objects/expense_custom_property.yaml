@@ -32,3 +32,13 @@ properties:
     $ref: './commons/created_at.yaml'
   updated_at:
     $ref: './commons/updated_at.yaml'
+  last_updater_id:
+    type: string
+    description: |
+      This represents the id of employee who updated this custom property.
+    example: "ouGgsdfdq"
+  last_updater:
+    allOf:
+      - $ref: 'minimals/employee.yaml'
+    description: |
+      Details of employee who updated this custom property.

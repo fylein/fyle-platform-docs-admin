@@ -84,5 +84,7 @@ paths:
     $ref: 'paths/balance_transfers.yaml'
   /admin/projects:
     $ref: 'paths/projects.yaml'
+  /admin/categories:
+    $ref: 'paths/categories.yaml'
   /admin/cost_centers:
     $ref: 'paths/cost_centers.yaml'

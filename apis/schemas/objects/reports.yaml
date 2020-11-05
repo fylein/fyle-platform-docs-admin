@@ -122,3 +122,13 @@ properties:
               example: 1
   org_id:
     $ref: 'commons/org_id.yaml'
+  last_updater_id:
+    type: string
+    description: |
+      This represents the id of employee who updated this report.
+    example: "ouGgsdfdq"
+  last_updater:
+    allOf:
+      - $ref: 'minimals/employee.yaml'
+    description: |
+      Details of employee who updated this report.

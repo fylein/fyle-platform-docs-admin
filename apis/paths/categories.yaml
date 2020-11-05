@@ -23,3 +23,63 @@ get:
         application/json:
           schema:
             $ref: '../schemas/errors/401.yaml'
+
+post:
+  tags:
+    - Projects
+  summary: Create or update a category
+  description: |
+    Create or update a category.
+  operationId: post-categories
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              $ref: '../schemas/objects/categories.yaml'
+          required: [ data ]
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+                example: '/admin/categories'
+              data:
+                $ref: '../schemas/responses/post/categories.yaml'
+
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'
+
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/403.yaml'
+
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: Invalid or duplicate category code
+              - $ref: '../schemas/errors/json_parsing_error.yaml'

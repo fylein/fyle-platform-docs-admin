@@ -80,3 +80,13 @@ properties:
     type: array
     items:
       $ref: 'commons/approvals.yaml'
+  last_updater_id:
+    type: string
+    description: |
+      This represents the id of employee who updated this advance request.
+    example: "ouGgsdfdq"
+  last_updater:
+    allOf:
+      - $ref: 'minimals/employee.yaml'
+    description: |
+      Details of employee who updated this advance request.

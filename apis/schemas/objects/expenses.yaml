@@ -227,27 +227,27 @@ properties:
       This field is only relevant for travel related categories. This represents the return date.
     type: string
     example: '2019-07-27T00:00:00.000Z'
-  distance:
+  mileage_distance:
     type: number
     description: Actual distance travelled by employee in mileage expenses.
-  calculated_distance:
+  mileage_calculated_distance:
     type: number
     description: Distance compluted by Fyle in mileage expenses.
-  distance_unit:
+  mileage_distance_unit:
     type: string
     enum:
       - KM
       - MILES
-  calculated_amount:
+  mileage_calculated_amount:
     type: number
     description: Amount compluted by Fyle in mileage expenses.
-  vehicle_type:
+  mileage_vehicle_type:
     type: string
     description: Type of vehicle used for travel.
-  rate:
+  mileage_rate:
     type: number
     description: Rate per km as provided in the Fyle system
-  is_round_trip:
+  mileage_is_round_trip:
     type: boolean
     description: Flag stating whether this was a round trip or not.
   mileage:
@@ -344,5 +344,15 @@ properties:
         state: APPROVED
       - approver_id: ougo3nlwfgg
         state: APPROVAL_PENDING
+  last_updater_id:
+    type: string
+    description: |
+      This represents the id of employee who updated this expense.
+    example: "ouGgsdfdq"
+  last_updater:
+    allOf:
+      - $ref: 'minimals/employee.yaml'
+    description: |
+      Details of employee who updated this expense.
   org_id:
     $ref: 'commons/org_id.yaml'
