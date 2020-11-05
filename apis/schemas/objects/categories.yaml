@@ -49,7 +49,7 @@ properties:
       This represents the id of user who created the category.
     example: "ouEsdfdq"
   creator:
-    $ref: '../minimals/employee.yaml'
+    $ref: 'minimals/employee.yaml'
   last_updater_id:
     type: string
     description: |
