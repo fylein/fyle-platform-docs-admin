@@ -3631,7 +3631,7 @@ paths:
                 $ref: '#/components/schemas/401'
     post:
       tags:
-        - Projects
+        - Categories
       summary: Create or update a category
       description: |
         Create or update a category.
