@@ -392,9 +392,6 @@ components:
         rate:
           type: integer
           example: 40
-        num_days:
-          type: integer
-          example: 2
     project:
       type: object
       properties:
@@ -1272,7 +1269,7 @@ components:
       description: |
         The unique id of the Organization to which the object is associated.
       example: orwruogwnngg
-    expenses:
+    expense:
       type: object
       properties:
         id:
@@ -1583,7 +1580,13 @@ components:
         per_diem_rate_id:
           type: string
         per_diem_rate:
-          $ref: '#/components/schemas/perdiem'
+          allOf:
+            - $ref: '#/components/schemas/perdiem'
+            - type: object
+              properties:
+                num_days:
+                  type: integer
+                  example: 2
         num_days:
           type: integer
         activity_details:
@@ -1688,7 +1691,7 @@ components:
             Details of employee who updated this expense.
         org_id:
           $ref: '#/components/schemas/org_id'
-    get_expenses:
+    expenses:
       type: object
       properties:
         count:
@@ -1701,7 +1704,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/expenses'
+            $ref: '#/components/schemas/expense'
     name:
       type: string
       description: |
@@ -3195,7 +3198,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/get_expenses'
+                $ref: '#/components/schemas/expenses'
         '401':
           description: Unauthorised request
           content:
