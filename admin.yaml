@@ -3312,9 +3312,9 @@ paths:
     post:
       tags:
         - Projects
-      summary: Create or update a projects
+      summary: Create or update a project
       description: |
-        Create or update a projects.
+        Create or update a project.
       operationId: post-projects
       parameters:
         - in: header

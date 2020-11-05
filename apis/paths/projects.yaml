@@ -46,7 +46,8 @@ post:
       name: Content-type
       schema:
         type: string
-      default: application/json
+      default: 'application/json'
+      example: 'application/json'
   requestBody:
     required: true
     content:
