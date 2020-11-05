@@ -4,8 +4,6 @@ properties:
     $ref: 'commons/advance_id.yaml'
   assingee_id:
     $ref: 'commons/employee_id.yaml'
-  assignee_email:
-    $ref: 'commons/email.yaml'
   assignee:
     $ref: 'minimals/employee.yaml'
   issuer_id:
@@ -14,12 +12,6 @@ properties:
     description: |
       Employee id of person who issued the advance.
     example: 'ouebvjwgjgl'
-  issuer_email:
-    allOf:
-      - $ref: 'commons/email.yaml'
-    description: |
-      Email of the person who issued the advance.
-    example: 'issuer@example.com'
   issuer:
     allOf:
       - $ref: 'minimals/employee.yaml'
@@ -98,7 +90,3 @@ properties:
     description: |
       RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the advance was settled.<br>
     example: '2020-07-23T09:32:00.933Z'
-  advance_request_approvals:
-    type: array
-    items:
-      $ref: 'commons/approvals.yaml'

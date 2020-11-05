@@ -37,9 +37,9 @@ get:
 post:
   tags:
     - Projects
-  summary: Create or update projects
+  summary: Create or update a projects
   description: |
-    Create or update projects.
+    Create or update a projects.
   operationId: post-projects
   requestBody:
     required: true

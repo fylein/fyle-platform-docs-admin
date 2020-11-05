@@ -179,9 +179,6 @@ properties:
       RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the Expense was verified.
       If the Expense is not verified yet, this could be null. <br>
     readOnly: true
-  skip_reimbursement:
-    type: boolean
-    deprecated: true
   vendor:
     type: string
     example: Uber

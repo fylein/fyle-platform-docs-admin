@@ -161,6 +161,12 @@ properties:
       The unique id of the Organization to which the employee belongs.
     readOnly: true
     example: 'orwruogwnngg'
+  primary_approver_id:
+    type: string
+    maxLength: 255
+    description: |
+      Employee Id of the primary approver.
+    example: 'ou4b24ugv3vg'
   primary_approver:
     allOf:
       - $ref: 'minimals/user.yaml'
@@ -169,12 +175,12 @@ properties:
     example:
       full_name: 'primary approver'
       email: 'primary_approver@example.com'
-  primary_approver_id:
+  secondary_approver_id:
     type: string
     maxLength: 255
     description: |
-      Employee Id of the primary approver.
-    example: 'ou4b24ugv3vg'
+      Employee Id of the secondary approver.
+    example: 'ourjgeugv3vg'
   secondary_approver:
     allOf:
       - $ref: 'minimals/user.yaml'
@@ -183,12 +189,12 @@ properties:
     example:
       full_name: 'secondary approver'
       email: 'secondary_approver@example.com'
-  secondary_approver_id:
+  tertiary_approver_id:
     type: string
     maxLength: 255
     description: |
-      Employee Id of the secondary approver.
-    example: 'ourjgeugv3vg'
+      Employee Id of the tertiary approver.
+    example: 'oueuroefkver'
   tertiary_approver:
     allOf:
       - $ref: 'minimals/user.yaml'
@@ -197,12 +203,12 @@ properties:
     example:
       full_name: 'tertiary approver'
       email: 'tertiary_approver@example.com'
-  tertiary_approver_id:
+  delegatee_id:
     type: string
     maxLength: 255
     description: |
-      Employee Id of the tertiary approver.
-    example: 'oueuroefkver'
+      Employee Id of the delegatee.
+    example: 'ouvebjeasfj'
   delegatee:
     allOf:
       - $ref: 'minimals/user.yaml'
@@ -211,12 +217,7 @@ properties:
     example:
       full_name: 'delegatee'
       email: 'delegatee@example.com'
-  delegatee_id:
-    type: string
-    maxLength: 255
-    description: |
-      Employee Id of the delegatee.
-    example: 'ouvebjeasfj'
+
   delegation_end_at:
     type: string
     format: date-time

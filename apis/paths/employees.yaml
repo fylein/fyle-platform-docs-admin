@@ -43,9 +43,9 @@ get:
 post:
   tags:
     - Employees
-  summary: Create or update employees
+  summary: Create or update an employee
   description: |
-    Create or update employees.
+    Create or update an employee.
   operationId: post-employees
   requestBody:
     required: true

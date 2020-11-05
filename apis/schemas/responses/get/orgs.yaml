@@ -6,8 +6,6 @@ properties:
     example: 1
   offset:
     $ref: '../commons/offset.yaml'
-  limit:
-    $ref: '../commons/limit.yaml'
   url:
     type: string
     example: '/admin/orgs'

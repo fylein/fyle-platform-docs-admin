@@ -31,12 +31,6 @@ properties:
     description: |
       Employee id of person who issued the advance.
     example: 'ouebvjwgjgl'
-  issuer_email:
-    allOf:
-      - $ref: '../commons/email.yaml'
-    description: |
-      Email of the person who issued the advance.
-    example: 'issuer@example.com'
   issuer:
     allOf:
       - $ref: '../minimals/employee.yaml'

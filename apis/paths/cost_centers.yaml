@@ -36,9 +36,9 @@ get:
 post:
   tags:
     - Cost Centers
-  summary: Create or update cost Centers
+  summary: Create or update a cost center
   description: |
-    Create or update cost centers.
+    Create or update a cost center.
   operationId: post-cost-centers
   requestBody:
     required: true
