@@ -43,7 +43,7 @@ post:
   operationId: post-projects
   parameters:
     - in: header
-      name: Content-type
+      name: Content-Type
       schema:
         type: string
       default: 'application/json'
