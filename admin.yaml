@@ -4,7 +4,7 @@ info:
   title: Fyle REST API
   contact:
     name: Integrations
-    email: support@fyle.in
+    email: support@fylehq.com
 servers:
   - url: 'https://platform.fylehq.com/v1'
     description: Live Server
@@ -287,11 +287,6 @@ components:
       type: integer
       example: 10
       default: 200
-    limit:
-      description: |
-        The actual number of objects that are returned in the response.
-      type: integer
-      example: 100
     level:
       type: object
       readOnly: true
@@ -655,6 +650,12 @@ components:
             The unique id of the Organization to which the employee belongs.
           readOnly: true
           example: orwruogwnngg
+        primary_approver_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the primary approver.
+          example: ou4b24ugv3vg
         primary_approver:
           allOf:
             - $ref: '#/components/schemas/user'
@@ -664,12 +665,12 @@ components:
           example:
             full_name: primary approver
             email: primary_approver@example.com
-        primary_approver_id:
+        secondary_approver_id:
           type: string
           maxLength: 255
           description: |
-            Employee Id of the primary approver.
-          example: ou4b24ugv3vg
+            Employee Id of the secondary approver.
+          example: ourjgeugv3vg
         secondary_approver:
           allOf:
             - $ref: '#/components/schemas/user'
@@ -678,12 +679,12 @@ components:
           example:
             full_name: secondary approver
             email: secondary_approver@example.com
-        secondary_approver_id:
+        tertiary_approver_id:
           type: string
           maxLength: 255
           description: |
-            Employee Id of the secondary approver.
-          example: ourjgeugv3vg
+            Employee Id of the tertiary approver.
+          example: oueuroefkver
         tertiary_approver:
           allOf:
             - $ref: '#/components/schemas/user'
@@ -692,12 +693,12 @@ components:
           example:
             full_name: tertiary approver
             email: tertiary_approver@example.com
-        tertiary_approver_id:
+        delegatee_id:
           type: string
           maxLength: 255
           description: |
-            Employee Id of the tertiary approver.
-          example: oueuroefkver
+            Employee Id of the delegatee.
+          example: ouvebjeasfj
         delegatee:
           allOf:
             - $ref: '#/components/schemas/user'
@@ -706,12 +707,6 @@ components:
           example:
             full_name: delegatee
             email: delegatee@example.com
-        delegatee_id:
-          type: string
-          maxLength: 255
-          description: |
-            Employee Id of the delegatee.
-          example: ouvebjeasfj
         delegation_end_at:
           type: string
           format: date-time
@@ -808,8 +803,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/employees
@@ -1423,9 +1416,6 @@ components:
 
             If the Expense is not verified yet, this could be null. <br>
           readOnly: true
-        skip_reimbursement:
-          type: boolean
-          deprecated: true
         vendor:
           type: string
           example: Uber
@@ -1613,8 +1603,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/expenses
@@ -1704,8 +1692,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/expense_custom_properties
@@ -1873,8 +1859,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/expenses
@@ -1941,12 +1925,6 @@ components:
           description: |
             Employee id of person who issued the advance.
           example: ouebvjwgjgl
-        issuer_email:
-          allOf:
-            - $ref: '#/components/schemas/email'
-          description: |
-            Email of the person who issued the advance.
-          example: issuer@example.com
         issuer:
           allOf:
             - $ref: '#/components/schemas/minimals_employee'
@@ -2104,8 +2082,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/advance_requests
@@ -2120,8 +2096,6 @@ components:
           $ref: '#/components/schemas/advance_id'
         assingee_id:
           $ref: '#/components/schemas/employee_id'
-        assignee_email:
-          $ref: '#/components/schemas/email'
         assignee:
           $ref: '#/components/schemas/minimals_employee'
         issuer_id:
@@ -2130,12 +2104,6 @@ components:
           description: |
             Employee id of person who issued the advance.
           example: ouebvjwgjgl
-        issuer_email:
-          allOf:
-            - $ref: '#/components/schemas/email'
-          description: |
-            Email of the person who issued the advance.
-          example: issuer@example.com
         issuer:
           allOf:
             - $ref: '#/components/schemas/minimals_employee'
@@ -2220,10 +2188,6 @@ components:
             "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
             timestamp on which the advance was settled.<br>
           example: '2020-07-23T09:32:00.933Z'
-        advance_request_approvals:
-          type: array
-          items:
-            $ref: '#/components/schemas/approvals'
     get_advances:
       type: object
       properties:
@@ -2231,8 +2195,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/advances
@@ -2327,8 +2289,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/reimbursements
@@ -2454,8 +2414,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/refunds
@@ -2541,8 +2499,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/settlements
@@ -2621,8 +2577,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/balance_transfers
@@ -2705,6 +2659,12 @@ components:
             This list of categories that are applicable for this project.
           items:
             $ref: '#/components/schemas/category'
+        primary_approver_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the primary approver.
+          example: ou4b24ugv3vg
         primary_approver:
           allOf:
             - $ref: '#/components/schemas/user'
@@ -2714,12 +2674,12 @@ components:
           example:
             full_name: primary approver
             email: primary_approver@example.com
-        primary_approver_id:
+        secondary_approver_id:
           type: string
           maxLength: 255
           description: |
-            Employee Id of the primary approver.
-          example: ou4b24ugv3vg
+            Employee Id of the secondary approver.
+          example: ourjgeugv3vg
         secondary_approver:
           allOf:
             - $ref: '#/components/schemas/user'
@@ -2728,12 +2688,6 @@ components:
           example:
             full_name: secondary approver
             email: secondary_approver@example.com
-        secondary_approver_id:
-          type: string
-          maxLength: 255
-          description: |
-            Employee Id of the secondary approver.
-          example: ourjgeugv3vg
     projects:
       type: object
       properties:
@@ -2741,8 +2695,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/projects
@@ -2828,8 +2780,6 @@ components:
           $ref: '#/components/schemas/count'
         offset:
           $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /admin/cost_centers
@@ -2927,9 +2877,9 @@ paths:
     post:
       tags:
         - Employees
-      summary: Create or update employees
+      summary: Create or update an employee
       description: |
-        Create or update employees.
+        Create or update an employee.
       operationId: post-employees
       requestBody:
         required: true
@@ -3367,9 +3317,9 @@ paths:
     post:
       tags:
         - Projects
-      summary: Create or update projects
+      summary: Create or update a projects
       description: |
-        Create or update projects.
+        Create or update a projects.
       operationId: post-projects
       requestBody:
         required: true
@@ -3458,9 +3408,9 @@ paths:
     post:
       tags:
         - Cost Centers
-      summary: Create or update cost Centers
+      summary: Create or update a cost center
       description: |
-        Create or update cost centers.
+        Create or update a cost center.
       operationId: post-cost-centers
       requestBody:
         required: true
