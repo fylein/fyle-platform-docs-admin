@@ -291,6 +291,11 @@ components:
       type: object
       readOnly: true
       properties:
+        id:
+          type: string
+          description: |
+            Unique identifier to a level object.
+          example: lvlwgon23lee
         name:
           type: string
           description: |
@@ -314,6 +319,10 @@ components:
       type: object
       readOnly: true
       properties:
+        id:
+          type: string
+          description: Unique identifier to a department object.
+          example: deptselnkgwr
         name:
           type: string
           example: Sales
@@ -324,6 +333,15 @@ components:
       type: object
       readOnly: true
       properties:
+        id:
+          type: string
+          maxLength: 255
+          description: |
+            This id helps to identify employees in other organisations.
+            This id is always prefixed with the string `us`.
+            This id is unique per email.
+          readOnly: true
+          example: usIYTLwzlaGu
         email:
           type: string
           format: email
@@ -374,6 +392,45 @@ components:
         rate:
           type: integer
           example: 40
+    project:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 10
+          description: >
+            This id provided by Fyle to identify a project from this
+            organisation.
+
+            This id is unique within the organisation.
+          readOnly: true
+          example: '2391'
+        name:
+          type: string
+          maxLength: 255
+          description: Represents the name of the project.
+          example: Fast and Furious
+        sub_project:
+          type: string
+          maxLength: 255
+          description: Represents the name of the sub_project.
+          example: Formula One
+        display_name:
+          type: string
+          maxLength: 513
+          description: >
+            This is a combination of name and sub_project separated by a / and
+            spaces.
+
+            In case if no sub_project is present it is same as name of the
+            project.
+          example: Fast and Furious / Formula One
+        code:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the code of project.
+          example: FF-032
     location:
       type: object
       properties:
@@ -540,11 +597,11 @@ components:
             Shows when this email was verified in Fyle.
           readOnly: true
           example: '2020-06-01T16:19:00.000Z'
-        onboarded:
+        is_onboarded:
           type: boolean
           description: >
             This flag indicates whether an employee has completed the onboarding
-            flow or not.
+            or not.
           example: true
         joined_at:
           type: string
@@ -583,7 +640,7 @@ components:
             `Given example is a fake number. We don't know who might answer your
             call.`
           example: +1-202-555-0167
-        mobile_verified:
+        is_mobile_verified:
           type: boolean
           description: ''
           default: false
@@ -707,15 +764,6 @@ components:
           example:
             full_name: delegatee
             email: delegatee@example.com
-        delegation_end_at:
-          type: string
-          format: date-time
-          description: >
-            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
-            section 5.6 compliant timestamp.</a>
-
-            Show when the employee has verified his/her mobile number in Fyle.
-          example: '2020-06-01T16:19:00.000Z'
         delegation_start_at:
           type: string
           format: date-time
@@ -724,6 +772,15 @@ components:
             section 5.6 compliant timestamp.</a>
 
             Shows when the employee was verified his/her mobile number in Fyle.
+          example: '2020-06-01T16:19:00.000Z'
+        delegation_end_at:
+          type: string
+          format: date-time
+          description: >
+            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+            section 5.6 compliant timestamp.</a>
+
+            Show when the employee has verified his/her mobile number in Fyle.
           example: '2020-06-01T16:19:00.000Z'
         mileage_rate_labels:
           type: array
@@ -742,17 +799,47 @@ components:
           example:
             - TWO_WHEELER
             - FOUR_WHEELER
+        cost_center_ids:
+          type: array
+          description: |
+            This list of cost center ids that are available for this employee.
+          items:
+            type: string
+          example:
+            - '11539'
         cost_centers:
           type: array
           description: |
-            This list of cost centers that are applicable for this employee.
+            This list of cost centers that are available for this employee.
           items:
             $ref: '#/components/schemas/cost_center'
+        per_diem_rate_ids:
+          type: array
+          description: |
+            This list of per diem rate ids that are available for this employee.
+          items:
+            type: string
+          example:
+            - '1104'
         per_diem_rates:
           type: array
-          description: This list of per diem rates that are applicable for this employee.
+          description: This list of per diem rates that are available for this employee.
           items:
             $ref: '#/components/schemas/perdiem'
+        project_ids:
+          type: array
+          description: |
+            This list of project ids that are available for this employee.
+          items:
+            type: string
+          example:
+            - '2391'
+        projects:
+          type: array
+          description: |
+            This list of projects that are available for this employee.
+          items:
+            $ref: '#/components/schemas/project'
         custom_properties:
           type: array
           items:
@@ -764,7 +851,7 @@ components:
             - ACTIVE
             - DISABLED
           example: ACTIVE
-        enabled:
+        is_enabled:
           type: boolean
           description: >
             Indicates whether an employee is enabled or not in Fyle.
@@ -959,35 +1046,6 @@ components:
         cannot be changed and is immutable.<br>
       example: ou12345Zdfx
       readOnly: true
-    project:
-      type: object
-      properties:
-        name:
-          type: string
-          maxLength: 255
-          description: Represents the name of the project.
-          example: Fast and Furious
-        sub_project:
-          type: string
-          maxLength: 255
-          description: Represents the name of the sub_project.
-          example: Formula One
-        display_name:
-          type: string
-          maxLength: 513
-          description: >
-            This is a combination of name and sub_project separated by a / and
-            spaces.
-
-            In case if no sub_project is present it is same as name of the
-            project.
-          example: Fast and Furious / Formula One
-        code:
-          type: string
-          maxLength: 255
-          description: |
-            This represents the code of project.
-          example: FF-032
     category:
       type: object
       properties:
@@ -998,8 +1056,6 @@ components:
           description: >
             This id provided by Fyle to identify a category from this
             organisation.
-
-            This id is a numeric string.
 
             This id is unique within the organisation.
         name:
@@ -1068,6 +1124,14 @@ components:
       type: object
       readOnly: true
       properties:
+        id:
+          type: string
+          maxLength: 255
+          description: |
+            This id prodvided by Fyle to uniquely identify a Expense report.
+            This id is always prefixed with `rp`.
+          readOnly: true
+          example: rpevetgn3kl
         purpose:
           type: string
         approved_at:
@@ -1505,13 +1569,13 @@ components:
             This is flag is set as false when admin creates expenses on your
             behalf.
           example: true
-        policy_flag:
+        is_policy_flagged:
           type: boolean
           description: >-
             This field indicates whether policy execution has flagged this
             expenses or not.
           example: false
-        manual_flag:
+        is_manual_flagged:
           type: boolean
           description: >
             This field indicates whether this expenses was manually flagged by
@@ -1532,9 +1596,9 @@ components:
           type: object
         transcribed_data:
           type: object
-        user_review_needed:
+        is_user_review_needed:
           type: boolean
-        mandatory_fields_present:
+        is_mandatory_fields_present:
           type: boolean
         transcription_state:
           type: string
@@ -1544,7 +1608,7 @@ components:
             - FAILURE
             - NO_WORK
           example: SUCCESS
-        receipt_required:
+        is_receipt_required:
           type: boolean
         is_holiday_expense:
           type: boolean
@@ -1560,7 +1624,7 @@ components:
         split_group_id:
           type: string
         split_group_user_amount:
-          type: string
+          type: number
         external_expense:
           type: object
         corporate_credit_card_transaction:
@@ -1615,7 +1679,7 @@ components:
       description: |
         This field specifies the placeholder of the custom property.
       example: Enter vendor
-    org_category_ids:
+    category_ids:
       type: array
       items:
         type: integer
@@ -1653,14 +1717,15 @@ components:
         placeholder:
           $ref: '#/components/schemas/placeholder'
         category_ids:
-          $ref: '#/components/schemas/org_category_ids'
+          $ref: '#/components/schemas/category_ids'
         categories:
           type: array
-          description: |
-            This list of categories that are applicable for this project.
+          description: >
+            This list of categories that are applicable for this custom
+            property.
           items:
             $ref: '#/components/schemas/category'
-        enabled:
+        is_enabled:
           $ref: '#/components/schemas/enabled'
         mandatory:
           $ref: '#/components/schemas/mandatory'
@@ -1813,7 +1878,7 @@ components:
           type: string
         manual_flag:
           type: boolean
-        policy_flag:
+        is_policy_flagged:
           type: boolean
         type:
           type: string
@@ -1873,6 +1938,8 @@ components:
       type: object
       readOnly: true
       properties:
+        id:
+          $ref: '#/components/schemas/advance_id'
         advance_number:
           type: string
           description: >
@@ -1910,11 +1977,6 @@ components:
           description: |
             Employee id of person who issued the advance.
           example: ouebvjwgjgl
-        issuer:
-          allOf:
-            - $ref: '#/components/schemas/minimals_employee'
-          description: |
-            Details for the person who issued the advance.
     advance_request_number:
       type: string
       maxLength: 255
@@ -1948,8 +2010,6 @@ components:
         This id is provided by Fyle to identify a project from this
         organisation.
 
-        This id is a numeric string.
-
         This id is unique within the organisation.
       example: '2391'
     policy_state:
@@ -1976,7 +2036,7 @@ components:
       description: |
         Flag which indicates if this object was pulled back by the requestor.
       example: false
-    advance_requests:
+    advance_request:
       type: object
       properties:
         id:
@@ -2039,7 +2099,7 @@ components:
             Amount set by policy
         policy_state:
           $ref: '#/components/schemas/policy_state'
-        policy_flag:
+        is_policy_flagged:
           $ref: '#/components/schemas/policy_flag'
         is_sent_back:
           $ref: '#/components/schemas/is_sent_back'
@@ -2060,7 +2120,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/approvals'
-    get_advance_requests:
+    advance_requests:
       type: object
       properties:
         count:
@@ -2073,8 +2133,8 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/advance_requests'
-    advances:
+            $ref: '#/components/schemas/advance_request'
+    objects_advance:
       type: object
       properties:
         id:
@@ -2173,7 +2233,7 @@ components:
             "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
             timestamp on which the advance was settled.<br>
           example: '2020-07-23T09:32:00.933Z'
-    get_advances:
+    advances:
       type: object
       properties:
         count:
@@ -2186,7 +2246,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/advances'
+            $ref: '#/components/schemas/objects_advance'
     settlement_id:
       type: string
       maxLength: 255
@@ -2230,12 +2290,6 @@ components:
 
             This id is always prefixed with `P/`.
           example: P/2020/11/29
-        accounting_exported:
-          type: boolean
-          description: >
-            Boolean value which signifies whether the particular reimbursement
-            has been exported using any accounting integration (like QBO).
-          example: true
         settlement_id:
           $ref: '#/components/schemas/settlement_id'
         created_at:
@@ -2281,12 +2335,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/reimbursements'
-    payment_id:
-      type: string
-      maxLength: 255
-      description: |
-        Unique identifier of payments object linked to this object.
-      example: payaSOemadma7
     refunds:
       type: object
       properties:
@@ -2381,8 +2429,6 @@ components:
           description: |
             Last 4 or 6 digits of the card used for payment of this refund.
           example: '2838'
-        payment_id:
-          $ref: '#/components/schemas/payment_id'
         source:
           type: string
           enum:
@@ -2466,17 +2512,15 @@ components:
             settlements of an employee.
           example: 39
         total_opening_balance:
-          type: integer
+          type: number
           description: |
             Value of opening amount of this settlement.
-          example: 1500
+          example: 1500.23
         total_closing_balance:
-          type: integer
+          type: number
           description: |
             Value of closing amount of this settlement.
-          example: 2500
-        currency:
-          $ref: '#/components/schemas/currency'
+          example: 2500.22
     get_settlements:
       type: object
       properties:
@@ -2546,15 +2590,10 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
-        source_account:
+        source_account_id:
           type: string
-          description: >
-            Signifies name of account with which this balance transfer is
-            associated.
-
-            Few sample values : Advance Account, Corporate Credit Card Account,
-            Organization Category Account
-          example: Personal Account
+        source_account:
+          $ref: '#/components/schemas/source_account'
     balance_transfers:
       type: object
       properties:
@@ -2622,7 +2661,7 @@ components:
           description: |
             This represents the description of project.
           example: Win the trophy
-        enabled:
+        is_enabled:
           type: boolean
           description: >
             This indicates if the project is enabled for use within the
@@ -2697,8 +2736,6 @@ components:
             This id provided by Fyle to identify a project from this
             organisation.
 
-            This id is a numeric string.
-
             This id is unique within the organisation.
           readOnly: true
           example: '2391'
@@ -2728,7 +2765,7 @@ components:
             This is provided by Fyle to identify a cost center from this
             organisation.
           readOnly: true
-          example: '1'
+          example: '11539'
         name:
           type: string
           maxLength: 255
@@ -2747,7 +2784,7 @@ components:
           description: |
             This field provides a decription about the cost center.
           example: Initial Cost center
-        enabled:
+        is_enabled:
           type: boolean
           description: |
             This field specifies if the current cost center is enabled or not.
@@ -3053,7 +3090,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/get_advance_requests'
+                $ref: '#/components/schemas/advance_requests'
         '401':
           description: Unauthorised request
           content:
@@ -3094,7 +3131,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/get_advances'
+                $ref: '#/components/schemas/advances'
         '401':
           description: Unauthorised request
           content:
