@@ -10,4 +10,4 @@ properties:
   data:
     type: array
     items:
-      $ref: '../../objects/advances.yaml'
+      $ref: '../../objects/advance.yaml'

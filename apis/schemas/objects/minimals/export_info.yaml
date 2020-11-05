@@ -2,7 +2,7 @@ type: object
 readOnly: true
 description: Accounting export information for this object.
 properties:
-  exported:
+  is_exported:
     type: boolean
     description: |
       Signifies whether this object has been exported to external accounting system or not.

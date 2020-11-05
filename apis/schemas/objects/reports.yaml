@@ -98,7 +98,7 @@ properties:
     type: string
   manual_flag:
     type: boolean
-  policy_flag:
+  is_policy_flagged:
     type: boolean
   type:
     type: string

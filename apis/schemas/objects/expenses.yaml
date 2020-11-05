@@ -278,12 +278,12 @@ properties:
       This field describes whether a user can delete this expenses.
       This is flag is set as false when admin creates expenses on your behalf.
     example: true
-  policy_flag:
+  is_policy_flagged:
     type: boolean
     description:
       This field indicates whether policy execution has flagged this expenses or not.
     example: false
-  manual_flag:
+  is_manual_flagged:
     type: boolean
     description: |
       This field indicates whether this expenses was manually flagged by approver or finance or admin.
@@ -301,9 +301,9 @@ properties:
     type: object
   transcribed_data:
     type: object
-  user_review_needed:
+  is_user_review_needed:
     type: boolean
-  mandatory_fields_present:
+  is_mandatory_fields_present:
     type: boolean
   transcription_state:
     type: string
@@ -313,7 +313,7 @@ properties:
       - FAILURE
       - NO_WORK
     example: SUCCESS
-  receipt_required:
+  is_receipt_required:
     type: boolean
   is_holiday_expense:
     type: boolean
@@ -329,7 +329,7 @@ properties:
   split_group_id:
     type: string
   split_group_user_amount:
-    type: string
+    type: numeric
   external_expense:
     type: object
   corporate_credit_card_transaction:

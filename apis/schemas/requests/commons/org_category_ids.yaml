@@ -1,5 +1,5 @@
 in: query
-name: org_category_ids
+name: category_ids
 description: |
   List of strings.<br>
   Supported operators are `eq`,`cs`.<br>

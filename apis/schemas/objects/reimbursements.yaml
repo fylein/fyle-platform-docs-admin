@@ -32,11 +32,6 @@ properties:
       A unique, organization wide identifier for a particular reimbursement.<br>
       This id is always prefixed with `P/`.
     example: 'P/2020/11/29'
-  accounting_exported:
-    type: boolean
-    description: |
-      Boolean value which signifies whether the particular reimbursement has been exported using any accounting integration (like QBO).
-    example: true
   settlement_id:
     $ref: 'commons/settlement_id.yaml'
   created_at:

@@ -84,8 +84,6 @@ properties:
     description: |
       Last 4 or 6 digits of the card used for payment of this refund.
     example: '2838'
-  payment_id:
-    $ref: 'commons/payment_id.yaml'
   source:
     type: string
     enum:

@@ -63,10 +63,10 @@ properties:
       Shows when this email was verified in Fyle.
     readOnly: true
     example: '2020-06-01T16:19:00.000Z'
-  onboarded:
+  is_onboarded:
     type: boolean
     description: |
-      This flag indicates whether an employee has completed the onboarding flow or not.
+      This flag indicates whether an employee has completed the onboarding or not.
     example: true
   joined_at:
     type: string
@@ -103,7 +103,7 @@ properties:
       Mobile number of the employee.
       `Given example is a fake number. We don't know who might answer your call.`
     example: '+1-202-555-0167'
-  mobile_verified:
+  is_mobile_verified:
     type: boolean
     description: |
     default: false
@@ -217,20 +217,19 @@ properties:
     example:
       full_name: 'delegatee'
       email: 'delegatee@example.com'
-
-  delegation_end_at:
-    type: string
-    format: date-time
-    description: |
-      <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
-      Show when the employee has verified his/her mobile number in Fyle.
-    example: '2020-06-01T16:19:00.000Z'
   delegation_start_at:
     type: string
     format: date-time
     description: |
       <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
       Shows when the employee was verified his/her mobile number in Fyle.
+    example: '2020-06-01T16:19:00.000Z'
+  delegation_end_at:
+    type: string
+    format: date-time
+    description: |
+      <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
+      Show when the employee has verified his/her mobile number in Fyle.
     example: '2020-06-01T16:19:00.000Z'
   mileage_rate_labels:
     type: array
@@ -247,17 +246,47 @@ properties:
         - BICYCLE
         - ELECTRIC_CAR
     example: [ 'TWO_WHEELER', 'FOUR_WHEELER' ]
+  cost_center_ids:
+    type: array
+    description: |
+      This list of cost center ids that are available for this employee.
+    items:
+      type: string
+    example:
+      - '11539'
   cost_centers:
     type: array
     description: |
-      This list of cost centers that are applicable for this employee.
+      This list of cost centers that are available for this employee.
     items:
       $ref: 'minimals/cost_center.yaml'
+  per_diem_rate_ids:
+    type: array
+    description: |
+      This list of per diem rate ids that are available for this employee.
+    items:
+      type: string
+    example:
+      - '1104'
   per_diem_rates:
     type: array
-    description: This list of per diem rates that are applicable for this employee.
+    description: This list of per diem rates that are available for this employee.
     items:
       $ref: 'minimals/perdiem.yaml'
+  project_ids:
+    type: array
+    description: |
+      This list of project ids that are available for this employee.
+    items:
+      type: string
+    example:
+      - '2391'
+  projects:
+    type: array
+    description: |
+      This list of projects that are available for this employee.
+    items:
+      $ref: 'minimals/project.yaml'
   custom_properties:
     type: array
     items:
@@ -269,7 +298,7 @@ properties:
       - ACTIVE
       - DISABLED
     example: ACTIVE
-  enabled:
+  is_enabled:
     type: boolean
     description: |
       Indicates whether an employee is enabled or not in Fyle.
@@ -294,4 +323,3 @@ properties:
       This flag indicates whether this is primary account of this employee or not.
     readOnly: true
     example: true
-

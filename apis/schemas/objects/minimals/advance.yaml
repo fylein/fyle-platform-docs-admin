@@ -1,6 +1,8 @@
 type: object
 readOnly: true
 properties:
+  id:
+    $ref: '../commons/advance_id.yaml'
   advance_number:
     type: string
     description: |
@@ -31,8 +33,3 @@ properties:
     description: |
       Employee id of person who issued the advance.
     example: 'ouebvjwgjgl'
-  issuer:
-    allOf:
-      - $ref: '../minimals/employee.yaml'
-    description: |
-      Details for the person who issued the advance.

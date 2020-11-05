@@ -37,7 +37,6 @@ properties:
     description: |
       Optional descriptive note which can be added to a refund.
     example: august's pending amount refund
-
   issued_at:
     type: string
     format: date-time
@@ -45,17 +44,11 @@ properties:
       <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
       Signifies when this balance transfer was issued by issuer.
     example: '2020-06-01T13:14:54.804Z'
-
   created_at:
     $ref: './commons/created_at.yaml'
-
   updated_at:
     $ref: './commons/updated_at.yaml'
-
-  source_account:
+  source_account_id:
     type: string
-    description: |
-      Signifies name of account with which this balance transfer is associated.
-      Few sample values : Advance Account, Corporate Credit Card Account, Organization Category Account
-    example: Personal Account
-
+  source_account:
+    $ref: 'minimals/source_account.yaml'

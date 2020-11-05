@@ -1,6 +1,15 @@
 type: object
 readOnly: true
 properties:
+  id:
+    type: string
+    maxLength: 255
+    description: |
+      This id helps to identify employees in other organisations.
+      This id is always prefixed with the string `us`.
+      This id is unique per email.
+    readOnly: true
+    example: 'usIYTLwzlaGu'
   email:
     type: string
     format: email

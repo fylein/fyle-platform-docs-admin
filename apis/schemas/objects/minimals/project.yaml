@@ -1,5 +1,13 @@
 type: object
 properties:
+  id:
+    type: string
+    maxLength: 10
+    description: |
+      This id provided by Fyle to identify a project from this organisation.
+      This id is unique within the organisation.
+    readOnly: true
+    example: '2391'
   name:
     type: string
     maxLength: 255

@@ -1,6 +1,11 @@
 type: object
 readOnly: true
 properties:
+  id:
+    type: string
+    description: |
+      Unique identifier to a level object.
+    example: 'lvlwgon23lee'
   name:
     type: string
     description: |

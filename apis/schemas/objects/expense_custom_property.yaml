@@ -15,14 +15,14 @@ properties:
   placeholder:
     $ref: './custom_properties/placeholder.yaml'
   category_ids:
-    $ref: './commons/org_category_ids.yaml'
+    $ref: './commons/category_ids.yaml'
   categories:
     type: array
     description: |
-      This list of categories that are applicable for this project.
+      This list of categories that are applicable for this custom property.
     items:
       $ref: 'minimals/category.yaml'
-  enabled:
+  is_enabled:
     $ref: './commons/enabled.yaml'
   mandatory:
     $ref: './custom_properties/mandatory.yaml'

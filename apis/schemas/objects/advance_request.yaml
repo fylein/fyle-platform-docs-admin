@@ -60,7 +60,7 @@ properties:
       Amount set by policy
   policy_state:
     $ref: 'commons/policy_state.yaml'
-  policy_flag:
+  is_policy_flagged:
     $ref: 'commons/policy_flag.yaml'
   is_sent_back:
     $ref: 'commons/is_sent_back.yaml'

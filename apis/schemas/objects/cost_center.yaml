@@ -6,7 +6,7 @@ properties:
     description: |
       This is provided by Fyle to identify a cost center from this organisation.
     readOnly: true
-    example: '1'
+    example: '11539'
   name:
     type: string
     maxLength: 255
@@ -25,7 +25,7 @@ properties:
     description: |
       This field provides a decription about the cost center.
     example: 'Initial Cost center'
-  enabled:
+  is_enabled:
     type: boolean
     description: |
       This field specifies if the current cost center is enabled or not.
