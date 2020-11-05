@@ -3041,11 +3041,22 @@ tags:
       This API gives you access to Issued Advances data of your organisation.
   - name: Advance Requests
     description: |
-      This API gives you access to your organisation's Advance requests data.
+      This API gives you access to your organisation's Advance Requests data.
   - name: Reimbursements
     description: >
       These APIs gives you access to manage your organisation's Reimbursements
       data.
+  - name: Refunds
+    description: |
+      These APIs gives you access to manage your organisation's Refunds data.
+  - name: Settlements
+    description: >
+      These APIs gives you access to manage your organisation's Settlements
+      data.
+  - name: Balance Transfers
+    description: >
+      These APIs gives you access to manage your organisation's Balance
+      Transfers data.
   - name: Projects
     description: |
       These APIs gives you access to manage your organisation's Projects data.
@@ -3056,20 +3067,6 @@ tags:
   - name: Categories
     description: |
       These APIs gives you access to manage your organisation's Categories data.
-  - name: Refunds
-    description: |
-      These APIs gives you access to manage your organisation's Refunds data.
-  - name: Settlements
-    description: >
-      These APIs gives you access to manage your organisation's Settlements
-      data.
-  - name: Balance Transfers
-    description: >
-      These APIs gives you access to manage your organisation's balance
-      transfers data.
-  - name: Orgs
-    description: |
-      This API gives you access to your current org data.
 paths:
   /admin/employees:
     get:
