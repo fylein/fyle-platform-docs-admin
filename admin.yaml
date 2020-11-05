@@ -517,7 +517,98 @@ components:
         electric_car:
           type: number
           example: 0
+    employee_id:
+      type: string
+      maxLength: 255
+      description: >
+        This is an id prodvided by Fyle to uniquely identify an employee within
+        an organization.
+
+        This id is always prefixed with `ou`.
+      readOnly: true
+      example: outGt9ju6qP
+    email:
+      type: string
+      format: email
+      maxLength: 127
+      example: john.doe@example.com
+      description: >
+        An immutable field that represents the email address.
+
+        Must be compliant with <a href="https://www.ietf.org/rfc/rfc822.txt">RFC
+        822.</a>
     employee:
+      type: object
+      description: Details of the employee to whom this object belongs to.
+      readOnly: true
+      properties:
+        id:
+          $ref: '#/components/schemas/employee_id'
+        user_id:
+          type: string
+          maxLength: 255
+          description: |
+            This id helps to identify employees in other organisations.
+            It is always prefixed with the string `us`.
+            It is unique per email.
+          example: usIYTLwzlaGu
+        email:
+          $ref: '#/components/schemas/email'
+        code:
+          type: string
+          maxLength: 255
+          example: E84122
+          description: >
+            This field refers to any string that the client programs can use to
+            refer to an employee's unique id.
+
+            This could be any field such as an UUID from an Active Directory
+            server or employee id in a HRMS system.
+        location:
+          type: string
+          maxLength: 255
+          example: Bangalore Ofc
+        level_id:
+          type: string
+          maxLength: 255
+          example: lvlnvJUe9k6Vx
+        department_id:
+          type: string
+          maxLength: 255
+          example: dept9in4oIHpdR
+        business_unit:
+          type: string
+          maxLength: 255
+          example: Finance ops
+          description: >-
+            Represents the business unit of the organization to which of the
+            employee belongs.
+        title:
+          type: string
+          maxLength: 255
+          example: Branch Manager
+          description: Represents the title/desgination of the employee.
+        mobile:
+          type: string
+          description: >
+            Mobile number of the employee.
+
+            `Given example is a fake number. We don't know who might answer your
+            call.`
+          example: +1-202-555-0167
+        joined_at:
+          type: string
+          format: date
+          example: '2018-10-31'
+          description: Date string in YYYY-MM-DD format
+        full_name:
+          type: string
+          maxLength: 255
+          example: John Doe
+          description: >-
+            Represents the full name of the employee. Must be at least 3
+            characters.
+    objects_employee:
       type: object
       properties:
         id:
@@ -886,6 +977,16 @@ components:
             or not.
           readOnly: true
           example: true
+        last_updater_id:
+          type: string
+          description: |
+            This represents the id of employee who updated this employee.
+          example: ouGgsdfdq
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this employee.
     employees:
       type: object
       properties:
@@ -899,7 +1000,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/employee'
+            $ref: '#/components/schemas/objects_employee'
     post_employees:
       type: object
       properties:
@@ -934,97 +1035,6 @@ components:
           type: string
           description: |
             This error means that incoming json is not in right format.
-    employee_id:
-      type: string
-      maxLength: 255
-      description: >
-        This is an id prodvided by Fyle to uniquely identify an employee within
-        an organization.
-
-        This id is always prefixed with `ou`.
-      readOnly: true
-      example: outGt9ju6qP
-    email:
-      type: string
-      format: email
-      maxLength: 127
-      example: john.doe@example.com
-      description: >
-        An immutable field that represents the email address.
-
-        Must be compliant with <a href="https://www.ietf.org/rfc/rfc822.txt">RFC
-        822.</a>
-    minimals_employee:
-      type: object
-      description: Details of the employee to whom this object belongs to.
-      readOnly: true
-      properties:
-        id:
-          $ref: '#/components/schemas/employee_id'
-        user_id:
-          type: string
-          maxLength: 255
-          description: |
-            This id helps to identify employees in other organisations.
-            It is always prefixed with the string `us`.
-            It is unique per email.
-          example: usIYTLwzlaGu
-        email:
-          $ref: '#/components/schemas/email'
-        code:
-          type: string
-          maxLength: 255
-          example: E84122
-          description: >
-            This field refers to any string that the client programs can use to
-            refer to an employee's unique id.
-
-            This could be any field such as an UUID from an Active Directory
-            server or employee id in a HRMS system.
-        location:
-          type: string
-          maxLength: 255
-          example: Bangalore Ofc
-        level_id:
-          type: string
-          maxLength: 255
-          example: lvlnvJUe9k6Vx
-        department_id:
-          type: string
-          maxLength: 255
-          example: dept9in4oIHpdR
-        business_unit:
-          type: string
-          maxLength: 255
-          example: Finance ops
-          description: >-
-            Represents the business unit of the organization to which of the
-            employee belongs.
-        title:
-          type: string
-          maxLength: 255
-          example: Branch Manager
-          description: Represents the title/desgination of the employee.
-        mobile:
-          type: string
-          description: >
-            Mobile number of the employee.
-
-            `Given example is a fake number. We don't know who might answer your
-            call.`
-          example: +1-202-555-0167
-        joined_at:
-          type: string
-          format: date
-          example: '2018-10-31'
-          description: Date string in YYYY-MM-DD format
-        full_name:
-          type: string
-          maxLength: 255
-          example: John Doe
-          description: >-
-            Represents the full name of the employee. Must be at least 3
-            characters.
     foreign_currency:
       type: string
       description: >
@@ -1276,7 +1286,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/minimals_employee'
+          $ref: '#/components/schemas/employee'
         spent_at:
           type: string
           format: date-time
@@ -1363,7 +1373,7 @@ components:
           $ref: '#/components/schemas/creator_id'
         creator:
           allOf:
-            - $ref: '#/components/schemas/minimals_employee'
+            - $ref: '#/components/schemas/employee'
           description: |
             Details of employee who created this expense.
         purpose:
@@ -1543,27 +1553,27 @@ components:
             represents the return date.
           type: string
           example: '2019-07-27T00:00:00.000Z'
-        distance:
+        mileage_distance:
           type: number
           description: Actual distance travelled by employee in mileage expenses.
-        calculated_distance:
+        mileage_calculated_distance:
           type: number
           description: Distance compluted by Fyle in mileage expenses.
-        distance_unit:
+        mileage_distance_unit:
           type: string
           enum:
             - KM
             - MILES
-        calculated_amount:
+        mileage_calculated_amount:
           type: number
           description: Amount compluted by Fyle in mileage expenses.
-        vehicle_type:
+        mileage_vehicle_type:
           type: string
           description: Type of vehicle used for travel.
-        rate:
+        mileage_rate:
           type: number
           description: Rate per km as provided in the Fyle system
-        is_round_trip:
+        mileage_is_round_trip:
           type: boolean
           description: Flag stating whether this was a round trip or not.
         mileage:
@@ -1666,6 +1676,16 @@ components:
               state: APPROVED
             - approver_id: ougo3nlwfgg
               state: APPROVAL_PENDING
+        last_updater_id:
+          type: string
+          description: |
+            This represents the id of employee who updated this expense.
+          example: ouGgsdfdq
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this expense.
         org_id:
           $ref: '#/components/schemas/org_id'
     get_expenses:
@@ -1763,6 +1783,16 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
+        last_updater_id:
+          type: string
+          description: |
+            This represents the id of employee who updated this custom property.
+          example: ouGgsdfdq
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this custom property.
     expense_custom_properties:
       type: object
       properties:
@@ -1803,7 +1833,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/minimals_employee'
+          $ref: '#/components/schemas/employee'
         created_at:
           $ref: '#/components/schemas/created_at'
         updated_at:
@@ -1895,7 +1925,7 @@ components:
           $ref: '#/components/schemas/creator_id'
         creator:
           allOf:
-            - $ref: '#/components/schemas/minimals_employee'
+            - $ref: '#/components/schemas/employee'
           description: |
             Details of employee who created this report.
         trip_request_id:
@@ -1930,6 +1960,16 @@ components:
                     example: 1
         org_id:
           $ref: '#/components/schemas/org_id'
+        last_updater_id:
+          type: string
+          description: |
+            This represents the id of employee who updated this report.
+          example: ouGgsdfdq
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this report.
     get_reports:
       type: object
       properties:
@@ -2072,7 +2112,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/minimals_employee'
+          $ref: '#/components/schemas/employee'
         amount:
           $ref: '#/components/schemas/amount'
         currency:
@@ -2148,6 +2188,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/approvals'
+        last_updater_id:
+          type: string
+          description: |
+            This represents the id of employee who updated this advance request.
+          example: ouGgsdfdq
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this advance request.
     advance_requests:
       type: object
       properties:
@@ -2170,7 +2220,7 @@ components:
         assingee_id:
           $ref: '#/components/schemas/employee_id'
         assignee:
-          $ref: '#/components/schemas/minimals_employee'
+          $ref: '#/components/schemas/employee'
         issuer_id:
           allOf:
             - $ref: '#/components/schemas/employee_id'
@@ -2179,7 +2229,7 @@ components:
           example: ouebvjwgjgl
         issuer:
           allOf:
-            - $ref: '#/components/schemas/minimals_employee'
+            - $ref: '#/components/schemas/employee'
           description: |
             Details for the person who issued the advance.
         amount:
@@ -2295,7 +2345,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/minimals_employee'
+          $ref: '#/components/schemas/employee'
         org_id:
           $ref: '#/components/schemas/org_id'
         currency:
@@ -2328,7 +2378,7 @@ components:
           $ref: '#/components/schemas/creator_id'
         creator:
           allOf:
-            - $ref: '#/components/schemas/minimals_employee'
+            - $ref: '#/components/schemas/employee'
           description: |
             Details of employee who created this reimbursement.
         mode:
@@ -2387,7 +2437,7 @@ components:
           example: outGt9ju6qP
         collector:
           allOf:
-            - $ref: '#/components/schemas/minimals_employee'
+            - $ref: '#/components/schemas/employee'
           description: |
             Details of employee who is the collector of this refund.
         returnee_id:
@@ -2403,7 +2453,7 @@ components:
           example: oul8zTHMnTjp
         returnee:
           allOf:
-            - $ref: '#/components/schemas/minimals_employee'
+            - $ref: '#/components/schemas/employee'
           description: |
             Details of employee who is the returnee of this refund.
         org_id:
@@ -2516,7 +2566,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/minimals_employee'
+          $ref: '#/components/schemas/employee'
         reimbursement_id:
           type: string
           maxLength: 255
@@ -2527,7 +2577,7 @@ components:
           $ref: '#/components/schemas/creator_id'
         creator:
           allOf:
-            - $ref: '#/components/schemas/minimals_employee'
+            - $ref: '#/components/schemas/employee'
           description: >
             Details of employee who created the reimbursement linked to this
             settlement.
@@ -2577,7 +2627,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/minimals_employee'
+          $ref: '#/components/schemas/employee'
         issuer_id:
           type: string
           maxLength: 255
@@ -2591,7 +2641,7 @@ components:
           example: oul8zTHMnTjp
         issuer:
           allOf:
-            - $ref: '#/components/schemas/minimals_employee'
+            - $ref: '#/components/schemas/employee'
           description: |
             Details of employee who issued this balance transfer.
         org_id:
@@ -2783,6 +2833,131 @@ components:
           description: |
             This represents the code of project.
           example: FF-032
+    limit:
+      description: |
+        The actual number of objects that are returned in the response.
+      type: integer
+      example: 100
+    categories:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 10
+          description: >
+            This id provided by Fyle to identify a project from this
+            organisation.
+
+            This id is a numeric string.
+
+            This id is unique within the organisation.
+          readOnly: true
+          example: '2391'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        name:
+          type: string
+          maxLength: 255
+          description: Represents the name of the project.
+          example: Fast and Furious
+        sub_category:
+          type: string
+          maxLength: 513
+          description: |
+            Represents the sub category of a given category.
+          example: One
+        system_category:
+          type: string
+          maxLength: 255
+          description: Represents the name of the system category.
+          example: Formula One
+        code:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the code of project.
+          example: FF-032
+        is_enabled:
+          type: boolean
+          description: >
+            This indicates if the project is enabled for use within the
+            organisation.
+          default: true
+          example: true
+        creator_id:
+          type: string
+          description: |
+            This represents the id of user who created the category.
+          example: ouEsdfdq
+        creator:
+          $ref: '#/components/schemas/employee'
+        last_updater_id:
+          type: string
+          description: |
+            This represents the id of employee who updated this category.
+          example: ouGgsdfdq
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this category.
+    get_categories:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /admin/categories
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/categories'
+    post_categories:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 10
+          example: '16570'
+          description: >
+            This id provided by Fyle to identify a category from this
+            organisation.
+
+            This id is unique within the organisation.
+        name:
+          type: string
+          maxLength: 255
+          example: Engine
+          description: Represents the name of the category.
+        sub_category:
+          type: string
+          maxLength: 255
+          example: Turbo charged
+          description: Represents the name of the sub_category.
+        display_name:
+          type: string
+          maxLength: 255
+          example: Engine / Turbo charged
+          description: >
+            This is a combination of name and sub_category separated by a / and
+            spaces.
+
+            In case if no sub_category is present it is same as name of the
+            category.
+        system_category:
+          type: string
+          maxLength: 255
+          example: Others
+          description: Represents the name of the system_category.
     objects_cost_center:
       type: object
       properties:
@@ -2823,6 +2998,16 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
+        last_updater_id:
+          type: string
+          description: |
+            This represents the id of employee who updated this cost center.
+          example: ouGgsdfdq
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this cost center.
     cost_centers:
       type: object
       properties:
@@ -2939,7 +3124,7 @@ paths:
               type: object
               properties:
                 data:
-                  $ref: '#/components/schemas/employee'
+                  $ref: '#/components/schemas/objects_employee'
               required:
                 - data
       responses:
@@ -3406,6 +3591,87 @@ paths:
                         type: string
                     example:
                       message: Invalid or duplicate project code
+                  - $ref: '#/components/schemas/json_parsing_error'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /admin/categories:
+    get:
+      tags:
+        - Categories
+      summary: List categories
+      operationId: get-categories
+      parameters:
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_categories'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+    post:
+      tags:
+        - Projects
+      summary: Create or update a category
+      description: |
+        Create or update a category.
+      operationId: post-categories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/categories'
+              required:
+                - data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: /admin/categories
+                  data:
+                    $ref: '#/components/schemas/post_categories'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                    example:
+                      message: Invalid or duplicate category code
                   - $ref: '#/components/schemas/json_parsing_error'
         '401':
           description: Unauthorised request
