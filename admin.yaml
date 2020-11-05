@@ -875,8 +875,8 @@ components:
       type: string
       maxLength: 255
       description: >
-        This id prodvided by Fyle to uniquely identify an employee within an
-        organization.
+        This is an id prodvided by Fyle to uniquely identify an employee within
+        an organization.
 
         This id is always prefixed with `ou`.
       readOnly: true
@@ -896,6 +896,8 @@ components:
       description: Details of the employee to whom this object belongs to.
       readOnly: true
       properties:
+        id:
+          $ref: '#/components/schemas/employee_id'
         user_id:
           type: string
           maxLength: 255
