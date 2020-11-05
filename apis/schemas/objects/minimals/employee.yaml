@@ -2,6 +2,8 @@ type: object
 description: Details of the employee to whom this object belongs to.
 readOnly: true
 properties:
+  id:
+    $ref: '../commons/employee_id.yaml'
   user_id:
     type: string
     maxLength: 255
