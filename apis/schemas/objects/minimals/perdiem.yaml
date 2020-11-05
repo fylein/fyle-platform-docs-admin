@@ -15,3 +15,6 @@ properties:
   rate:
     type: integer
     example: 40
+  num_days:
+    type: integer
+    example: 2

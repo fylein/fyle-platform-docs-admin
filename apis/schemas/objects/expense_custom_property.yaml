@@ -24,7 +24,7 @@ properties:
       $ref: 'minimals/category.yaml'
   is_enabled:
     $ref: './commons/enabled.yaml'
-  mandatory:
+  is_mandatory:
     $ref: './custom_properties/mandatory.yaml'
   org_id:
     $ref: './commons/org_id.yaml'

@@ -197,6 +197,11 @@ properties:
     type: array
     items:
       $ref: 'location.yaml'
+  bus_travel_class:
+    description: |
+      This field is applicable only for bus category.
+    type: string
+    example: 'AC'
   train_travel_class:
     description: |
       This field is applicable for only Train category.
@@ -212,11 +217,6 @@ properties:
       This field is applicable only for flight category. Can be `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
     type: string
     example: 'BUSINESS'
-  bus_travel_class:
-    description: |
-      This field is applicable only for bus category.
-    type: string
-    example: 'AC'
   started_at:
     description: |
       This field is only relevant for travel related categories. This represents the onward date.
@@ -229,34 +229,41 @@ properties:
     example: '2019-07-27T00:00:00.000Z'
   distance:
     type: number
+    description: Actual distance travelled by employee in mileage expenses.
+  calculated_distance:
+    type: number
+    description: Distance compluted by Fyle in mileage expenses.
   distance_unit:
     type: string
-  num_days:
-    type: integer
-  mileage_calculated_distance:
+    enum:
+      - KM
+      - MILES
+  calculated_amount:
     type: number
-  mileage_calculated_amount:
-    type: number
-  mileage_vehicle_type:
+    description: Amount compluted by Fyle in mileage expenses.
+  vehicle_type:
     type: string
-  mileage_rate:
+    description: Type of vehicle used for travel.
+  rate:
     type: number
-  mileage_is_round_trip:
+    description: Rate per km as provided in the Fyle system
+  is_round_trip:
     type: boolean
+    description: Flag stating whether this was a round trip or not.
+  mileage:
+    $ref: 'minimals/mileage.yaml'
   hotel_is_breakfast_provided:
     type: boolean
   per_diem_rate_id:
     type: string
   per_diem_rate:
     $ref: 'minimals/perdiem.yaml'
+  num_days:
+    type: integer
   activity_details:
     type: string
   activity_policy_pending:
     type: boolean
-  num_attachments:
-    type: integer
-    description: |
-      Number of attachments linked to this Expenses.
   has_attachments:
     type: boolean
     description: |
@@ -272,12 +279,6 @@ properties:
     type: array
     items:
       $ref: 'custom_property.yaml'
-  user_can_delete:
-    type: boolean
-    description: |
-      This field describes whether a user can delete this expenses.
-      This is flag is set as false when admin creates expenses on your behalf.
-    example: true
   is_policy_flagged:
     type: boolean
     description:
