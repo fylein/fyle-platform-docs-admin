@@ -3187,7 +3187,7 @@ paths:
     get:
       tags:
         - Refunds
-      summary: List Refund
+      summary: List refund
       operationId: get-refunds
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3265,7 +3265,7 @@ paths:
     get:
       tags:
         - Balance Transfers
-      summary: List Balance Transfer
+      summary: List balance transfers
       operationId: get-balance-transfers
       parameters:
         - $ref: '#/components/parameters/created_at'
@@ -3338,9 +3338,9 @@ paths:
     post:
       tags:
         - Projects
-      summary: Create or update a projects
+      summary: Create or update a project
       description: |
-        Create or update a projects.
+        Create or update a project.
       operationId: post-projects
       requestBody:
         required: true
