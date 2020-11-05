@@ -1638,8 +1638,7 @@ components:
         This field specifies the org category ids associated with the custom
         property.
       example:
-        - 1
-        - 3
+        - 16570
     enabled:
       type: boolean
       description: |
@@ -1668,8 +1667,14 @@ components:
           $ref: '#/components/schemas/options'
         placeholder:
           $ref: '#/components/schemas/placeholder'
-        org_category_ids:
+        category_ids:
           $ref: '#/components/schemas/org_category_ids'
+        categories:
+          type: array
+          description: |
+            This list of categories that are applicable for this project.
+          items:
+            $ref: '#/components/schemas/category'
         enabled:
           $ref: '#/components/schemas/enabled'
         mandatory:
@@ -3316,13 +3321,6 @@ paths:
       description: |
         Create or update a projects.
       operationId: post-projects
-      parameters:
-        - in: header
-          name: Content-Type
-          schema:
-            type: string
-          default: application/json
-          example: application/json
       requestBody:
         required: true
         content:
