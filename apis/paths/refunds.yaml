@@ -1,7 +1,7 @@
 get:
   tags:
     - Refunds
-  summary: List Refund
+  summary: List refund
   operationId: get-refunds
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
