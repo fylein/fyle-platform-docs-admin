@@ -1,13 +1,13 @@
 type: object
 readOnly: true
 properties:
-  customerMetadataId:
+  customer_metadata_id:
     type: string
     readOnly: true
-  customerId:
+  customer_id:
     type: string
     readOnly: true
-  bankAccountAdded:
+  bank_account_added:
     type: boolean
     readOnly: true
     description: |

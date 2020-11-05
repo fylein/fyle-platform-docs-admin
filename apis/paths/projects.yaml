@@ -86,11 +86,10 @@ post:
         application/json:
           schema:
             oneOf:
-              - type: array
-                items:
-                  $ref: '../schemas/errors/bulk_error.yaml'
+              - type: object
+                properties:
+                  message:
+                    type: string
                 example:
-                  - row: 1
-                    key: Project abcd
-                    message: Invalid or duplicate project code
+                  message: Invalid or duplicate project code
               - $ref: '../schemas/errors/json_parsing_error.yaml'

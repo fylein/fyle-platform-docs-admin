@@ -269,12 +269,12 @@ properties:
       - ACTIVE
       - DISABLED
     example: ACTIVE
-  disabled:
+  enabled:
     type: boolean
     description: |
-      Indicates whether an employee is disabled or not in Fyle.
-      During POST call, If set to `TRUE`, an active employee account will be disabled.
-      Setting to `FALSE` will NOT enable a disabled employee.
+      Indicates whether an employee is enabled or not in Fyle.
+      During POST call, If set to `FALSE`, an active employee account will be disabled.
+      Setting to `TRUE` will NOT enable a employee.
       This can only be accomplished from the web-app.
     default: false
   special_email:
