@@ -57,7 +57,7 @@ components:
           updated_at=gte.2020-06-01T00:00:00.000Z&updated_at=lt.2020-07-01T00:00:00.000Z
     offset:
       in: query
-      name: offest
+      name: offset
       description: |
         offset is used to skip that many number of objects before counting. <br>
       schema:
