@@ -1,0 +1,8 @@
+in: query
+name: mode
+description: |
+  Possible values : ACH, OFFLINE.<br>
+  Supported operators are `eq`, `like`, `in`.<br>
+schema:
+  type: string
+  example: 'in.(ACH)'

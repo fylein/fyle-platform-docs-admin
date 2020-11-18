@@ -1,0 +1,7 @@
+in: query
+name: category
+description: |
+  Supported operators are `in`,`eq`,`like`.<br>
+schema:
+  type: string
+  example: 'eq.Food'

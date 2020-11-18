@@ -1,0 +1,10 @@
+type: array
+items:
+  type: string
+  enum:
+    - ONE_WAY
+    - ROUND
+    - MULTI_CITY
+description: |
+  This field specifies the trip type of trip request.
+example: [ 'ONE_WAY','ROUND','MULTI_CITY' ]

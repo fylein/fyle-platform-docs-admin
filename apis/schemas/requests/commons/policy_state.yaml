@@ -1,0 +1,8 @@
+in: query
+name: policy_state
+description: |
+  Possible values : SUCCESS, FAILED.<br>
+  Supported operators are `eq`, `like`, `in`.<br>
+schema:
+  type: string
+  example: 'in.(SUCCESS)'

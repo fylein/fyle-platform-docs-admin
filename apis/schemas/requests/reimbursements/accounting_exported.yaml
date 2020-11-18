@@ -1,0 +1,8 @@
+in: query
+name: accounting_exported
+description: |
+  Possible values : true, false.<br>
+  Supported operators are `eq`, `in`.<br>
+schema:
+  type: string
+  example: 'accounting_exported=eq.true'

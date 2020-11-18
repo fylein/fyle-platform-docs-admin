@@ -1,0 +1,7 @@
+in: query
+name: original_currency
+description: |
+  Supported operators are `eq`, `like`, `in`.<br>
+schema:
+  type: string
+  example: 'in.(USD,INR)'

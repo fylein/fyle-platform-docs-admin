@@ -1,0 +1,7 @@
+in: query
+name: payment_mode
+description: |
+  Supported operators for filtering are : `eq`.
+schema:
+  type: string
+  example: eq.BANK_TRANSFER

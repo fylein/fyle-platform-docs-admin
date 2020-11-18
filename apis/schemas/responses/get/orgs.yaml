@@ -1,0 +1,15 @@
+type: object
+properties:
+  count:
+    allOf:
+      - $ref: '../commons/count.yaml'
+    example: 1
+  offset:
+    $ref: '../commons/offset.yaml'
+  url:
+    type: string
+    example: '/admin/orgs'
+  data:
+    type: array
+    items:
+      $ref: '../../objects/orgs.yaml'

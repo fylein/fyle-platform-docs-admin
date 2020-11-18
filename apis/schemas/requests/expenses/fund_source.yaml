@@ -1,0 +1,11 @@
+in: query
+name: fund_source
+description: |
+  To filter expenses by their fund source.
+  fund_source=eq.ADVANCE will return all the expenses with fund source as ADVANCE.
+  state=in.(CCC,ADVANCE) will return all the expenses which have fund source as 'ADVANCE' or 'CCC'.
+  Accepted states are 'ADVANCE', 'PERSONAL', 'CCC'.
+  Supported operators are `eq`, `in`.<br>
+schema:
+  type: string
+  example: 'in.(CCC,ADVANCE)'

@@ -1,0 +1,7 @@
+in: query
+name: source_account
+description: |
+  Supported operators are `in`,`eq`.<br>
+schema:
+  type: string
+  example: 'eq.Personal Account'

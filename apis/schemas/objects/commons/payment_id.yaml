@@ -1,0 +1,5 @@
+type: string
+maxLength: 255
+description: |
+  Unique identifier of payments object linked to this object.
+example: payaSOemadma7

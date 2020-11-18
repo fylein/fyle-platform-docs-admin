@@ -1,0 +1,44 @@
+type: object
+properties:
+  id:
+    type: number
+    description: |
+      This id is provided by Fyle to identify a particular custom property.
+    readOnly: true
+    example: 7
+  name:
+    $ref: './custom_properties/name.yaml'
+  type:
+    $ref: './custom_properties/type.yaml'
+  options:
+    $ref: './custom_properties/options.yaml'
+  placeholder:
+    $ref: './custom_properties/placeholder.yaml'
+  category_ids:
+    $ref: './commons/category_ids.yaml'
+  categories:
+    type: array
+    description: |
+      This list of categories that are applicable for this custom property.
+    items:
+      $ref: 'minimals/category.yaml'
+  is_enabled:
+    $ref: './commons/enabled.yaml'
+  is_mandatory:
+    $ref: './custom_properties/mandatory.yaml'
+  org_id:
+    $ref: './commons/org_id.yaml'
+  created_at:
+    $ref: './commons/created_at.yaml'
+  updated_at:
+    $ref: './commons/updated_at.yaml'
+  last_updater_id:
+    type: string
+    description: |
+      This represents the id of employee who updated this custom property.
+    example: "ouGgsdfdq"
+  last_updater:
+    allOf:
+      - $ref: 'minimals/employee.yaml'
+    description: |
+      Details of employee who updated this custom property.
