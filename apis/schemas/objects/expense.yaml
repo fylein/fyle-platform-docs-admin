@@ -170,8 +170,6 @@ properties:
     description: |
       Indicates whether the Expense is verified or not
     readOnly: true
-  verification_state:
-    type: string
   verified_at:
     type: string
     format: date-time
@@ -197,26 +195,6 @@ properties:
     type: array
     items:
       $ref: 'location.yaml'
-  bus_travel_class:
-    description: |
-      This field is applicable only for bus category.
-    type: string
-    example: 'AC'
-  train_travel_class:
-    description: |
-      This field is applicable for only Train category.
-    type: string
-    example: string
-  flight_journey_travel_class:
-    description: |
-      This field is applicable only for flight category. Can be `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
-    type: string
-    example: 'ECONOMY'
-  flight_return_travel_class:
-    description: |
-      This field is applicable only for flight category. Can be `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
-    type: string
-    example: 'BUSINESS'
   started_at:
     description: |
       This field is only relevant for travel related categories. This represents the onward date.
@@ -227,33 +205,15 @@ properties:
       This field is only relevant for travel related categories. This represents the return date.
     type: string
     example: '2019-07-27T00:00:00.000Z'
-  mileage_distance:
-    type: number
-    description: Actual distance travelled by employee in mileage expenses.
-  mileage_calculated_distance:
-    type: number
-    description: Distance compluted by Fyle in mileage expenses.
-  mileage_distance_unit:
-    type: string
-    enum:
-      - KM
-      - MILES
-  mileage_calculated_amount:
-    type: number
-    description: Amount compluted by Fyle in mileage expenses.
-  mileage_vehicle_type:
-    type: string
-    description: Type of vehicle used for travel.
-  mileage_rate:
-    type: number
-    description: Rate per km as provided in the Fyle system
-  mileage_is_round_trip:
-    type: boolean
-    description: Flag stating whether this was a round trip or not.
   mileage:
     $ref: 'minimals/mileage.yaml'
-  hotel_is_breakfast_provided:
-    type: boolean
+  travel:
+    $ref: 'minimals/travel.yaml'
+  hotel:
+    type: object
+    properties:
+      is_breakfast_provided:
+        type: boolean
   per_diem_rate_id:
     type: string
   per_diem_rate:
@@ -264,8 +224,6 @@ properties:
           num_days:
             type: integer
             example: 2
-  num_days:
-    type: integer
   activity_details:
     type: string
   activity_policy_pending:
@@ -312,14 +270,6 @@ properties:
     type: boolean
   is_mandatory_fields_present:
     type: boolean
-  transcription_state:
-    type: string
-    enum:
-      - IN_PROGRESS
-      - SUCCESS
-      - FAILURE
-      - NO_WORK
-    example: SUCCESS
   is_receipt_required:
     type: boolean
   is_holiday_expense:
@@ -333,14 +283,20 @@ properties:
     example: NO_RISK
   external_id:
     type: string
+    description: |
+      Id given by external systems like Gmail. To identify whether that entity has been already added to Fyle or not.
   split_group_id:
     type: string
   split_group_user_amount:
     type: number
-  external_expense:
+  personal_card_transaction:
     type: object
+    description: |
+      This key contains details about personal card transaction linked to this expense.
   corporate_credit_card_transaction:
     type: object
+    description: |
+      This key contains details about corporate card transaction linked to this expense.
   transaction_approvals:
     type: array
     items:

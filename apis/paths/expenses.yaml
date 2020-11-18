@@ -35,3 +35,60 @@ get:
         application/json:
           schema:
             $ref: '../schemas/errors/401.yaml'
+
+post:
+  tags:
+    - Expenses
+  summary: Create or update an expense
+  description: |
+    Create or update an expense.
+  operationId: post-expense
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              $ref: '../schemas/objects/expense.yaml'
+          required: [ data ]
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+                example: '/admin/expense'
+              data:
+                $ref: '../schemas/objects/expense.yaml'
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/403.yaml'
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: Invalid or disabled project id
+              - $ref: '../schemas/errors/json_parsing_error.yaml'
