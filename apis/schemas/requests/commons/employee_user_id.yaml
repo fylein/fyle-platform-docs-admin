@@ -1,0 +1,7 @@
+in: query
+name: employee->user_id
+description: |
+  Supported operators are `in`,`eq`.<br>
+schema:
+  type: string
+  example: 'eq.usIfhs65KvvF'

@@ -1,0 +1,5 @@
+type: string
+enum: [ SUCCESS, FAILED ]
+description: |
+  Enum value signifying the action of policy on this object.
+example: SUCCESS

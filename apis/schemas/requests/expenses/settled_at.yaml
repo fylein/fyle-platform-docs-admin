@@ -1,0 +1,10 @@
+in: query
+name: report->settled_at
+description: |
+  Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS dot pattern.<br>
+  Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
+  report->settled_at=gte.2020-06-01T00:00:00.000Z filters all expenses settled on or after 1st Jun 2020.<br>
+  report->settled_at=gte.2020-06-01T00:00:00.000Z&report->settled_at=lt.2020-07-01T00:00:00.000Z filters all expenses settled in the month of Jun 2020.<br>
+schema:
+  type: string
+  example: 'report->settled_at=gte.2020-06-01T00:00:00.000Z&report->settled_at=lt.2020-07-01T00:00:00.000Z'

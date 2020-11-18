@@ -1,0 +1,9 @@
+in: query
+name: trip_request_id
+schema:
+  type: string
+description: |
+  Filters the objects by trip_request_id. For single value use `trip_request_id=eq.<value>`.
+  For mulitple values, use `trip_request_id=in.(value1,value2,value3)`. <br>
+  Supported operators: `in`, `eq`, `not.in`, `not.eq`
+example: eq.trObdH5YgKzL

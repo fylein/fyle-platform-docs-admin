@@ -1,0 +1,7 @@
+in: query
+name: settlement_id
+description: |
+  Supported operators are `in`,`eq`.<br>
+schema:
+  type: string
+  example: 'eq.setRd8Dw5hD'

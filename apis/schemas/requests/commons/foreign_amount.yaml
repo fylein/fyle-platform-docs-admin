@@ -1,0 +1,7 @@
+in: query
+name: original_amount
+description: |
+  Supported operators are `eq`,`gte`,`lte`,`gt`,`lt`,`in`.<br>
+schema:
+  type: string
+  example: 'eq.100'

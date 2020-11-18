@@ -1,0 +1,8 @@
+in: query
+name: total_closing_balance
+description: |
+  Supported operators are `eq`,`gte`,`lte`,`gt`,`lt`,`in`.<br>
+  total_closing_balance=in.(value1,value2)
+schema:
+  type: string
+  example: 'eq.100'
