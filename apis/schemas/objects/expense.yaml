@@ -141,7 +141,7 @@ properties:
   exchange_rate:
     type: number
     description: |
-      This field determines at which rate the expenses from foriegn currency was converted to home curreny
+      This field determines at which rate the expenses from foriegn currency was converted to home currency.
   report_id:
     type: string
     description: |
@@ -157,13 +157,13 @@ properties:
   physical_bill:
     type: boolean
     description: |
-      This field indicated whether physicall bill was received or not.
+      This field indicated whether physical bill was received or not.
     example: true
   physical_bill_at:
     type: string
     format: date-time
     description: |
-      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp indicating when the Expense's physicall bill was submitted.
+      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp indicating when the Expense's physical bill was submitted.
       If the Expense's bill is not required to be submitted, then this could be null.
   verified:
     type: boolean

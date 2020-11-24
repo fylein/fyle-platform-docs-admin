@@ -14,7 +14,7 @@ properties:
   band:
     type: string
     description: |
-      Band in which this level belongs to, you can group mulitple levels into a single band.
+      Band in which this level belongs to, you can group multiple levels into a single band.
     example: 'Associate'
   rank:
     type: integer

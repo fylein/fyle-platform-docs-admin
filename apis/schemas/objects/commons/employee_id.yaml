@@ -1,7 +1,7 @@
 type: string
 maxLength: 255
 description: |
-  This is an id prodvided by Fyle to uniquely identify an employee within an organization.
+  This is an id provided by Fyle to uniquely identify an employee within an organization.
   This id is always prefixed with `ou`.
 readOnly: true
 example: outGt9ju6qP

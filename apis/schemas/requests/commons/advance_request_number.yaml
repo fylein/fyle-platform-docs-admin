@@ -4,6 +4,6 @@ schema:
   type: string
 description: |
   Filters the objects by advance_request_number. For single value use `advance_request_number=eq.<value>`.
-  For mulitple values, use `advance_request_number=in.(value1,value2,value3)`. <br>
+  For multiple values, use `advance_request_number=in.(value1,value2,value3)`. <br>
   Supported operators: `in`, `eq`, `not.in`, `not.eq`
 example: eq.AR/2019/03/R/2

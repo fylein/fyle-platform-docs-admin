@@ -4,7 +4,7 @@ properties:
     type: string
     maxLength: 255
     description: |
-      This id prodvided by Fyle to identify an employee from this organisation.
+      This id provided by Fyle to identify an employee from this organisation.
       This id is always prefixed with `ou`.
       This id is unique per organisation per email.
     readOnly: true
@@ -314,7 +314,7 @@ properties:
       A corresponding expense will be created in their Fyle app.
     example: 'receipts+john_doe_ejtj@fyle.ai'
   dwolla_customers_metadata:
-    $ref: 'minimals/dwolla_cutomers_metadata.yaml'
+    $ref: 'minimals/dwolla_customers_metadata.yaml'
   annual_mileage_of_user_before_joining_fyle:
     $ref: 'annual_mileage.yaml'
   is_primary:

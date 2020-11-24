@@ -4,7 +4,7 @@ properties:
     type: string
     maxLength: 255
     description: |
-      This id prodvided by Fyle to uniquely identify a balance transfer.
+      This id provided by Fyle to uniquely identify a balance transfer.
       This id is always prefixed with `bt`.
     readOnly: true
     example: 'btLL7YJKZHMz'
@@ -17,7 +17,7 @@ properties:
     maxLength: 255
     description: |
       Employee ID of issuer of the balance transfer.
-      This ID prodvided by Fyle to uniquely identify an employee within an organization.
+      This ID provided by Fyle to uniquely identify an employee within an organization.
       This ID is always prefixed with `ou`.
     example: 'oul8zTHMnTjp'
   # note : use this notation to override description for issuer/creator/returnee/etc. i.e secondary type of employee objects
