@@ -122,7 +122,7 @@ components:
         verified is used to filter expenses by verified flag.
 
         For example, if verified is true, it will return all the verified
-        expenses. If verififed is false, it will return all the unverified
+        expenses. If verified is false, it will return all the unverified
         expenses. leaving it blank will return all the expenses.
     name:
       in: query
@@ -304,7 +304,7 @@ components:
         band:
           type: string
           description: >
-            Band in which this level belongs to, you can group mulitple levels
+            Band in which this level belongs to, you can group multiple levels
             into a single band.
           example: Associate
         rank:
@@ -473,7 +473,7 @@ components:
                 type: string
       example:
         house: gryffindor
-    dwolla_cutomers_metadata:
+    dwolla_customers_metadata:
       type: object
       readOnly: true
       properties:
@@ -518,7 +518,7 @@ components:
       type: string
       maxLength: 255
       description: >
-        This is an id prodvided by Fyle to uniquely identify an employee within
+        This is an id provided by Fyle to uniquely identify an employee within
         an organization.
 
         This id is always prefixed with `ou`.
@@ -612,7 +612,7 @@ components:
           type: string
           maxLength: 255
           description: >
-            This id prodvided by Fyle to identify an employee from this
+            This id provided by Fyle to identify an employee from this
             organisation.
 
             This id is always prefixed with `ou`.
@@ -964,7 +964,7 @@ components:
             A corresponding expense will be created in their Fyle app.
           example: receipts+john_doe_ejtj@fyle.ai
         dwolla_customers_metadata:
-          $ref: '#/components/schemas/dwolla_cutomers_metadata'
+          $ref: '#/components/schemas/dwolla_customers_metadata'
         annual_mileage_of_user_before_joining_fyle:
           $ref: '#/components/schemas/annual_mileage'
         is_primary:
@@ -1113,7 +1113,7 @@ components:
           type: string
           maxLength: 255
           description: |
-            This id prodvided by Fyle to uniquely identify a Expense report.
+            This id provided by Fyle to uniquely identify a Expense report.
             This id is always prefixed with `rp`.
           readOnly: true
           example: rpevetgn3kl
@@ -1445,7 +1445,7 @@ components:
           type: number
           description: >
             This field determines at which rate the expenses from foriegn
-            currency was converted to home curreny
+            currency was converted to home currency.
         report_id:
           type: string
           description: |
@@ -1466,7 +1466,7 @@ components:
         physical_bill:
           type: boolean
           description: |
-            This field indicated whether physicall bill was received or not.
+            This field indicated whether physical bill was received or not.
           example: true
         physical_bill_at:
           type: string
@@ -1474,8 +1474,7 @@ components:
           description: >
             RFC 3339, section 5.6
             "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp indicating when the Expense's physicall bill was
-            submitted.
+            timestamp indicating when the Expense's physical bill was submitted.
 
             If the Expense's bill is not required to be submitted, then this
             could be null.
@@ -1786,7 +1785,7 @@ components:
           type: string
           maxLength: 255
           description: |
-            This id prodvided by Fyle to uniquely identify a Expense report.
+            This id provided by Fyle to uniquely identify a Expense report.
             This id is always prefixed with `rp`.
           readOnly: true
           example: rpevetgn3kl
@@ -2298,7 +2297,7 @@ components:
           type: string
           maxLength: 255
           description: |
-            This id prodvided by Fyle to uniquely identify a reimbursement.
+            This id provided by Fyle to uniquely identify a reimbursement.
             This id is always prefixed with `reim`.
           readOnly: true
           example: reimntGt9ju6qP
@@ -2380,7 +2379,7 @@ components:
           type: string
           maxLength: 255
           description: |
-            This id prodvided by Fyle to uniquely identify a refund.
+            This id provided by Fyle to uniquely identify a refund.
             This id is always prefixed with `ref`.
           readOnly: true
           example: refDml2wrWqk1
@@ -2390,7 +2389,7 @@ components:
           description: >
             Employee ID of collector of the refund.
 
-            This ID prodvided by Fyle to uniquely identify an employee within an
+            This ID provided by Fyle to uniquely identify an employee within an
             organization.
 
             This ID is always prefixed with `ou`.
@@ -2406,7 +2405,7 @@ components:
           description: >
             Employee ID of returnee of the refund.
 
-            This ID prodvided by Fyle to uniquely identify an employee within an
+            This ID provided by Fyle to uniquely identify an employee within an
             organization.
 
             This ID is always prefixed with `ou`.
@@ -2497,7 +2496,7 @@ components:
           type: string
           maxLength: 255
           description: |
-            This id prodvided by Fyle to uniquely identify a settlement.
+            This id provided by Fyle to uniquely identify a settlement.
             This id is always prefixed with `set`.
           readOnly: true
           example: setmntGt9ju6qP
@@ -2580,7 +2579,7 @@ components:
           type: string
           maxLength: 255
           description: |
-            This id prodvided by Fyle to uniquely identify a balance transfer.
+            This id provided by Fyle to uniquely identify a balance transfer.
             This id is always prefixed with `bt`.
           readOnly: true
           example: btLL7YJKZHMz
@@ -2594,7 +2593,7 @@ components:
           description: >
             Employee ID of issuer of the balance transfer.
 
-            This ID prodvided by Fyle to uniquely identify an employee within an
+            This ID provided by Fyle to uniquely identify an employee within an
             organization.
 
             This ID is always prefixed with `ou`.
