@@ -6,7 +6,7 @@ properties:
     $ref: '../commons/offset.yaml'
   url:
     type: string
-    example: '/admin/expenses'
+    example: '/admin/reports'
   data:
     type: array
     items:
