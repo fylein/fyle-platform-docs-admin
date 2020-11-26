@@ -11,7 +11,6 @@ properties:
       - $ref: 'commons/employee_id.yaml'
     description: |
       Employee id of person who issued the advance.
-    example: 'ouebvjwgjgl'
   issuer:
     allOf:
       - $ref: 'minimals/employee.yaml'
