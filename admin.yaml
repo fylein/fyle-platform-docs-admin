@@ -1358,7 +1358,7 @@ components:
             with in case of GET requests. <br>
 
             This could be null if admin or approver has not edited your expense.
-          example: null
+          example: 0
         tax:
           type: number
           description: Tax amount as setup by your organisation.
