@@ -2003,7 +2003,6 @@ components:
             - $ref: '#/components/schemas/employee_id'
           description: |
             Employee id of person who issued the advance.
-          example: ouebvjwgjgl
     advance_request_number:
       type: string
       maxLength: 255
@@ -2185,7 +2184,6 @@ components:
             - $ref: '#/components/schemas/employee_id'
           description: |
             Employee id of person who issued the advance.
-          example: ouebvjwgjgl
         issuer:
           allOf:
             - $ref: '#/components/schemas/employee'
