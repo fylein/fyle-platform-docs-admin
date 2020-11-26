@@ -58,7 +58,7 @@ properties:
       The transaction amount which is modified by admin or approver.
       The amount will be in the currency that the organization is setup with in case of GET requests. <br>
       This could be null if admin or approver has not edited your expense.
-    example: null
+    example: 0
   tax:
     type: number
     description:
