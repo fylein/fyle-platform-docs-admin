@@ -142,6 +142,15 @@ components:
       schema:
         type: string
         example: eq.true
+    order:
+      in: query
+      name: order
+      description: |
+        use comma separated column names for sorting the results. <br>
+        For sorting in descending order, use `column_name.desc`
+      schema:
+        type: string
+        example: 'updated_at.desc,id'
     reports_state:
       in: query
       name: state
@@ -1271,6 +1280,7 @@ components:
       type: string
       description: |
         The unique id of the Organization to which the object is associated.
+      readOnly: true
       example: orwruogwnngg
     expense:
       type: object
@@ -1785,6 +1795,107 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/expense_custom_property'
+    limit:
+      description: |
+        The actual number of objects that are returned in the response.
+      type: integer
+      example: 100
+    field_name:
+      type: string
+      description: |
+        This specifies the name of the expense field.
+      example: Vendor desciption
+    column_name:
+      type: string
+      description: |
+        This specifies the name of column to which this expense field mapped to.
+      readOnly: true
+      example: text_column1
+    title:
+      type: string
+      description: |
+        This specifies the title of the expense field.
+      example: Vendor desciption
+    expense_fields_type:
+      type: string
+      description: |
+        This field specifies the type of the expense field.
+      example: TEXT
+    expense_fields_options:
+      type: array
+      items:
+        type: string
+      description: >
+        This specifies the option values of the expense field in case on SELECT
+        or MULTI_SELECT type.
+      example:
+        - Chai
+        - Coffee
+    default_value:
+      type: string
+      description: |
+        This specifies the default value of the expense fields.
+      example: Coffee
+    expense_fields_placeholder:
+      type: string
+      description: |
+        This specifies the placeholder of the expense field.
+      example: Enter vendor
+    expense_fields_mandatory:
+      type: boolean
+      description: |
+        This specifies if the expense field is mandatory or not.
+      example: true
+    expense_fields:
+      type: object
+      properties:
+        id:
+          type: string
+          description: |
+            This id is provided by Fyle to identify a particular expense field.
+          example: ef3ejnl335g
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        field_name:
+          $ref: '#/components/schemas/field_name'
+        column_name:
+          $ref: '#/components/schemas/column_name'
+        title:
+          $ref: '#/components/schemas/title'
+        type:
+          $ref: '#/components/schemas/expense_fields_type'
+        options:
+          $ref: '#/components/schemas/expense_fields_options'
+        default_value:
+          $ref: '#/components/schemas/default_value'
+        placeholder:
+          $ref: '#/components/schemas/expense_fields_placeholder'
+        category_ids:
+          $ref: '#/components/schemas/category_ids'
+        is_enabled:
+          $ref: '#/components/schemas/enabled'
+        mandatory:
+          $ref: '#/components/schemas/expense_fields_mandatory'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+    get_expense_fields:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /admin/expense_fields
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/expense_fields'
     currency:
       type: string
       maxLength: 10
@@ -2780,11 +2891,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/objects_project'
-    limit:
-      description: |
-        The actual number of objects that are returned in the response.
-      type: integer
-      example: 100
     categories:
       type: object
       properties:
@@ -2943,6 +3049,9 @@ tags:
     description: >
       This API gives you access to your organisation's Expenses Custom
       Properties data.
+  - name: Expense Fields
+    description: |
+      This API gives you access to your organisation's Expense Fields data.
   - name: Reports
     description: |
       This API gives you access to your organisation's Expense Reports data.
@@ -3197,6 +3306,69 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/expense_custom_properties'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /admin/expense_fields:
+    get:
+      tags:
+        - Expense Fields
+      summary: List expense fields
+      description: |
+        Gives the list of all expense fields based on query parameters.
+      operationId: get-expense-fields
+      parameters:
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/order'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_expense_fields'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+    post:
+      tags:
+        - Expense Fields
+      summary: Create or update an expense fields
+      operationId: post-expense-fields
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/expense_fields'
+              required:
+                - data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: /admin/expense_fields
+                  data:
+                    $ref: '#/components/schemas/expense_fields'
         '401':
           description: Unauthorised request
           content:
