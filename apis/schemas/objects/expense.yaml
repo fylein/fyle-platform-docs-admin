@@ -14,7 +14,7 @@ properties:
     type: string
     format: date-time
     description: |
-      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the expense for which the expense [being] fyled was made. <br>
+      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the expense [being] fyled was made. <br>
       This date cannot be in future.
     example: '2020-07-21T17:32:28Z'
   source:
@@ -99,7 +99,7 @@ properties:
     type: string
     description: |
       The unique ID of a Category to which the Expense belongs. <br>
-      Use `GET /api/tpa/v1/categories` to get the list of valid ID and Name of the Categories for the organization.
+      Use `GET /admin/categories` to get the list of valid ID and Name of the Categories for the organization.
     example: '18'
   category:
     $ref: 'minimals/category.yaml'
@@ -268,8 +268,6 @@ properties:
       Returns if there are file attachments that the Expense has. Usually the image of the receipts are added as attachments to the Expenses.
     readOnly: true
   attachments:
-    description: |
-      This field will not be present in the response for the GET method on the `/api/tpa/v1/expenses` call.
     type: array
     items:
       $ref: 'minimals/file.yaml'
