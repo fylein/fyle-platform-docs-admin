@@ -133,9 +133,9 @@ components:
       schema:
         type: string
         example: like.Add*
-    only_enabled:
+    is_enabled:
       in: query
-      name: only_enabled
+      name: is_enabled
       description: |
         This param is used to filer records by
         Supported operators are `eq`.<br>
@@ -295,7 +295,6 @@ components:
         next 1000 objects. <br>
       type: integer
       example: 10
-      default: 200
     level:
       type: object
       readOnly: true
@@ -1842,6 +1841,9 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
+        seq:
+          type: integer
+          example: 1
         field_name:
           $ref: '#/components/schemas/field_name'
         column_name:
@@ -3271,7 +3273,7 @@ paths:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/is_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - in: query
@@ -3307,7 +3309,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/is_enabled'
         - $ref: '#/components/parameters/order'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
@@ -3645,7 +3647,7 @@ paths:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/display_name'
-        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/is_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - in: query
@@ -3735,7 +3737,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/is_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
       responses:
@@ -3816,7 +3818,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/is_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - in: query
