@@ -124,15 +124,6 @@ components:
         For example, if verified is true, it will return all the verified
         expenses. If verified is false, it will return all the unverified
         expenses. leaving it blank will return all the expenses.
-    name:
-      in: query
-      name: name
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: like.Add*
     is_enabled:
       in: query
       name: is_enabled
@@ -1669,111 +1660,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/expense'
-    name:
-      type: string
-      description: |
-        This field specifies the name of the custom property.
-      example: Vendor desciption
-    type:
-      type: string
-      description: |
-        This field specifies the type of the custom property.
-      example: TEXT
-    options:
-      type: array
-      items:
-        type: string
-      description: >
-        This field specifies the option values of the custom property in case on
-        SELECT or MULTI_SELECT custom property type.
-      example:
-        - Chai
-        - Coffee
-    placeholder:
-      type: string
-      description: |
-        This field specifies the placeholder of the custom property.
-      example: Enter vendor
-    category_ids:
-      type: array
-      items:
-        type: integer
-      description: >
-        This field specifies the org category ids associated with the custom
-        property.
-      example:
-        - 16570
-    enabled:
-      type: boolean
-      description: |
-        This field specifies if the object is enabled or not.
-      example: true
-    mandatory:
-      type: boolean
-      description: |
-        This field specifies if the custom property is mandatory or not.
-      example: true
-    expense_custom_property:
-      type: object
-      properties:
-        id:
-          type: number
-          description: >
-            This id is provided by Fyle to identify a particular custom
-            property.
-          readOnly: true
-          example: 7
-        name:
-          $ref: '#/components/schemas/name'
-        type:
-          $ref: '#/components/schemas/type'
-        options:
-          $ref: '#/components/schemas/options'
-        placeholder:
-          $ref: '#/components/schemas/placeholder'
-        category_ids:
-          $ref: '#/components/schemas/category_ids'
-        categories:
-          type: array
-          description: >
-            This list of categories that are applicable for this custom
-            property.
-          items:
-            $ref: '#/components/schemas/category'
-        is_enabled:
-          $ref: '#/components/schemas/enabled'
-        is_mandatory:
-          $ref: '#/components/schemas/mandatory'
-        org_id:
-          $ref: '#/components/schemas/org_id'
-        created_at:
-          $ref: '#/components/schemas/created_at'
-        updated_at:
-          $ref: '#/components/schemas/updated_at'
-        last_updater_id:
-          type: string
-          description: |
-            This represents the id of employee who updated this custom property.
-          example: ouGgsdfdq
-        last_updater:
-          allOf:
-            - $ref: '#/components/schemas/employee'
-          description: |
-            Details of employee who updated this custom property.
-    expense_custom_properties:
-      type: object
-      properties:
-        count:
-          $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        url:
-          type: string
-          example: /admin/expense_custom_properties
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/expense_custom_property'
     limit:
       description: |
         The actual number of objects that are returned in the response.
@@ -1795,12 +1681,12 @@ components:
       description: |
         This specifies the title of the expense field.
       example: Vendor desciption
-    expense_fields_type:
+    type:
       type: string
       description: |
         This field specifies the type of the expense field.
       example: TEXT
-    expense_fields_options:
+    options:
       type: array
       items:
         type: string
@@ -1815,12 +1701,26 @@ components:
       description: |
         This specifies the default value of the expense fields.
       example: Coffee
-    expense_fields_placeholder:
+    placeholder:
       type: string
       description: |
         This specifies the placeholder of the expense field.
       example: Enter vendor
-    expense_fields_mandatory:
+    category_ids:
+      type: array
+      items:
+        type: integer
+      description: >
+        This field specifies the org category ids associated with the custom
+        property.
+      example:
+        - 16570
+    enabled:
+      type: boolean
+      description: |
+        This field specifies if the object is enabled or not.
+      example: true
+    mandatory:
       type: boolean
       description: |
         This specifies if the expense field is mandatory or not.
@@ -1847,19 +1747,19 @@ components:
         title:
           $ref: '#/components/schemas/title'
         type:
-          $ref: '#/components/schemas/expense_fields_type'
+          $ref: '#/components/schemas/type'
         options:
-          $ref: '#/components/schemas/expense_fields_options'
+          $ref: '#/components/schemas/options'
         default_value:
           $ref: '#/components/schemas/default_value'
         placeholder:
-          $ref: '#/components/schemas/expense_fields_placeholder'
+          $ref: '#/components/schemas/placeholder'
         category_ids:
           $ref: '#/components/schemas/category_ids'
         is_enabled:
           $ref: '#/components/schemas/enabled'
         mandatory:
-          $ref: '#/components/schemas/expense_fields_mandatory'
+          $ref: '#/components/schemas/mandatory'
         org_id:
           $ref: '#/components/schemas/org_id'
     get_expense_fields:
@@ -3027,10 +2927,6 @@ tags:
   - name: Expenses
     description: |
       This API gives you access to your organisation's Expenses data.
-  - name: Expense Custom Properties
-    description: >
-      This API gives you access to your organisation's Expenses Custom
-      Properties data.
   - name: Expense Fields
     description: |
       This API gives you access to your organisation's Expense Fields data.
@@ -3259,41 +3155,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /admin/expense_custom_properties:
-    get:
-      tags:
-        - Expense Custom Properties
-      summary: List expense custom properties
-      operationId: get-expense-custom-properties
-      parameters:
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/is_enabled'
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - in: query
-          name: order
-          description: |
-            use comma separated column names for sorting the results. <br>
-            For sorting in descending order, use `updated_at.desc`.<br>
-            Supported columns are `updated_at`, `id`.
-          schema:
-            type: string
-            example: 'updated_at.desc,id'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/expense_custom_properties'
-        '401':
-          description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
   /admin/expense_fields:
     get:
       tags:
