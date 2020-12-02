@@ -1,8 +1,0 @@
-in: query
-name: options
-description: |
-  List of strings.<br>
-  Supported operators are `eq`,`cs`.<br>
-schema:
-  type: string
-  example: 'cs.{food,travel}'

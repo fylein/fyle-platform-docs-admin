@@ -27,9 +27,6 @@ tags:
   - name: Expenses
     description: |
       This API gives you access to your organisation's Expenses data.
-  - name: Expense Custom Properties
-    description: |
-      This API gives you access to your organisation's Expenses Custom Properties data.
   - name: Expense Fields
     description: |
       This API gives you access to your organisation's Expense Fields data.
@@ -69,8 +66,6 @@ paths:
     $ref: 'paths/employees.yaml'
   /admin/expenses:
     $ref: 'paths/expenses.yaml'
-  /admin/expense_custom_properties:
-    $ref: 'paths/expense_custom_properties.yaml'
   /admin/expense_fields:
     $ref: 'paths/expense_fields.yaml'
   /admin/reports:
