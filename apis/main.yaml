@@ -88,3 +88,11 @@ paths:
     $ref: 'paths/categories.yaml'
   /admin/cost_centers:
     $ref: 'paths/cost_centers.yaml'
+  /admin/expense_stats:
+    $ref: 'paths/stats/expense.yaml'
+  /admin/trip_requests_stats:
+    $ref: 'paths/stats/trip_requests.yaml'
+  /admin/advance_requests_stats:
+    $ref: 'paths/stats/advance_requests.yaml'
+  /admin/report_stats:
+    $ref: 'paths/stats/reports.yaml'

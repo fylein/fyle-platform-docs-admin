@@ -1,0 +1,7 @@
+type: object
+properties:
+  url:
+    type: string
+    example: '/admin/expense_stats'
+  data:
+    $ref: '../../../objects/stats/expenses.yaml'
