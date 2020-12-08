@@ -118,3 +118,5 @@ paths:
     $ref: 'paths/policy_test.yaml'
   /admin/expense_comments:
     $ref: 'paths/expense_comments.yaml'
+  /fyler/expenses/{id}:
+    $ref: 'paths/expenses@{id}.yaml'
