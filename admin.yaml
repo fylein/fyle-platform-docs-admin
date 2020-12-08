@@ -245,6 +245,24 @@ components:
       schema:
         type: string
         example: like.Fast*
+    commons_state:
+      in: query
+      name: state
+      description: |
+        Supported operators are `eq`, `in`.<br>
+        state=in.(value1,value2)
+      schema:
+        type: string
+        example: in.(DRAFT)
+    sent_back:
+      in: query
+      name: sent_back
+      description: |
+        This param is used to filter records.
+        Supported operators are `eq`,`not.eq`.<br>
+      schema:
+        type: string
+        example: eq.true
   schemas:
     '401':
       type: object
@@ -2920,6 +2938,411 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/objects_cost_center'
+    total_amount:
+      type: number
+      description: |
+        This field indicates the total amount of user expenses.
+      example: 1234.56
+    total_count:
+      type: integer
+      description: |
+        This field indicates the total count of user expenses.
+      example: 12
+    stats_expenses:
+      type: object
+      properties:
+        total_amount:
+          $ref: '#/components/schemas/total_amount'
+        total_count:
+          $ref: '#/components/schemas/total_count'
+        total_reimbursable:
+          type: number
+          description: |
+            This field indicates the total of reimbursible expenses.
+          example: 453
+        total_non_reimbursible:
+          type: number
+          description: |
+            This field indicates the total of non reimbursible expenses.
+          example: 765
+    stats_expense:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /admin/expense_stats
+        data:
+          $ref: '#/components/schemas/stats_expenses'
+    trip_requests:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: |
+            This field indicates the total count of trip requests.
+          example: 12
+    stats_trip_requests:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /admin/trip_requests_stats
+        data:
+          $ref: '#/components/schemas/trip_requests'
+    stats_advance_requests:
+      type: object
+      properties:
+        total_amount:
+          type: number
+          description: |
+            This field indicates the total amount of advance requests.
+          example: 1234.56
+        total_count:
+          type: integer
+          description: |
+            This field indicates the total count of advance requests.
+          example: 12
+    get_advance_requests:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /admin/advance_requests_stats
+        data:
+          $ref: '#/components/schemas/stats_advance_requests'
+    stats_reports:
+      type: object
+      properties:
+        total_amount:
+          type: number
+          description: |
+            This field indicates the total amount of report.
+          example: 1234.56
+        total_count:
+          type: integer
+          description: |
+            This field indicates the total amount of report.
+          example: 12
+    responses_reports:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /admin/reports_stats
+        data:
+          $ref: '#/components/schemas/stats_reports'
+    policy_test:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/expense'
+      required:
+        - data
+    expense_desired_state:
+      type: object
+      properties:
+        action_description:
+          type: string
+          maxLength: 255
+          description: |
+            Describes the what action will taken on the expense.
+          example: >-
+            The following action(s) will be taken- expense violation will be
+            marked, expense amount will be changed to 0 USD
+        currency:
+          $ref: '#/components/schemas/currency'
+        disable_system_approvers:
+          type: boolean
+          default: false
+          example: false
+        failure_reason:
+          type: string
+          description: |
+            Contains the failure reasons.
+        is_flagged:
+          type: boolean
+          description: |
+            Indicates whether expense is flagged or not.
+          default: false
+          example: false
+        policy_amount:
+          type: number
+          example: 10
+        policy_approver_ids:
+          type: array
+          description: |
+            Contains list of approver ids.
+          items:
+            type: string
+          example:
+            - apd829d92j9w
+        policy_rule_descriptions:
+          type: array
+          description: |
+            Contains the list of policy rules description.
+          items:
+            type: string
+          example:
+            - This is rule 1
+            - This is the rule 2
+        policy_run_status:
+          type: string
+          description: >
+            Indicates the status of policy execution, whether it got executed or
+            not.
+          example: SUCCESS
+        is_receipt_required:
+          type: boolean
+          description: |
+            Indicates whether receipt is mandatory or not in this policy.
+          example: true
+        expense_id:
+          type: string
+          description: |
+            Expense Id on which this policy executed.
+          example: txu89h890i8
+    expense_policy_rule_desired_states:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/currency'
+        description:
+          type: string
+          description: |
+            Description of this policy rule.
+          example: Receipt needed for expenses above USD 74
+        disable_system_approvers:
+          type: boolean
+          description: |
+            Indicates whether to disable system approvers or not.
+          example: false
+        flag:
+          type: boolean
+          description: |
+            Indicates whether expense is flagged or not.
+          example: false
+        missing_approvers:
+          type: array
+          description: |
+            Contains the missing ids of Approver set for this Fyler.
+          items:
+            type: string
+          example:
+            - oudh2ue92ue3
+            - oue29iwk2p334
+        policy_amount:
+          type: number
+          description: |
+            Amount capping set in the policy.
+          example: 100
+        policy_approver_ids:
+          type: array
+          description: |
+            Contains the ids of Approver set for this Fyler.
+          items:
+            type: string
+          example:
+            - oudh2w4ue92u
+            - ouvnre29iwk2p
+        popup:
+          type: boolean
+          description: |
+            Indicates whether the message is shown in popup window or not.
+          example: false
+        receipt_required:
+          type: boolean
+          description: |
+            Indicates whether receipt is mandatory or not in this policy rule.
+          example: false
+        expense_id:
+          type: string
+          description: |
+            Expense Id on which this policy executed.
+          example: txu89h890i8
+        expense_policy_rule_id:
+          type: string
+          description: |
+            Expense policy rule id.
+          example: tprLjFqDpdjj20
+    objects_policy_test:
+      type: object
+      properties:
+        expense_desired_state:
+          $ref: '#/components/schemas/expense_desired_state'
+        expense_policy_rule_desired_states:
+          type: array
+          items:
+            $ref: '#/components/schemas/expense_policy_rule_desired_states'
+        expense_query_params:
+          type: array
+          description: |
+            Query params present in expense
+          items:
+            type: string
+    post_policy_test:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /admin/policy_test
+        data:
+          $ref: '#/components/schemas/objects_policy_test'
+    bulk_error:
+      type: object
+      properties:
+        row:
+          type: integer
+          description: |
+            This holds the info of which row contains bad data.
+        key:
+          type: string
+          description: |
+            This helps in identifying the error by unique key.
+        message:
+          type: string
+          description: |
+            This explains what the error is in `human readable` text.
+    expense_comments:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            expense_id:
+              type: string
+              description: |
+                The expense id for which comment has to be created.
+              example: txhfw8d920k
+            notify:
+              type: boolean
+              description: |
+                This indicates whether users should be notified or not.
+              example: true
+            comment:
+              type: string
+              maxLength: 255
+              description: Comment made on the expense.
+              example: This is a food expense
+          required:
+            - expense_id
+            - comment
+      required:
+        - data
+    objects_expense_comments:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 255
+          example: tx12345
+          description: >-
+            An unique string to identify the Expense Comment. Ignore this field
+            when used as part of a POST request to create an Expense.
+          readOnly: true
+        comment:
+          type: string
+          maxLength: 255
+          description: Comment made on the expense.
+          example: This is a food expense
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        expense_id:
+          type: string
+          description: |
+            Expense Id on which this policy executed.
+          example: txu89h890i8
+    'expenses@{id}':
+      type: object
+      properties:
+        url:
+          type: string
+          example: /admin/expenses/65
+        data:
+          $ref: '#/components/schemas/expense'
+    report_id:
+      type: string
+      maxLength: 255
+      description: |
+        This id provided by Fyle to uniquely identify a report.
+        This id is always prefixed with `rp`.
+      readOnly: true
+      example: rptGt9ju6qP
+    report_approvals:
+      type: object
+      properties:
+        report_id:
+          $ref: '#/components/schemas/report_id'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        approver_id:
+          allOf:
+            - $ref: '#/components/schemas/employee_id'
+        state:
+          type: string
+          enum:
+            - APPROVAL_PENDING
+            - APPROVAL_DONE
+            - APPROVAL_DISABLED
+          readOnly: true
+          example: APPROVAL_PENDING
+        last_updater_id:
+          type: string
+          readOnly: true
+          description: |
+            This represents the id of employee who updated this expense.
+          example: ouGgsdfdq
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this expense.
+    get_report_approvals:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /admin/report_approvals
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/report_approvals'
+    requests_report_approvals:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: |
+                Id of a report which is to be approved.
+              example: rphs782hj245
+      required:
+        - data
+    post_report_approvals:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /admin/report_approvals
+        data:
+          $ref: '#/components/schemas/report_approvals'
+    'reports@{id}':
+      type: object
+      properties:
+        url:
+          type: string
+          example: /approver/reports/rpevetgn3kl
+        data:
+          $ref: '#/components/schemas/reports'
 tags:
   - name: Employees
     description: |
@@ -2964,6 +3387,28 @@ tags:
   - name: Categories
     description: |
       These APIs gives you access to manage your organisation's Categories data.
+  - name: Expense Stats
+    description: |
+      This API gives you stats of your expenses.
+  - name: Trip Requests Stats
+    description: |
+      This API gives you stats of your trip requests.
+  - name: Advance Requests Stats
+    description: |
+      This API gives you stats of your advance requests.
+  - name: Report Stats
+    description: |
+      This API gives you stats of your report.
+  - name: Policy
+    description: |
+      These APIs handles the company wide policy operations.
+  - name: Expense Comments
+    description: |
+      This API gives you access to comment on a particular expense.
+  - name: Reports Approvals
+    description: >
+      These API gives you access view or approve Reports which are submitted to
+      you.
 paths:
   /admin/employees:
     get:
@@ -3756,3 +4201,350 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
+  /admin/expense_stats:
+    get:
+      tags:
+        - Expense Stats
+      summary: Retrieve expense stats
+      operationId: get-expense-stats
+      parameters:
+        - $ref: '#/components/parameters/commons_state'
+        - in: query
+          name: policy_amount
+          description: |
+            Supported operators are `eq`, `gte`, `lte`, `gt`, `lt`.<br>
+            policy_amount=gt.value
+          schema:
+            type: string
+            example: gt.12
+        - in: query
+          name: policy_flag
+          description: |
+            Supported operators are `eq`.<br>
+            policy_flag=eq.true
+          schema:
+            type: string
+            example: eq.true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stats_expense'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /admin/trip_requests_stats:
+    get:
+      tags:
+        - Trip Requests Stats
+      summary: Retrieve trip requests stats
+      operationId: get-trip-requests-stats
+      parameters:
+        - $ref: '#/components/parameters/commons_state'
+        - $ref: '#/components/parameters/sent_back'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stats_trip_requests'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /admin/advance_requests_stats:
+    get:
+      tags:
+        - Advance Requests Stats
+      summary: Retrieve advance requests stats
+      operationId: get-advance-requests-stats
+      parameters:
+        - $ref: '#/components/parameters/commons_state'
+        - $ref: '#/components/parameters/sent_back'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_advance_requests'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /admin/report_stats:
+    get:
+      tags:
+        - Report Stats
+      summary: Retrieve report stats
+      operationId: get-report-stats
+      parameters:
+        - $ref: '#/components/parameters/commons_state'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responses_reports'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /admin/policy_test:
+    post:
+      tags:
+        - Policy
+      summary: Test policy on a expense
+      description: >
+        It run's the organization defined policy for the expense and returns any
+        violation that occurred.
+
+        This is a test call. the results wont be stored.
+      operationId: post-policy-test
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/policy_test'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post_policy_test'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/bulk_error'
+                    example:
+                      - row: 1
+                        key: Amount abcd
+                        message: Invalid amount
+                  - $ref: '#/components/schemas/json_parsing_error'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /admin/expense_comments:
+    post:
+      tags:
+        - Expense Comments
+      summary: Create a comment on an expense
+      description: |
+        It creates comment on a specific expense.
+      operationId: post-expense-comments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/expense_comments'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: /admin/expense_comments
+                  data:
+                    $ref: '#/components/schemas/objects_expense_comments'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  '/admin/expenses/{id}':
+    get:
+      tags:
+        - Expenses
+      summary: Retrieve an expense
+      operationId: retrive-expense
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            Id of the expense to be retrieved.
+          schema:
+            type: string
+            example: tx43545dds
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/expenses@{id}'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+    delete:
+      tags:
+        - Expenses
+      summary: Delete an expense
+      description: |
+        It delete's a single expense at a time only.
+      operationId: delete-expense
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            Id of the expense to be deleted.<br>
+          schema:
+            type: string
+            example: txhfw8d920k
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /admin/report_approvals:
+    post:
+      tags:
+        - Reports Approvals
+      summary: Approve reports
+      description: |
+        It approves expense reports.
+      operationId: post-report-approvals
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requests_report_approvals'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post_report_approvals'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+    get:
+      tags:
+        - Reports Approvals
+      summary: List report approvals
+      operationId: GetReportApprovals
+      parameters:
+        - in: query
+          name: report_id
+          description: >
+            Filters the objects by report id. For single value use
+            `report_id=eq.<value>`.
+
+            For multiple values, use `report_id=in.(value1,value2,value3)`.
+          schema:
+            type: string
+            example: eq.rptqwds24
+        - $ref: '#/components/parameters/reports_state'
+        - $ref: '#/components/parameters/order'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_report_approvals'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  '/admin/reports/{id}':
+    get:
+      tags:
+        - Reports
+      summary: Retrieve a report
+      operationId: Getreport
+      parameters:
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/approved_at'
+        - $ref: '#/components/parameters/reports_state'
+        - $ref: '#/components/parameters/settled_at'
+        - $ref: '#/components/parameters/reimbursed_at'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results. <br>
+            For sorting in descending order, use `updated_at.desc`.<br>
+            Supported columns are `updated_at`, `id`.
+          schema:
+            type: string
+            example: 'updated_at.desc,id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reports@{id}'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
