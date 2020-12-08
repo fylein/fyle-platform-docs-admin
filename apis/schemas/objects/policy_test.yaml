@@ -1,0 +1,14 @@
+type: object
+properties:
+  expense_desired_state:
+    $ref: 'policy/expense_desired_state.yaml'
+  expense_policy_rule_desired_states:
+    type: array
+    items:
+      $ref: 'policy/expense_policy_rule_desired_states.yaml'
+  expense_query_params:
+    type: array
+    description: |
+      Query params present in expense
+    items:
+      type: string

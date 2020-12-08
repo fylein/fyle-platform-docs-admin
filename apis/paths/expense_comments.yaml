@@ -1,0 +1,42 @@
+post:
+  tags:
+    - Expense Comments
+  summary:
+    Create a comment on an expense
+  description: |
+    It creates comment on a specific expense.
+  operationId: post-expense-comments
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/requests/expense_comments.yaml'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+                example: '/admin/expense_comments'
+              data:
+                $ref: '../schemas/objects/expense_comments.yaml'
+
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'
+
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/403.yaml'

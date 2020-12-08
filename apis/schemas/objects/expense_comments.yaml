@@ -1,0 +1,20 @@
+type: object
+properties:
+  id:
+    type: string
+    maxLength: 255
+    example: tx12345
+    description: An unique string to identify the Expense Comment. Ignore this field when used as part of a POST request to create an Expense.
+    readOnly: true
+  comment:
+    type: string
+    maxLength: 255
+    description: Comment made on the expense.
+    example: This is a food expense
+  created_at:
+    $ref: 'commons/created_at.yaml'
+  expense_id:
+    type: string
+    description: |
+      Expense Id on which this policy executed.
+    example: txu89h890i8
