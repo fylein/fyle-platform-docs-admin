@@ -2,9 +2,9 @@ type: object
 readOnly: true
 properties:
   id:
-    type: string
+    type: integer
     maxLength: 10
-    example: '16570'
+    example: 16570
     description: |
       This id provided by Fyle to identify a category from this organisation.
       This id is unique within the organisation.
